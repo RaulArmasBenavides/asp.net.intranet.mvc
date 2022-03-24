@@ -1,0 +1,518 @@
+﻿@model intranetMVC.WCFCliente.Alumno
+
+<div>
+    <h4>Alumno</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ApeMatAlumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApeMatAlumno) Raúl Armas 
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApePatAlumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApePatAlumno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoAlu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodigoAlu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Creditos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Creditos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DNI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DNI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DirAlumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DirAlumno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailAlumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailAlumno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Escuela)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Escuela)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdAlumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdAlumno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomAlumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomAlumno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TelAlumno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TelAlumno)
+        </dd>
+
+    </dl>
+</div>
+
+<div class="panel-body">
+    <fieldset class="well">
+        <legend class="well-legend"><h4>Datos Personales</h4></legend>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="group">
+                    <label for="codigoAlumno" class="col-lg-2 control-label">Codigo de Estudiante</label>
+                    <div class="col-lg-4">
+                        <input type="text" id="codigoAlumno" name="codigoAlumno" class="form-control" value="15170111" disabled="">
+                    </div>
+                </div>
+                <div class="group">
+                    <label for="nomAlumno" class="col-lg-2 control-label">Nombre de Estudiante</label>
+                    <div class="col-lg-4">
+                        <input type="text" id="nomAlumno" name="nomAlumno" class="form-control" value="ARMAS BENAVIDES, RAÚL MARCELO" disabled="">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="group">
+                    <label for="resumen_texto_tipDocIdentidadAlumno" class="col-lg-2 control-label">Tipo de Doc. de Identidad</label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" name="resumen_texto_tipDocIdentidadAlumno" id="resumen_texto_tipDocIdentidadAlumno" value="Doc. Nacional de Identidad" readonly="">
+                    </div>
+                </div>
+                <div class="group">
+                    <label for="resumen_valor_numDocIdentidadAlumno" class="col-lg-2 control-label">Número de Doc. del Estudiante</label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" name="resumen_valor_numDocIdentidadAlumno" id="resumen_valor_numDocIdentidadAlumno" value="73262442" readonly="">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="group">
+                    <label for="resumen_valor_fechaNacimiento" class="col-lg-2 control-label">Fecha de Nacimiento</label>
+                    <div class="col-lg-4">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            <input type="text" id="resumen_valor_fechaNacimiento" name="resumen_valor_fechaNacimiento" class="form-control" placeholder="YYYY-MM-DD" value="08-09-1997" readonly="">
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <label for="resumen_texto_estadocivil" class="col-lg-2 control-label">Estado Civil</label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" name="resumen_texto_estadocivil" id="resumen_texto_estadocivil" value="Soltero" readonly="">
+                    </div>
+                </div>
+            </div>
+            <fieldset class="well">
+                <legend class="well-legend"><h5>Lugar de Nacimiento</h5></legend>
+                <div class="form-group">
+                    <div class="group">
+                        <label for="resumen_texto_pais1" class="col-lg-2 control-label">País</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" name="resumen_texto_pais1" id="resumen_texto_pais1" value="PERU" readonly="">
+                        </div>
+                    </div>
+                    <div class="group">
+                        <label for="resumen_texto_departamento2" class="col-lg-2 control-label">Departamento</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" name="resumen_texto_departamento2" id="resumen_texto_departamento2" value="LIMA" readonly="">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="group">
+                        <label for="resumen_texto_provincia2" class="col-lg-2 control-label">Provincia</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" name="resumen_texto_provincia2" id="resumen_texto_provincia2" value="LIMA" readonly="">
+                        </div>
+                    </div>
+                    <div class="group">
+                        <label for="resumen_texto_distrito2" class="col-lg-2 control-label">Distrito</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" name="resumen_texto_distrito2" id="resumen_texto_distrito2" value="SAN ISIDRO" readonly="">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="well">
+                <legend class="well-legend"><h5>Dirección</h5></legend>
+                <div class="form-group">
+                    <div class="group">
+                        <label for="resumen_texto_departamento1" class="col-lg-2 control-label">Departamento</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" name="resumen_texto_departamento1" id="resumen_texto_departamento1" value="LIMA" readonly="">
+                        </div>
+                    </div>
+                    <div class="group">
+                        <label for="resumen_texto_provincia1" class="col-lg-2 control-label">Provincia</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" name="resumen_texto_provincia1" id="resumen_texto_provincia1" value="LIMA" readonly="">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="resumen_texto_distrito1" class="col-lg-2 control-label">Distrito</label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" name="resumen_texto_distrito1" id="resumen_texto_distrito1" value="SAN MIGUEL" readonly="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="resumen_valor_dirAlumno" class="col-lg-2 control-label">Dirección</label>
+                    <div class="col-lg-4">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                            <input type="text" id="resumen_valor_dirAlumno" name="resumen_valor_dirAlumno" class="form-control" value="Fortunato Quesada 109" readonly="">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="form-group">
+                <div class="group">
+                    <label for="resumen_texto_tfijo1" class="col-lg-2 control-label">Teléfono Fijo </label>
+                    <div class="col-lg-4">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                            <input type="text" id="resumen_texto_tfijo1" name="resumen_texto_tfijo1" class="form-control" value="261-2064" readonly="">
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <label for="resumen_texto_tmovil1" class="col-lg-2 control-label">Teléfono Móvil </label>
+                    <div class="col-lg-4">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                            <input type="text" id="resumen_texto_tmovil1" name="resumen_texto_tmovil1" class="form-control" value="98539-5111" readonly="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="resumen_texto_correoAlumno" class="col-lg-2 control-label">Correo Personal </label>
+                <div class="col-lg-4">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                        <input type="text" id="resumen_texto_correoAlumno" name="resumen_texto_correoAlumno" class="form-control" value="raularmasbx@gmail.com" readonly="">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </fieldset>
+
+    <fieldset class="well">
+        <legend class="well-legend"><h4>Colegio de Procedencia</h4></legend>
+        <form class="form-horizontal">
+            <fieldset class="well">
+                <legend class="well-legend"><h5>Ubicación del Colegio</h5></legend>
+                <div class="form-group">
+                    <div class="group">
+                        <label for="resumen_texto_paisColegio" class="col-lg-2 control-label">País</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" name="resumen_texto_paisColegio" id="resumen_texto_paisColegio" value="PERU" readonly="">
+                        </div>
+                    </div>
+                    <div class="group">
+                        <label for="resumen_texto_departamentoColegio" class="col-lg-2 control-label">Departamento</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" name="resumen_texto_departamentoColegio" id="resumen_texto_departamentoColegio" value="LIMA" readonly="">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="group">
+                        <label for="resumen_texto_provinciaColegio" class="col-lg-2 control-label">Provincia</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" name="resumen_texto_provinciaColegio" id="resumen_texto_provinciaColegio" value="LIMA" readonly="">
+                        </div>
+                    </div>
+                    <div class="group">
+                        <label for="resumen_texto_distritoColegio" class="col-lg-2 control-label">Distrito</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" name="resumen_texto_distritoColegio" id="resumen_texto_distritoColegio" value="SAN MIGUEL" readonly="">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="form-group">
+                <div class="group">
+                    <label for="resumen_valor_tipoColegio" class="col-lg-2 control-label">Tipo de Colegio</label>
+                    <div class="col-lg-4">
+                        <input type="text" id="resumen_texto_tipoColegio" name="resumen_texto_tipoColegio" class="form-control" value="PRIVADO" readonly="">
+                    </div>
+                </div>
+                <div class="group">
+                    <label for="resumen_valor_nombreColegio" class="col-lg-2 control-label">nombre de Colegio</label>
+                    <div class="col-lg-4">
+                        <input type="text" id="resumen_valor_nombreColegio" name="resumen_valor_nombreColegio" class="form-control" value="TRILCE" readonly="">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="group">
+                    <label for="resumen_valor_pagoMensual" class="col-lg-2 control-label">Pago Mensual</label>
+                    <div class="col-lg-4">
+                        <input type="text" id="resumen_valor_pagoMensual" name="resumen_valor_pagoMensual" class="form-control" value="500" readonly="">
+                    </div>
+                </div>
+                <div class="group">
+                    <label for="resumen_valor_anioSecundaria" class="col-lg-2 control-label">Año de conclusión de Secundaria</label>
+                    <div class="col-lg-4">
+                        <input type="text" id="resumen_valor_anioSecundaria" name="resumen_valor_anioSecundaria" class="form-control" value="2014" readonly="">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="resumen_valor_tipoPreparacionUniversitaria" class="col-lg-2 control-label">Tipo de Preparación Universitaria</label>
+                <div class="col-lg-4">
+                    <input type="text" id="resumen_texto_tipoPreparacionUniversitaria" name="resumen_texto_tipoPreparacionUniversitaria" value="CENTRO PRE UNIVERSITARIO" class="form-control" readonly="">
+                </div>
+            </div>
+        </form>
+    </fieldset>
+
+    <fieldset class="well">
+        <legend class="well-legend"><h4>Dependencia Económica</h4></legend>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="group">
+                    <label for="resumen_texto_depende_economicamente" class="col-lg-2 control-label">¿Depende económicamente de sus padres o tutores?</label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" name="resumen_texto_depende_economicamente" id="resumen_texto_depende_economicamente" value="Si, totalmente" readonly="">
+                    </div>
+                </div>
+                <div class="group">
+                    <label for="resumen_valor_nro_hijos" class="col-lg-2 control-label">Número de Hijos</label>
+                    <div class="col-lg-4">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="resumen_valor_nro_hijos" id="resumen_valor_nro_hijos" value="0" readonly="">
+                            <span class="input-group-addon">Hijos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="group">
+                    <label for="resumen_texto_enLaActualidadTrabajas" class="col-lg-2 control-label">¿Usted trabaja en la actualidad?</label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" name="resumen_texto_enLaActualidadTrabajas" id="resumen_texto_enLaActualidadTrabajas" value="Nunca he trabajado" readonly="">
+                    </div>
+                </div>
+                <div class="group">
+                    <label for="resumen_valor_dondeTrabaja" class="col-lg-2 control-label">¿Donde Trabaja?</label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" name="resumen_valor_dondeTrabaja" id="resumen_valor_dondeTrabaja" value="--" readonly="">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="group">
+                    <label for="resumen_texto_conQuienVives" class="col-lg-2 control-label">¿Con quien vive?</label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" name="resumen_texto_conQuienVives" id="resumen_texto_conQuienVives" value="Con mis padres" readonly="">
+                    </div>
+                </div>
+                <div class="group">
+                    <label for="resumen_texto_casaDondeVives" class="col-lg-2 control-label">Tipo de vivienda</label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" name="resumen_texto_casaDondeVives" id="resumen_texto_casaDondeVives" value="Propia" readonly="">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </fieldset>
+    <fieldset class="well">
+        <legend class="well-legend"><h4>¿Con qué recursos cuenta para realizar sus estudios?</h4></legend>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="group">
+                    <label for="resumen_texto_recursoTranporte" class="col-lg-2 control-label">Transporte</label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" name="resumen_texto_recursoTranporte" id="resumen_texto_recursoTranporte" value="SI " readonly="">
+                    </div>
+                </div>
+                <div class="group">
+                    <label for="resumen_texto_recursoRecreacion" class="col-lg-2 control-label">Acceso a Internet</label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" name="resumen_texto_recursoRecreacion" id="resumen_texto_recursoRecreacion" value="SI " readonly="">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="group">
+                    <label for="resumen_texto_librosEstudiar" class="col-lg-2 control-label">Acceso a bibliotecas</label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" name="resumen_texto_librosEstudiar" id="resumen_texto_librosEstudiar" value="SI " readonly="">
+                    </div>
+                </div>
+                <div class="group">
+                    <label for="resumen_texto_alimentacion" class="col-lg-2 control-label">Alimentación</label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" name="resumen_texto_alimentacion" id="resumen_texto_alimentacion" value="SI " readonly="">
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+    </fieldset>
+    <fieldset class="well">
+        <legend class="well-legend"><h4>Transporte</h4></legend>
+        <form class="form-horizontal">
+            <div class="form-group">
+
+
+                <div class="group">
+                    <label for="resumen_texto_enQueTeTranportasUniversidad" class="col-lg-2 control-label">Medio de transporte hacia la Universidad</label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" name="resumen_texto_enQueTeTranportasUniversidad" id="resumen_texto_enQueTeTranportasUniversidad" value="Transporte Publico" readonly="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="resumen_texto_cuantoTeDemorasUniversidad" class="col-lg-2 control-label">¿Cuanto tiempo te demoras en llegar a la Universidad?</label>
+                <div class="col-lg-4">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="resumen_valor_cuantoTeDemorasUniversidad" id="resumen_valor_cuantoTeDemorasUniversidad" value="20" readonly="">
+                        <span class="input-group-addon">Minutos</span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </fieldset>
+    <fieldset class="well">
+        <legend class="well-legend"><h4>Salud</h4></legend>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="group">
+                    <label for="resumen_texto_sufresDiscapacidad" class="col-lg-2 control-label">¿Sufres de alguna discapacidad física? ¿Cuál?</label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" name="resumen_texto_sufresDiscapacidad" id="resumen_texto_sufresDiscapacidad" value="Ninguna" readonly="">
+                    </div>
+                </div>
+                <div class="group">
+                    <label for="resumen_texto_aQueSeguroEncuentras" class="col-lg-2 control-label">¿A que seguro de salud se encuentra incorporado?</label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" name="resumen_texto_aQueSeguroEncuentras" id="resumen_texto_aQueSeguroEncuentras" value="E. Prestadora Privada de Salud" readonly="">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </fieldset>
+    <fieldset class="well">
+        <legend class="well-legend"><h4>En caso de emergencia, comunicarse con...</h4></legend>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="resumen_valor_comunicarseEmergenciaNombres" class="col-lg-2 control-label">Nombres y Apellidos</label>
+                <div class="col-lg-4">
+                    <input type="text" class="form-control" id="resumen_valor_comunicarseEmergenciaNombres" name="resumen_valor_comunicarseEmergenciaNombres" value="Ana María Benavides Sánchez " readonly="">
+                </div>
+            </div>
+            <fieldset class="well">
+                <legend class="well-legend"><h5>Dirección</h5></legend>
+                <div class="form-group">
+                    <div class="group">
+                        <label for="resumen_texto_departamento4" class="col-lg-2 control-label">Departamento</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" name="resumen_texto_departamento4" id="resumen_texto_departamento4" value="LIMA" readonly="">
+                        </div>
+                    </div>
+                    <div class="group">
+                        <label for="resumen_texto_provincia4" class="col-lg-2 control-label">Provincia</label>
+                        <div class="col-lg-4">
+                            <input type="text" class="form-control" name="resumen_texto_provincia4" id="resumen_texto_provincia4" value="LIMA" readonly="">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="resumen_texto_distrito4" class="col-lg-2 control-label">Distrito</label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" name="resumen_texto_distrito4" id="resumen_texto_distrito4" value="SAN MIGUEL" readonly="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="resumen_valor_comunicarseEmergenciaDireccion" class="col-lg-2 control-label">Dirección</label>
+                    <div class="col-lg-4">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                            <input type="text" class="form-control" id="resumen_valor_comunicarseEmergenciaDireccion" name="resumen_valor_comunicarseEmergenciaDireccion" value="Fortunato Quesada 109" readonly="">
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="form-group">
+                <div class="group">
+                    <label for="resumen_valor_comunicarseEmergenciaFijo" class="col-lg-2 control-label">Teléfono Fijo</label>
+                    <div class="col-lg-4">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                            <input type="text" class="form-control" id="resumen_valor_comunicarseEmergenciaFijo" name="resumen_valor_comunicarseEmergenciaFijo" value="261-2064" readonly="">
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <label for="resumen_valor_comunicarseEmergenciaMovil" class="col-lg-2 control-label">Teléfono Movil</label>
+                    <div class="col-lg-4">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-mobile"></i></span>
+                            <input type="text" class="form-control" id="resumen_valor_comunicarseEmergenciaMovil" name="resumen_valor_comunicarseEmergenciaMovil" value="99630-6749" readonly="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="resumen_valor_comunicarseEmergenciaEmail" class="col-lg-2 control-label">Correo Personal</label>
+                <div class="col-lg-4">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                        <input type="text" class="form-control" id="resumen_valor_comunicarseEmergenciaEmail" name="resumen_valor_comunicarseEmergenciaEmail" value="anamariabenavidess@yahoo.com" readonly="">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </fieldset>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,57 @@
+﻿@model intranetMVC.WCFCliente.Sala
+
+@using (Html.BeginForm())
+{
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Html.AntiForgeryToken()
+    @*CABECERA*@
+    <div class="row" id="FrameCabeceraPM">
+        <div id="panelSST" class="row">
+            <div class="input-group">
+                <label class="small">N° Folio:</label>
+                <span class="mx-1"></span>
+                <input id="txtFolio" type="text" class="form-control" placeholder="0000000" style="text-align: center;" maxlength="7">
+                <span class="mx-1"></span>
+                <input id="lblEstadoEN" class="form-control form-control-sm" readonly disabled />
+                <button class="btn btn-outline-secondary btn-primary btn-sm" id="btnBuscarFolio" type="button"><i class="fas fa-search"></i></button>
+                <span class="mx-1"></span>
+                <button class="btn btn-outline-secondary btn-primary btn-sm" id="btnLeerFolio" type="button">Leer</button>
+                <span class="mx-1"></span>
+                <button id="btnLimpiarPrincipal" type="button" class="btn btn-btn-success-t1"><i class="fa fa-paint-brush"></i> Limpiar</button>
+            </div>
+
+            @*FECHA*@
+            @*<div class="col-md-1">
+                    <label class="small">Emisi&oacute;n:</label>
+                </div>
+                <div class="col-md-2">
+                    <div class='input-group date'>
+                        <input type="date" class="form-control fltFecha" id="fltEmision" step="1" max="9999-12-31" disabled>
+                    </div>
+                </div>*@
+            @*<div class="col-md-1">
+                    <label class="small">Recepci&oacute;n:</label>
+                </div>
+                <div class="col-md-1">
+                    <input id="txtRolReceptor" class="form-control form-control-sm" readonly disabled />
+                </div>
+                <div class="col-md-2">
+                    <div class='input-group date'>
+                        <input type="date" class="form-control fltFecha" id="fltRecepcion" step="1" max="9999-12-31" disabled>
+                    </div>
+                </div>*@
+        </div>
+    </div>
+
+
+}
+
+<div>
+    @Html.ActionLink("Back to Menu", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

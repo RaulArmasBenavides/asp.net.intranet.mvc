@@ -1,0 +1,80 @@
+﻿
+@model intranetMVC.WCFCliente.Usuario
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <style>
+        #login-div {
+            position: absolute;
+            left: 40%;
+            top: 30%;
+            border: 1px solid #ccc;
+            padding: 10px 10px;
+        }
+
+        .field-validation-error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="login-div" class="jumbotron">
+
+        @using (Html.BeginForm("Autenticar", "Login", FormMethod.Post))
+        {
+            <table class="table table-responsive">
+                <tr>
+                    <td></td>
+                    <td style="color:black">Acceso al Sistema</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.user)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.user)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.user)</td>
+                </tr>
+
+                <tr>
+                    <td>@Html.LabelFor(model => model.password)</td>
+                    <td>@Html.EditorFor(model => model.password)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.password)</td>
+                </tr>
+                <tr>
+                    @*<td colspan="2">
+                            <label class="field-validation-error">@Html.DisplayFor(model => model.LoginErrorMessage)</label>
+                        </td>*@
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" class="btn-primary" name="name" value="Aceptar" /> &nbsp;
+                        <input type="reset" class="btn-danger" name="name" value="Limpiar" />
+                    </td>
+                </tr>
+            </table>
+        }
+
+    </div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+</body>
+</html>
+

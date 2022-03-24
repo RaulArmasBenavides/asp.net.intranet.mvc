@@ -1,0 +1,89 @@
+﻿
+@model IEnumerable<intranetMVC.WCFCliente.Alumno>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.IdAlumno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApePatAlumno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApeMatAlumno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NomAlumno)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.CodigoAlu)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.DirAlumno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailAlumno)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Escuela)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.TelAlumno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DNI)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.IdAlumno)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.ApePatAlumno)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ApeMatAlumno)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NomAlumno)
+    </td>
+    @*<td>
+        @Html.DisplayFor(modelItem => item.CodigoAlu)
+    </td>*@
+    <td>
+        @Html.DisplayFor(modelItem => item.DirAlumno)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.EmailAlumno)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TelAlumno)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DNI)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new {  id=item.IdAlumno }) |
+        @Html.ActionLink("Search", "Search", new { /* id=item.PrimaryKey */ }) |
+        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+    </td>
+</tr>
+}
+
+</table>

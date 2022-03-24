@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="15912975-3ce8-4046-b1a5-9b9f9924a5fe" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:17476/WCFIntranet.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="WCFIntranet.xsd" MetadataType="Schema" ID="8fa30d4a-8a9c-46f9-aa03-1816b35b28f7" SourceId="1" SourceUrl="http://localhost:17476/WCFIntranet.svc?xsd=xsd0" />
+    <MetadataFile FileName="WCFIntranet.disco" MetadataType="Disco" ID="5a331734-f709-4f1f-b609-0a91937e59dc" SourceId="1" SourceUrl="http://localhost:17476/WCFIntranet.svc?disco" />
+    <MetadataFile FileName="WCFIntranet1.xsd" MetadataType="Schema" ID="10d3f56d-9bd2-4a05-b4e8-6998d29fdf57" SourceId="1" SourceUrl="http://localhost:17476/WCFIntranet.svc?xsd=xsd2" />
+    <MetadataFile FileName="WCFIntranet2.xsd" MetadataType="Schema" ID="f8a4f7c2-4816-4d4f-8d63-c02c537e5610" SourceId="1" SourceUrl="http://localhost:17476/WCFIntranet.svc?xsd=xsd1" />
+    <MetadataFile FileName="WCFIntranet.wsdl" MetadataType="Wsdl" ID="f9996449-eda2-4734-bcb6-e23583abe137" SourceId="1" SourceUrl="http://localhost:17476/WCFIntranet.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
