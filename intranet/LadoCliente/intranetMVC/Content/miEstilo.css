@@ -367,7 +367,7 @@ body {
     display: inline-block;
     width: 100%;
     padding-left: 0px;
-    padding-top: 20px;
+    padding-top: 0px;
 }
 
     .page-wrapper .page-content > div {
@@ -576,7 +576,7 @@ body {
 
 .page-wrapper {
     height: 100vh;
-    top: 40px;
+    top: 0px;
 }
 
     .page-wrapper .theme {
@@ -596,7 +596,7 @@ body {
 
     .page-wrapper.toggled .sidebar-wrapper {
         left: 0px;
-        top: 50px;
+        top: 0px;
     }
 
 @media screen and (min-width: 768px) {
@@ -795,7 +795,7 @@ body {
     .sidebar-wrapper .sidebar-menu ul li a span.label,
     .sidebar-wrapper .sidebar-menu ul li a span.badge {
         float: right;
-        margin-top: 40px;
+        margin-top: 0px;
         margin-left: 5px;
     }
 
@@ -862,7 +862,7 @@ body {
     display: inline-block;
     width: 100%;
     padding-left: 0px;
-    padding-top: 40px;
+    padding-top: 0px;
 }
 
     .page-wrapper .page-content > div {
