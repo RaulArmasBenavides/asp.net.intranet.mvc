@@ -58,9 +58,9 @@
   <xs:element name="ArrayOfSede" nillable="true" type="tns:ArrayOfSede" />
   <xs:complexType name="Sede">
     <xs:sequence>
-      <xs:element minOccurs="0" name="direccion" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="idsede" type="xs:int" />
+      <xs:element minOccurs="0" name="user" type="xs:int" />
       <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="direccion" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Sede" nillable="true" type="tns:Sede" />

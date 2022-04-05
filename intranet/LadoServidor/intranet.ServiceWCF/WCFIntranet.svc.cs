@@ -108,12 +108,13 @@ namespace intranet.ServiceWCF
         public void SedeActualizar(Sede sed)
         {
             SedeBll b = new SedeBll();
-            b.SedeAdicionar(sed);  
+            b.SedeActualizar(sed);  
         }
 
         public void SedeAdicionar(Sede sed)
         {
-            throw new NotImplementedException();
+            SedeBll b = new SedeBll();
+            b.SedeAdicionar(sed);
         }
 
         public Sede SedeBuscar(int id)

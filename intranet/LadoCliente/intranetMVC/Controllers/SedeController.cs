@@ -1,4 +1,5 @@
-﻿using intranetMVC.WCFCliente;
+﻿using intranetMVC.Models;
+using intranetMVC.WCFCliente;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,12 +35,12 @@ namespace intranetMVC.Controllers
 
         // POST: Sede/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Sede e)
         {
             try
             {
                 // TODO: Add insert logic here
-
+                cliente.SedeAdicionarAsync(e);
                 return RedirectToAction("Index");
             }
             catch

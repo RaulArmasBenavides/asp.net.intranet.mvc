@@ -52,4 +52,8 @@ $(document).ready(function () {
         $("#modal").load("/Alumno/Delete/" + codigo).attr("title", "Eliminar Alumno").dialog();
     });
 
+    $("#btn-createsede").click(function (e) {
+        swal("Good job!", "You clicked the button!", "success");
+    });
+
 });

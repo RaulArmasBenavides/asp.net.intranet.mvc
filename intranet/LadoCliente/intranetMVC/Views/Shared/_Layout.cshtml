@@ -25,7 +25,6 @@
                             <a href="#">
                                 <i class="fa fa-shopping-cart"></i>
                                 <span>Mi información</span>
-                                @*<span class="badge badge-pill badge-danger">3</span>*@
                             </a>
                             <div class="sidebar-submenu">
                                 <ul>
@@ -42,7 +41,7 @@
                             </div>
                         </li>
 
-                        
+
 
                         <li class="sidebar-dropdown">
                             <a href="#">
@@ -148,7 +147,6 @@
                             <a href="#">
                                 <i class="fa fa-book"></i>
                                 <span>Manuales</span>
-                                @*<span class="badge badge-pill badge-primary">Beta</span>*@
                             </a>
                         </li>
                         <li>
@@ -197,6 +195,10 @@
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/respond")
+    @Scripts.Render("~/bundles/MiEstilo")
+    @Scripts.Render("~/bundles/alert")
+    @Scripts.Render("~/bundles/MisEventos2")
     @RenderSection("scripts", required: false)
 </body>
 </html>

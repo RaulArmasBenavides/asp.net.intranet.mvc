@@ -66,6 +66,9 @@ $(document).ready(function () {
         }).modal('show');
     }
 
+    $("#btn-createsede").click(function (e) {
+        swal("Good job!", "You clicked the button!", "success");
+    });
 
     let tabsapp = () => {
 

@@ -16,13 +16,10 @@ namespace intranet.dataaccess
         {
             using (cn = new SqlConnection(Constantes.CADENA_CONEXION))
             {
-                var cmd = new SqlCommand("usp_registrar_sala", cn);
+                var cmd = new SqlCommand("usp_registrar_sede", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@nombre", sa.nombre);
                 cmd.Parameters.AddWithValue("@direccion", sa.direccion);
-                //cmd.Parameters.AddWithValue("@tipo_sala", sa.capacidad);
-                //cmd.Parameters.AddWithValue("@rol_creacion", sa.rol_creacion);
-                //cmd.Parameters.AddWithValue("@ubicacion", sa.ubicacion);
                 //cmd.Parameters.Add("@IdEmpleado", SqlDbType.Int).Direction = ParameterDirection.Output;
                 try
                 {
