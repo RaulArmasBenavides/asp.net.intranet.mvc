@@ -2,7 +2,9 @@
 using intranetMVC.WCFCliente;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -41,7 +43,12 @@ namespace intranetMVC.Controllers
             {
                 // TODO: Add insert logic here
                 cliente.SedeAdicionarAsync(e);
-                return RedirectToAction("Index");
+
+                ViewBag.JavaScriptFunction = "swal('Good job!', 'You clicked the button!', 'success');";
+
+             
+    
+                return View(); //RedirectToAction("Index");
             }
             catch
             {

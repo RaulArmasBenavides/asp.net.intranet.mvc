@@ -18,21 +18,18 @@ namespace intranet.entity
             this.ApePatAlumno = string.Empty;
             this.CodigoAlu = string.Empty;
         }
-        //[DisplayName("IdAlumno")]
-        //[Required(ErrorMessage = "El IdAlumno es requerido.")]
         public int IdAlumno { get; set; }
-
         public string CodigoAlu { get; set; }
-        //[DisplayName("ApeAlumno")]
-        //[Required, StringLength(30)]
         public string ApePatAlumno { get; set; }
         public string ApeMatAlumno { get; set; }
         public string NomAlumno { get; set; }
         public string DirAlumno { get; set; }
         public string TelAlumno { get; set; }
         public string EmailAlumno { get; set; }
+        public char Sexo { get; set; }
+        public string Tipo { get; set; }
         public string DNI { get; set; }
-        public string Escuela { get; set; }
-        public int Creditos { get; set; }
+        public string Carrera { get; set; }
+        //public int Creditos { get; set; }
     }
 }

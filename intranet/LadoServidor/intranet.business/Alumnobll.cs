@@ -6,15 +6,12 @@ namespace intranet.business
 {
     public class AlumnoBll
     { 
-        //variable de la clase MODEL
         AlumnoDao dao;
-        // constructor
         public AlumnoBll()
         {
             dao = new AlumnoDao();
         }
 
-        // metodos de negocio
         public void AlumnoAdicionar(Alumno pro)
         {
             dao.create(pro);
@@ -29,11 +26,6 @@ namespace intranet.business
         {
             dao.delete(pro);
         }
-
-        //public Alumno[] AlumnoListar()
-        //{
-        //    return dao.readAll();
-        //}
         
         public List<Alumno> AlumnoListar()
         {

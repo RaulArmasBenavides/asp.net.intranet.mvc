@@ -17,9 +17,14 @@ namespace iintranet.dataaccess
             {
                 var cmd = new SqlCommand("usp_alumno_Adicionar", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Apellido", o.NomAlumno);
-                cmd.Parameters.AddWithValue("@Nombre", o.ApePatAlumno);
-                cmd.Parameters.AddWithValue("@Cargo", o.EmailAlumno);
+                cmd.Parameters.AddWithValue("@Nombre", o.NomAlumno);
+                cmd.Parameters.AddWithValue("@ApePat", o.ApePatAlumno);
+                cmd.Parameters.AddWithValue("@ApeMat", o.ApeMatAlumno);
+                cmd.Parameters.AddWithValue("@Codigo", o.DNI);
+                cmd.Parameters.AddWithValue("@Direccion", o.CodigoAlu);
+                cmd.Parameters.AddWithValue("@Carrera", o.Carrera);
+                cmd.Parameters.AddWithValue("@Direccion", o.DirAlumno);
+                cmd.Parameters.AddWithValue("@Correo", o.EmailAlumno);
                 cmd.Parameters.Add("@IdEmpleado", SqlDbType.Int).Direction = ParameterDirection.Output;
                 try
                 {
@@ -41,6 +46,32 @@ namespace iintranet.dataaccess
                 var cmd = new SqlCommand("usp_alumno_Adicionar", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@IdAlumno", o.IdAlumno);
+                try
+                {
+                    cn.Open();
+                    cmd.ExecuteNonQuery();
+                    //emp.IdEmpleado = (int)cmd.Parameters["@IdEmpleado"].Value;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        public void update(Alumno o)
+        {
+            using (cn = new SqlConnection(Constantes.CADENA_CONEXION))
+            {
+                var cmd = new SqlCommand("usp_alumno_actualizar", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ApeMatAlumno", o.ApeMatAlumno);
+                cmd.Parameters.AddWithValue("@ApePatAlumno", o.ApePatAlumno);
+                cmd.Parameters.AddWithValue("@Nombre", o.NomAlumno);
+                cmd.Parameters.AddWithValue("@Correo", o.EmailAlumno);
+                cmd.Parameters.AddWithValue("@Sexo", o.Sexo);
+                cmd.Parameters.AddWithValue("@Codigo", o.CodigoAlu);
+                // cmd.Parameters.Add("@IdEmpleado", SqlDbType.Int).Direction = ParameterDirection.Output;
                 try
                 {
                     cn.Open();
@@ -99,37 +130,11 @@ namespace iintranet.dataaccess
             {
                 cn.Close();
             }
-         
-     
         }
 
         public Alumno find(Alumno o)
         {
             throw new NotImplementedException();
-        }
-
-        public void update(Alumno o)
-        {
-            using (cn = new SqlConnection(Constantes.CADENA_CONEXION))
-            {
-                var cmd = new SqlCommand("usp_alumno_Adicionar", cn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Apellido", o.IdAlumno);
-                cmd.Parameters.AddWithValue("@Apellido", o.NomAlumno);
-                cmd.Parameters.AddWithValue("@Nombre", o.ApeMatAlumno);
-                cmd.Parameters.AddWithValue("@Cargo", o.EmailAlumno);
-               // cmd.Parameters.Add("@IdEmpleado", SqlDbType.Int).Direction = ParameterDirection.Output;
-                try
-                {
-                    cn.Open();
-                    cmd.ExecuteNonQuery();
-                    //emp.IdEmpleado = (int)cmd.Parameters["@IdEmpleado"].Value;
-                }
-                catch (Exception ex)
-                { 
-                    throw ex;
-                }
-            }
         }
 
         public List<Alumno>  readAll()
@@ -170,77 +175,5 @@ namespace iintranet.dataaccess
                 return lista;
             }
         }
-
-
-        //variables
-        //Alumno[] lista = new Alumno[100];
-        //static int n = 0, cont = 0;
-
-        ////METODOS DE PERSISTENCIA DE DATOS EN MEMORIA
-        //public void create(Alumno o)
-        //{
-        //    cont++;
-        //    o.IdAlumno = cont;  // genera codigo de producto
-        //    lista[n] = o; // aqui guarda producto en el arreglo lista
-        //    n++;
-        //}
-
-        //public void delete(Alumno o)
-        //{
-        //    for (int i = 0; i < n; i++)
-        //    {
-        //        if (lista[i].IdAlumno == o.IdAlumno)
-        //        {
-        //            //aqui elimina
-        //            for (int j = i; j < n; j++)
-        //            {
-        //                lista[j] = lista[j + 1];
-        //            }
-        //            n--;
-        //            break;
-        //        }
-        //    }
-        //}
-
-        //public Alumno findForId(int o)
-        //{
-        //    for (int i = 0; i < n; i++)
-        //    {
-        //        if (lista[i].IdAlumno == o)
-        //        {
-        //            return lista[i];
-        //        }
-        //    }
-        //    return null;
-        //}
-
-        //public Alumno[] readAll()
-        //{
-        //    Alumno[] temp;
-        //    if (n ==100)
-        //    {
-        //        temp = lista;
-        //    }
-        //    else
-        //    {
-        //        temp = new Alumno[n];
-        //        Array.Copy(lista, temp, n);
-        //    }
-        //    return temp;
-        //}
-
-        //public void update(Alumno o)
-        //{
-        //    int index = 0;
-        //    foreach (var item in lista)
-        //    {
-        //        if (item.IdAlumno == o.IdAlumno)
-        //        {
-        //            lista[index] = o; // aqui actualiza
-        //            break;
-        //        }
-        //        index++;
-        //    }
-        //}
     }
 }
