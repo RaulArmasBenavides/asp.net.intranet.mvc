@@ -70,7 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActividadDAO.cs" />
-    <Compile Include="AlumnoDao.cs" />
+    <Compile Include="AlumnoDAO.cs" />
     <Compile Include="AsistenciasDAO.cs" />
     <Compile Include="Constantes.cs" />
     <Compile Include="CursoDAO.cs" />

@@ -17,6 +17,11 @@ namespace intranet.entity
             this.ApeMatAlumno = string.Empty;
             this.ApePatAlumno = string.Empty;
             this.CodigoAlu = string.Empty;
+            this.DNI = string.Empty;
+            this.Carrera = string.Empty;
+            this.EmailAlumno = string.Empty;
+            this.Tipo = string.Empty;
+
         }
         public int IdAlumno { get; set; }
         public string CodigoAlu { get; set; }

@@ -15,17 +15,19 @@ namespace iintranet.dataaccess
         {
             using (cn = new SqlConnection(Constantes.CADENA_CONEXION))
             {
-                var cmd = new SqlCommand("usp_alumno_Adicionar", cn);
+                var cmd = new SqlCommand("usp_alumno_registrar", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Nombre", o.NomAlumno);
-                cmd.Parameters.AddWithValue("@ApePat", o.ApePatAlumno);
-                cmd.Parameters.AddWithValue("@ApeMat", o.ApeMatAlumno);
-                cmd.Parameters.AddWithValue("@Codigo", o.DNI);
-                cmd.Parameters.AddWithValue("@Direccion", o.CodigoAlu);
-                cmd.Parameters.AddWithValue("@Carrera", o.Carrera);
-                cmd.Parameters.AddWithValue("@Direccion", o.DirAlumno);
-                cmd.Parameters.AddWithValue("@Correo", o.EmailAlumno);
-                cmd.Parameters.Add("@IdEmpleado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.AddWithValue("@nombre", o.NomAlumno);
+                cmd.Parameters.AddWithValue("@ap_paterno", o.ApePatAlumno);
+                cmd.Parameters.AddWithValue("@ap_materno", o.ApeMatAlumno);
+                cmd.Parameters.AddWithValue("@DNI", o.DNI);
+                cmd.Parameters.AddWithValue("@sexo", o.Sexo);
+                cmd.Parameters.AddWithValue("@carrera", o.Carrera);
+                cmd.Parameters.AddWithValue("@telefono", o.TelAlumno);
+                cmd.Parameters.AddWithValue("@correo", o.EmailAlumno);
+                cmd.Parameters.AddWithValue("@direccion", o.DirAlumno);
+                cmd.Parameters.AddWithValue("@tipo_alumno", o.Tipo);
+                //cmd.Parameters.Add("@IdEmpleado", SqlDbType.Int).Direction = ParameterDirection.Output;
                 try
                 {
                     cn.Open();
@@ -43,9 +45,9 @@ namespace iintranet.dataaccess
         {
             using (cn = new SqlConnection(Constantes.CADENA_CONEXION))
             {
-                var cmd = new SqlCommand("usp_alumno_Adicionar", cn);
+                var cmd = new SqlCommand("usp_alumno_eliminar_id", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@IdAlumno", o.IdAlumno);
+                cmd.Parameters.AddWithValue("@idalumno", o.IdAlumno);
                 try
                 {
                     cn.Open();
@@ -65,12 +67,16 @@ namespace iintranet.dataaccess
             {
                 var cmd = new SqlCommand("usp_alumno_actualizar", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@ApeMatAlumno", o.ApeMatAlumno);
-                cmd.Parameters.AddWithValue("@ApePatAlumno", o.ApePatAlumno);
-                cmd.Parameters.AddWithValue("@Nombre", o.NomAlumno);
-                cmd.Parameters.AddWithValue("@Correo", o.EmailAlumno);
-                cmd.Parameters.AddWithValue("@Sexo", o.Sexo);
-                cmd.Parameters.AddWithValue("@Codigo", o.CodigoAlu);
+                cmd.Parameters.AddWithValue("@nombre", o.NomAlumno);
+                cmd.Parameters.AddWithValue("@ap_paterno", o.ApePatAlumno);
+                cmd.Parameters.AddWithValue("@ap_materno", o.ApeMatAlumno);
+                cmd.Parameters.AddWithValue("@DNI", o.DNI);
+                cmd.Parameters.AddWithValue("@sexo", o.Sexo);
+                cmd.Parameters.AddWithValue("@carrera", o.Carrera);
+                cmd.Parameters.AddWithValue("@telefono", o.TelAlumno);
+                cmd.Parameters.AddWithValue("@correo", o.EmailAlumno);
+                cmd.Parameters.AddWithValue("@direccion", o.DirAlumno);
+                cmd.Parameters.AddWithValue("@tipo_alumno", o.Tipo);
                 // cmd.Parameters.Add("@IdEmpleado", SqlDbType.Int).Direction = ParameterDirection.Output;
                 try
                 {
@@ -132,17 +138,13 @@ namespace iintranet.dataaccess
             }
         }
 
-        public Alumno find(Alumno o)
-        {
-            throw new NotImplementedException();
-        }
 
-        public List<Alumno>  readAll()
+        public List<Alumno> readAll()
         {
             List<Alumno> lista = new List<Alumno>();
             using (cn = new SqlConnection(Constantes.CADENA_CONEXION))
             {
-                var cmd = new SqlCommand("usp_listar_alumnos_all", cn);
+                var cmd = new SqlCommand("usp_alumnos_listar_all", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 try
                 {
@@ -154,15 +156,15 @@ namespace iintranet.dataaccess
                         {
 
                             IdAlumno = Convert.ToInt32(dr[0]),
-                            NomAlumno = dr[1].ToString(),
-                            ApePatAlumno = dr[2].ToString(),
-                            ApeMatAlumno = dr[3].ToString(),
-                            DirAlumno = dr[4].ToString(),
+                            ApePatAlumno = dr[1].ToString(),
+                            ApeMatAlumno = dr[2].ToString(),
+                            NomAlumno = dr[3].ToString(),
+                            DNI = dr[4].ToString(),
                             TelAlumno = dr[5].ToString(),
-                            EmailAlumno= dr[6].ToString(),
-                            DNI = dr[7].ToString()
-                            //Nombre = dr[2].ToString(),
-                            //Cargo = dr[3].ToString()
+                            Sexo = Convert.ToChar(dr[6].ToString()),
+                            EmailAlumno = dr[7].ToString(),
+                            DirAlumno = dr[8].ToString(),
+
                         };
                         lista.Add(al);
                     }
@@ -175,5 +177,12 @@ namespace iintranet.dataaccess
                 return lista;
             }
         }
+
+        public Alumno find(Alumno o)
+        {
+            throw new NotImplementedException();
+        }
+
+        
     }
 }
