@@ -16,7 +16,6 @@ namespace intranetMVC.Controllers
         // GET: Alumno
         public ActionResult Index()
         {
-            // return View(db.Alumnoes.ToList());
             return View(cliente.AlumnoListar());
         }
 

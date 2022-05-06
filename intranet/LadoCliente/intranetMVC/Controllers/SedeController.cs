@@ -12,15 +12,11 @@ namespace intranetMVC.Controllers
 {
     public class SedeController : Controller
     {
-
- 
         WCFIntranetClient cliente = new WCFIntranetClient();
-
-
         // GET: Sede
         public ActionResult Index()
         {
-            return View();
+            return View(cliente.SedesListar());
         }
 
         // GET: Sede/Details/5
@@ -41,13 +37,8 @@ namespace intranetMVC.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
                 cliente.SedeAdicionarAsync(e);
-
                 ViewBag.JavaScriptFunction = "swal('Good job!', 'You clicked the button!', 'success');";
-
-             
-    
                 return View(); //RedirectToAction("Index");
             }
             catch
@@ -64,12 +55,11 @@ namespace intranetMVC.Controllers
 
         // POST: Sede/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Sede e)
         {
             try
             {
-                // TODO: Add update logic here
-
+                cliente.SedeActualizar(e);
                 return RedirectToAction("Index");
             }
             catch
