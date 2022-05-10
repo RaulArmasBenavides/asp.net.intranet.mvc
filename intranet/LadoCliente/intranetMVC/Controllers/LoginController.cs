@@ -63,7 +63,7 @@ namespace intranetMVC.Controllers
                 if (!cliente.Validarusuario(us))
                 {
                     //usuario.LoginErrorMessage = "El usuario o password es incorrecto.";
-                    Session["userName"] = null
+                    Session["userName"] = null;
                     return View("Index", us);
                 }
                 else

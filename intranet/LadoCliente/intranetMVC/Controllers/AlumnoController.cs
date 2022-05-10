@@ -76,7 +76,9 @@ namespace intranetMVC.Controllers
             //    return RedirectToAction("Index");
             //}
             cliente.AlumnoAdicionar(alumno);
-            return View(alumno);
+            ViewBag.JavaScriptFunction = "swal('Éxito!', 'Se registró el nuevo alumno con éxito!', 'Éxito');";
+            return View();
+            //return View(alumno);
         }
 
         // GET: Alumno/Edit/5
@@ -99,11 +101,11 @@ namespace intranetMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdAlumno,ApePatAlumno,ApeMatAlumno,NomAlumno,DirAlumno,TelAlumno,EmailAlumno")] Alumno alumno)
+        public ActionResult Edit([Bind(Include = "IdAlumno,ApePatAlumno,ApeMatAlumno,NomAlumno,DirAlumno,TelAlumno,EmailAlumno,DNI,Sexo")] Alumno alumno)
         {
             if (ModelState.IsValid)
             {
-               //db.Entry(alumno).State = EntityState.Modified;
+                cliente.AlumnoActualizar(alumno);
                 //db.SaveChanges();
                 return RedirectToAction("Index");
             }
