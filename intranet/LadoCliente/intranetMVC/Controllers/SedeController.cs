@@ -38,7 +38,7 @@ namespace intranetMVC.Controllers
             try
             {
                 cliente.SedeAdicionarAsync(e);
-                ViewBag.JavaScriptFunction = "swal('Good job!', 'You clicked the button!', 'success');";
+                ViewBag.JavaScriptFunction = "swal('Proceso con éxito', 'Sede registrado con éxito!', 'success');";
                 return View(); //RedirectToAction("Index");
             }
             catch
