@@ -78,7 +78,33 @@ $(document).ready(function () {
 
     let TableConfig = () => {
 
-        $('#myTable').DataTable();
+            $('#table_id').DataTable({
+                dom: 'Bfrtip',
+
+                buttons: [
+
+                    'excel',
+
+                    {
+
+                        extend: 'excelHtml5',
+
+                        text: 'Exportar Excel',
+
+                        filename: 'Reporte Empleados',
+
+                        title: '',
+
+                        exportOptions: {
+
+                            columns: [1, 2, 3, 4, 5, 6]
+
+                        },
+
+                        className: 'btn-exportar-excel',
+
+                    },]
+            });
     }
 
     tabsapp();
