@@ -76,5 +76,11 @@ $(document).ready(function () {
         console.log("hola");
     }
 
+    let TableConfig = () => {
+
+        $('#myTable').DataTable();
+    }
+
     tabsapp();
+    TableConfig();
 });
