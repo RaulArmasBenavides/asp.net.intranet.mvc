@@ -37,6 +37,19 @@ namespace intranetMVC.Controllers
             return View();
         }
 
+        //public JsonResult AlumnoDatos()
+        //{
+        //    var alumno = new Alumno()
+        //    {
+        //        ID = 101,
+        //        Nombre = "Juan Perez",
+        //        Curso = "ASP NET MVC 5",
+        //        Notas = new int[] { 17, 15, 14, 16 }
+        //    };
+        //    return Json(alumno, JsonRequestBehavior.AllowGet);
+        //}
+
+
         //public JsonResult Search3(string input)
         //{
         //    //EduTecEntities edu = new EduTecEntities();
@@ -44,7 +57,7 @@ namespace intranetMVC.Controllers
         //    //var result = from r in edu.Alumnoes
         //    //             where r.NomAlumno == input
         //    //             select new { r.IdAlumno,r.NomAlumno, r.ApeAlumno };
-       
+
         //   // return Json(result, JsonRequestBehavior.AllowGet);
         //}
 

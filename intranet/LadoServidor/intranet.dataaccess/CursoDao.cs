@@ -13,8 +13,71 @@ namespace intranet.dataaccess
         Curso[] lista = new Curso[100];
         static int n = 0, cont = 0;
         SqlConnection cn;
-        //METODOS DE PERSISTENCIA DE DATOS EN MEMORIA
 
+        public void create(Curso cur)
+        {
+            using (cn = new SqlConnection(Constantes.CADENA_CONEXION))
+            {
+                var cmd = new SqlCommand("usp_curso_registrar", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@nombreCurso", cur.NombreCurso);
+                cmd.Parameters.AddWithValue("@malla", cur.Malla);
+                cmd.Parameters.AddWithValue("@tipo", cur.Tipo);
+                cmd.Parameters.AddWithValue("@idCiclo", cur.idclclo);
+                cmd.Parameters.AddWithValue("@idTarifa", cur.idTarifa);
+                cmd.Parameters.Add("@idcurso", SqlDbType.Int).Direction = ParameterDirection.Output;
+                try
+                {
+                    cn.Open();
+                    cmd.ExecuteNonQuery();
+                    //emp.IdEmpleado = (int)cmd.Parameters["@IdEmpleado"].Value;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        public void update(Curso cur)
+        {
+            using (cn = new SqlConnection(Constantes.CADENA_CONEXION))
+            {
+                var cmd = new SqlCommand("usp_alumno_actualizar", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@nombreCurso", cur.NombreCurso);
+                cmd.Parameters.AddWithValue("@malla", cur.Malla);
+                cmd.Parameters.AddWithValue("@tipo", cur.Tipo);
+                cmd.Parameters.AddWithValue("@idCiclo", cur.idclclo);
+                cmd.Parameters.AddWithValue("@idTarifa", cur.idTarifa);
+                cmd.Parameters.Add("@idcurso", SqlDbType.Int).Direction = ParameterDirection.Output;
+                try
+                {
+                    cn.Open();
+                    cmd.ExecuteNonQuery();
+                    //emp.IdEmpleado = (int)cmd.Parameters["@IdEmpleado"].Value;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        public Curso find(Curso o)
+        {
+            throw new NotImplementedException();
+        }
+
+        List<Curso> Service<Curso>.readAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void delete(Curso o)
+        {
+            throw new NotImplementedException();
+        }
 
         public List<Curso> readAll()
         {
@@ -32,10 +95,10 @@ namespace intranet.dataaccess
                     {
                         Curso al = new Curso()
                         {
-                            idcurso = Convert.ToInt32(dr[0]),
-                            malla = dr[2].ToString(),
-                            nombrecurso = dr[3].ToString(),
-                            ciclo = Convert.ToInt32(dr[3])
+                            idcurso = Convert.ToInt32(dr[0]),  
+                            NombreCurso = dr[3].ToString(),
+                            Malla = (Char)dr[2],
+                            idclclo = Convert.ToInt32(dr[3])
                             //IdAlumno = Convert.ToInt32(dr[0]),
                             //NomAlumno = dr[1].ToString(),
                             //ApePatAlumno = dr[2].ToString(),
@@ -71,29 +134,7 @@ namespace intranet.dataaccess
             return null;
         }
 
-        public Curso find(Curso o)
-        {
-            throw new NotImplementedException();
-        }
 
-        List<Curso> Service<Curso>.readAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void update(Curso o)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void delete(Curso o)
-        {
-            throw new NotImplementedException();
-        }
-        public void create(Curso o)
-        {
-            throw new NotImplementedException();
-        }
 
     }
 }

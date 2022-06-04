@@ -29,37 +29,37 @@ namespace intranet.entity
         [DataMember(Name = "IdAlumno", Order = 1)]
         public int IdAlumno { get; set; }
 
-        [DataMember(Name = "CodigoAlu", Order = 1)]
+        [DataMember(Name = "CodigoAlu", Order = 2)]
         public string CodigoAlu { get; set; }
 
-        [DataMember(Name = "ApePatAlumno", Order = 1)]
+        [DataMember(Name = "ApePatAlumno", Order = 3)]
         public string ApePatAlumno { get; set; }
 
-        [DataMember(Name = "ApeMatAlumno", Order = 1)]
+        [DataMember(Name = "ApeMatAlumno", Order = 4)]
         public string ApeMatAlumno { get; set; }
 
-        [DataMember(Name = "NomAlumno", Order = 1)]
+        [DataMember(Name = "NomAlumno", Order = 5)]
         public string NomAlumno { get; set; }
 
-        [DataMember(Name = "DirAlumno", Order = 1)]
+        [DataMember(Name = "DirAlumno", Order = 6)]
         public string DirAlumno { get; set; }
 
-        [DataMember(Name = "TelAlumno", Order = 1)]
+        [DataMember(Name = "TelAlumno", Order = 7)]
         public string TelAlumno { get; set; }
 
-        [DataMember(Name = "EmailAlumno", Order = 1)]
+        [DataMember(Name = "EmailAlumno", Order = 8)]
         public string EmailAlumno { get; set; }
 
-        [DataMember(Name = "Sexo", Order = 1)]
+        [DataMember(Name = "Sexo", Order = 9)]
         public char Sexo { get; set; }
 
-        [DataMember(Name = "Tipo", Order = 1)]
+        [DataMember(Name = "Tipo", Order = 10)]
         public string Tipo { get; set; }
 
-        [DataMember(Name = "DNI", Order = 1)]
+        [DataMember(Name = "DNI", Order = 11)]
         public string DNI { get; set; }
 
-        [DataMember(Name = "Carrera", Order = 1)]
+        [DataMember(Name = "Carrera", Order = 12)]
         public string Carrera { get; set; }
 
     }

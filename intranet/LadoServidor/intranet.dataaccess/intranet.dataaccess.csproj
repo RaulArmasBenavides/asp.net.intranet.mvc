@@ -78,7 +78,6 @@
     <Compile Include="ListaEquiposDAO.cs" />
     <Compile Include="ParticipanteDAO.cs" />
     <Compile Include="SedeDAO.cs" />
-    <Compile Include="SalaDAO.cs" />
     <Compile Include="UsuarioDAO.cs" />
     <Compile Include="_doIntranet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

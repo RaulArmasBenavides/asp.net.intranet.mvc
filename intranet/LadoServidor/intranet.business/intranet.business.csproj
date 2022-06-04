@@ -78,7 +78,6 @@
     <Compile Include="ListaEquiposBll.cs" />
     <Compile Include="ParticipanteBll.cs" />
     <Compile Include="SedeBll.cs" />
-    <Compile Include="SalaBll.cs" />
     <Compile Include="UsuarioBll.cs" />
     <Compile Include="_boIntranet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

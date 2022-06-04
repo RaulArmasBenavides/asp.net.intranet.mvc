@@ -2,7 +2,6 @@
 $(document).ready(function () {
     "use strict";
 
-
     $(".btn-create").click(function (e) {
         $("#modal").load("/Alumno/Create").attr("title", "Nuevo Alumno").dialog({ width: 550, height: 'auto' });
     });
@@ -86,9 +85,9 @@ $(document).ready(function () {
         }).modal('show');
     }
 
-    //$("#btn-createsede").click(function (e) {
-    //    swal("Good job!", "You clicked the button!", "success");
-    //});
+
+
+    //ALUMNOS CONTROLLER
 
     let tabsapp = () => {
 
@@ -152,8 +151,43 @@ $(document).ready(function () {
             //});
     }
 
+    let GetDatosAlumno = () => {
+        $.ajax({
+            url: "/Ajax/AlumnoDatos",
+            success: function (alumno) {
+                var datos = "Codigo: " + alumno.ID + "<br/>"
+                    + "Nombre: " + alumno.Nombre + "<br/>"
+                    + "Curso : " + alumno.Curso + "<br/>"
+                    + "Notas: " + alumno.Notas;
+                $("#div2").html(datos);
+            }
+        });
+    }
+
     tabsapp();
     TableConfig();
+
+
+    $(function () {
+        $("#btnGet").click(function () {
+            $.ajax({
+                type: "POST",
+                url: "/Home/AjaxMethod",
+                data: '{name: "' + $("#txtName").val() + '" }',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    alert("Hola: " + response.Name + " .\nFecha y Hora: " + response.DateTime);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        });
+    });
 
 
     $(".sidebar-dropdown > a").click(function () {
@@ -198,4 +232,17 @@ $(document).ready(function () {
             $('#rData').html(items);
         });
     })
+
+    //$(document).ready(function () {
+    //    $.ajax({
+    //        url: "/Ajax/FechaHora",
+    //        success: function (data) {
+    //            $("#div1").html(data);
+    //        }
+    //    });
+    //});
+
+
+       //CURSO CONTROLLER
+
 });
