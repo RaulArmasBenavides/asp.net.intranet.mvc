@@ -160,10 +160,11 @@ namespace iintranet.dataaccess
                             ApeMatAlumno = dr[2].ToString(),
                             NomAlumno = dr[3].ToString(),
                             DNI = dr[4].ToString(),
-                            TelAlumno = dr[5].ToString(),
-                            Sexo = Convert.ToChar(dr[6].ToString()),
-                            EmailAlumno = dr[7].ToString(),
-                            DirAlumno = dr[8].ToString(),
+                            CodigoAlu = dr[5].ToString(),
+                            TelAlumno = dr[6].ToString(),
+                            Sexo = Convert.ToChar(dr[7].ToString()),
+                            EmailAlumno = dr[8].ToString(),
+                            DirAlumno = dr[9].ToString(),
 
                         };
                         lista.Add(al);

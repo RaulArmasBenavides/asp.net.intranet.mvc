@@ -71,61 +71,6 @@ namespace intranet.dataaccess
             return null;
         }
 
-        //public void update(Curso o)
-        //{
-        //    int index = 0;
-        //    foreach (var item in lista)
-        //    {
-        //        if (item.codigocurso == o.codigocurso)
-        //        {
-        //            lista[index] = o; // aqui actualiza
-        //            break;
-        //        }
-        //        index++;
-        //    }
-        //}
-
-        public void create(Curso o)
-        {
-            cont++;
-            o.idcurso = cont;  // genera codigo de producto
-            lista[n] = o; // aqui guarda producto en el arreglo lista
-            n++;
-        }
-
-
-      //public void delete(Curso o)
-      //  {
-      //      for (int i = 0; i < n; i++)
-      //      {
-      //          if (lista[i].codigocurso == o.codigocurso)
-      //          {
-      //              //aqui elimina
-      //              for (int j = i; j < n; j++)
-      //              {
-      //                  lista[j] = lista[j + 1];
-      //              }
-      //              n--;
-      //              break;
-      //          }
-      //      }
-      //  }
-    
-       //public Curso[]  readAll()
-       // {
-       //     Curso[] temp;
-       //     if (n == 100)
-       //     {
-       //         temp = lista;
-       //     }
-       //     else
-       //     {
-       //         temp = new Curso[n];
-       //         Array.Copy(lista, temp, n);
-       //     }
-       //     return temp;
-       // }
-
         public Curso find(Curso o)
         {
             throw new NotImplementedException();
@@ -145,5 +90,10 @@ namespace intranet.dataaccess
         {
             throw new NotImplementedException();
         }
+        public void create(Curso o)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

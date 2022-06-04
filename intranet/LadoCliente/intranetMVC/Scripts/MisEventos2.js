@@ -97,34 +97,59 @@ $(document).ready(function () {
     }
 
     let TableConfig = () => {
+        $.ajax({
+            url: "http://localhost:11828/Alumno/getClientes",
+            success: function (data) {
+                console.log(data);
+                var o = data;//A la variable le asigno el json decodificado
+                $('#table_id').dataTable({
+                    data: o,
+                    columns: [
+                       { "data": "ApeMatAlumno" },
+                       { "data": "ApePatAlumno" },
+                       { "data": "CodigoAlu" },
+                       { "data": "Creditos" },
+                       { "data": "DNI" },
+                       { "data": "DirAlumno" },
+                       { "data": "EmailAlumno" },
+                       { "data": "Escuela" },
+                       { "data": "IdAlumno" },
+                       { "data": "NomAlumno" },
+                       { "data": "TelAlumno" }
 
-            $('#table_id').DataTable({
-                dom: 'Bfrtip',
+                   ],
+                });
+            }
+        });
 
-                buttons: [
 
-                    'excel',
+            //$('#table_id').DataTable({
+            //    dom: 'Bfrtip',
 
-                    {
+            //    buttons: [
 
-                        extend: 'excelHtml5',
+            //        'excel',
 
-                        text: 'Exportar Excel',
+            //        {
 
-                        filename: 'Reporte Empleados',
+            //            extend: 'excelHtml5',
 
-                        title: '',
+            //            text: 'Exportar Excel',
 
-                        exportOptions: {
+            //            filename: 'Reporte Empleados',
 
-                            columns: [1, 2, 3, 4, 5, 6]
+            //            title: '',
 
-                        },
+            //            exportOptions: {
 
-                        className: 'btn-exportar-excel',
+            //                columns: [1, 2, 3, 4, 5, 6]
 
-                    },]
-            });
+            //            },
+
+            //            className: 'btn-exportar-excel',
+
+            //        },]
+            //});
     }
 
     tabsapp();

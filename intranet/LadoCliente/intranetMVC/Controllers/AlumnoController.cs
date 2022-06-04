@@ -19,6 +19,14 @@ namespace intranetMVC.Controllers
             return View(cliente.AlumnoListar());
         }
 
+
+        public JsonResult getClientes()
+        {
+            var res =  Json(cliente.AlumnoListar(), JsonRequestBehavior.AllowGet);
+            return res;
+        }
+
+
         public ActionResult Search()
         {
             return View();

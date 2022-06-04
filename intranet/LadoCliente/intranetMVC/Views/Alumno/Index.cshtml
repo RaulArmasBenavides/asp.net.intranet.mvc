@@ -41,144 +41,39 @@
     </form>
 </p>
 
-<div id="myTable"></div>
-<table class="table">
-    <tr>
-        <td>
-            <input type="checkbox" name="name5" />
-        </td>
-        <th>
-            @Html.DisplayNameFor(model => model.IdAlumno)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ApePatAlumno)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ApeMatAlumno)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NomAlumno)
-        </th>
-        @*<th>
-                @Html.DisplayNameFor(model => model.CodigoAlu)
-            </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.DirAlumno)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EmailAlumno)
-        </th>
-        @*<th>
-                @Html.DisplayNameFor(model => model.Escuela)
-            </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.TelAlumno)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DNI)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-
-            <td>
-                <input type="checkbox" name="name5" />
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.IdAlumno)
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.ApePatAlumno)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ApeMatAlumno)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomAlumno)
-            </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.CodigoAlu)
-                </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.DirAlumno)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EmailAlumno)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TelAlumno)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DNI)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.IdAlumno }) |
-                @Html.ActionLink("Search", "Search", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-    }
-</table>
-
-
 <div class="container">
 
     <table id="table_id" class="display">
         <thead>
             <tr>
-                <th>Column 1</th>
-                <th>Column 2</th>
+                @*<th>ExtensionData</th>*@
+                <th>ApeMatAlumno</th>
+                <th>ApePatAlumno</th>
+                <th>CodigoAlu</th>
+                <th>Creditos</th>
+                <th>DNI</th>
+                <th>DirAlumno</th>
+                <th>EmailAlumno</th>
+                <th>Escuela</th>
+                <th>IdAlumno</th>
+                <th>NomAlumno</th>
+                <th>TelAlumno</th>
             </tr>
         </thead>
         <tbody>
             <tr>
+                @*<td>ga</td>*@
+                <td>Row 1 Data 2</td>
                 <td>ga</td>
                 <td>Row 1 Data 2</td>
-            </tr>
-            <tr>
-                <td>Row 2 Data 1</td>
-                <td>Row 2 Data 2</td>
-            </tr>
-            <tr>
-                <td>te</td>
-                <td>Row 2 Data 2</td>
-            </tr>
-            <tr>
-                <td>Row 2 Data 1</td>
-                <td>Row 2 Data 2</td>
-            </tr>
-            <tr>
-                <td>Row 2 Data 1</td>
-                <td>Row 2 Data 2</td>
-            </tr>
-            <tr>
-                <td>Row 2 Data 1</td>
-                <td>Row 2 Data 2</td>
-            </tr>
-            <tr>
-                <td>Row 2 Data 1</td>
-                <td>Row 2 Data 2</td>
-            </tr>
-            <tr>
-                <td>Row 2 Data 1</td>
-                <td>Row 2 Data 2</td>
-            </tr>
-            <tr>
-                <td>Row 2 Data 1</td>
-                <td>Row 2 Data 2</td>
-            </tr>
-            <tr>
-                <td>Row 2 Data 1</td>
-                <td>Row 2 Data 2</td>
-            </tr>
-            <tr>
-                <td>xx1</td>
-                <td>Row 2 Data 2</td>
+                <td>ga</td>
+                <td>Row 1 Data 2</td>
+                <td>ga</td>
+                <td>Row 1 Data 2</td>
+                <td>ga</td>
+                <td>Row 1 Data 2</td>
+                <td>ga</td>
+                <td>Row 1 Data 2</td>
             </tr>
         </tbody>
     </table>
