@@ -159,4 +159,18 @@ $(document).ready(function () {
     $("#show-sidebar").click(function () {
         $(".page-wrapper").addClass("toggled");
     });
+
+
+    $('#GetCustomers').click(function () {
+        $.getJSON('/Cliente/CustomerList/' + $('#Country').val(), function (data) {
+
+            var items = '<table><tr><th>Nombre de Cliente</th><th>Direccion</th></tr>';
+            $.each(data, function (i, country) {
+                items += "<tr><td>" + country.NombreCompañía + "</td><td>" + country.Dirección + "</td></tr>";
+            });
+            items += "</table>";
+
+            $('#rData').html(items);
+        });
+    })
 });
