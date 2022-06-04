@@ -136,14 +136,6 @@ namespace intranet.ServiceWCF
 
         #endregion
 
-        #region Sala
-        public Sala SalaBuscarPorNombre(Sala pro)
-        {
-            SalaBll b = new SalaBll();
-            return b.SalaBuscarPorNombre(pro);
-        }
-
-        #endregion
 
         public bool Validarusuario(Usuario us)
         {

@@ -157,7 +157,7 @@ namespace intranet.dataaccess
             throw new NotImplementedException();
         }
 
-        public Sala findForId(int o)
+        public Sala findForIdSala(int o)
         {
             throw new NotImplementedException();
         }
@@ -196,7 +196,7 @@ namespace intranet.dataaccess
             }
         }
 
-        public List<Sala> readAll()
+        public List<Sala> readAllSalas()
         {
             List<Sala> lista = new List<Sala>();
             using (cn = new SqlConnection(Constantes.CADENA_CONEXION))

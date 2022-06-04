@@ -120,17 +120,8 @@ namespace intranet.business
         }
 
 
-        public Sala SalaBuscarPorNombre(Sala pro)
-        {
-            try
-            {
-                return dao.findbyName(pro.nombre);
-            }
-            catch (SqlException ex)
-            {
-                throw ex;
-            }
-        }
+ 
+ 
 
 
 
@@ -138,7 +129,7 @@ namespace intranet.business
         {
             try
             {
-                return dao.readAll();
+                return dao.readAllSalas();
             }
             catch (SqlException ex)
             {

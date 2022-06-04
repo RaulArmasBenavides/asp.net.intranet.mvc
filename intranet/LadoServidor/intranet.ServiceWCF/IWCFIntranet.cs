@@ -64,14 +64,14 @@ namespace intranet.ServiceWCF
 
         #region Sala
 
-        [OperationContract]
-        [WebInvoke(
-         Method = "POST",
-         UriTemplate = "/Sala/SalaBuscarPorNombre",
-         RequestFormat = WebMessageFormat.Json,
-         ResponseFormat = WebMessageFormat.Json,
-         BodyStyle = WebMessageBodyStyle.WrappedRequest)]
-        Sala SalaBuscarPorNombre(Sala pro);
+        //[OperationContract]
+        //[WebInvoke(
+        // Method = "POST",
+        // UriTemplate = "/Sala/SalaBuscarPorNombre",
+        // RequestFormat = WebMessageFormat.Json,
+        // ResponseFormat = WebMessageFormat.Json,
+        // BodyStyle = WebMessageBodyStyle.WrappedRequest)]
+        //Sala SalaBuscarPorNombre(Sala pro);
         #endregion
 
         #region Curso
