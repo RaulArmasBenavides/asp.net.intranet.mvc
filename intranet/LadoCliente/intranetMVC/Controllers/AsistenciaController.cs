@@ -32,7 +32,9 @@ namespace intranetMVC.Controllers
         {
             try
             {
-                cliente.AsistenciaAdicionar(asis);
+                AsistenciaAdicionarRequest req = new AsistenciaAdicionarRequest();
+                req.emp = asis;
+                cliente.AsistenciaAdicionar(req);
 
                 return RedirectToAction("Index");
             }

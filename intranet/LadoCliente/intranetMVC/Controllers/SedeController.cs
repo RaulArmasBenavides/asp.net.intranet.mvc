@@ -16,7 +16,7 @@ namespace intranetMVC.Controllers
         // GET: Sede
         public ActionResult Index()
         {
-            return View(cliente.SedesListar());
+            return View(cliente.SedesListar(new SedesListarRequest()));
         }
 
         // GET: Sede/Details/5
@@ -35,9 +35,10 @@ namespace intranetMVC.Controllers
         [HttpPost]
         public ActionResult Create(Sede e)
         {
-            try
-            {
-                cliente.SedeAdicionarAsync(e);
+            try { 
+                SedeAdicionarRequest re = new SedeAdicionarRequest();
+                re.sed = e;
+                cliente.SedeAdicionar(re);
                 ViewBag.JavaScriptFunction = "swal('Proceso con éxito', 'Sede registrado con éxito!', 'success');";
                 return View(); //RedirectToAction("Index");
             }
@@ -57,9 +58,11 @@ namespace intranetMVC.Controllers
         [HttpPost]
         public ActionResult Edit(Sede e)
         {
+            SedeActualizarRequest re = new SedeActualizarRequest();
+            re.sed = e;
             try
             {
-                cliente.SedeActualizar(e);
+                cliente.SedeActualizar(re);
                 return RedirectToAction("Index");
             }
             catch
@@ -93,7 +96,7 @@ namespace intranetMVC.Controllers
 
         public JsonResult ListarSedes()
         {
-            JsonResult result = Json(cliente.SedesListar(), JsonRequestBehavior.AllowGet);
+            JsonResult result = Json(cliente.SedesListar(new SedesListarRequest()), JsonRequestBehavior.AllowGet);
             return result;        
         }
     }

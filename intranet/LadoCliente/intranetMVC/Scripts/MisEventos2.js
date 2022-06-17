@@ -96,98 +96,41 @@ $(document).ready(function () {
     }
 
     let TableConfig = () => {
-        $.ajax({
-            url: "http://localhost:11828/Alumno/getClientes",
-            success: function (data) {
-                console.log(data);
-                var o = data;//A la variable le asigno el json decodificado
-                $('#table_id').dataTable({
-                    data: o,
-                    columns: [
-                       { "data": "ApeMatAlumno" },
-                       { "data": "ApePatAlumno" },
-                       { "data": "CodigoAlu" },
-                       { "data": "Creditos" },
-                       { "data": "DNI" },
-                       { "data": "DirAlumno" },
-                       { "data": "EmailAlumno" },
-                       { "data": "Escuela" },
-                       { "data": "IdAlumno" },
-                       { "data": "NomAlumno" },
-                       { "data": "TelAlumno" }
 
-                   ],
-                });
-            }
+        $.getJSON('http://localhost:11828/Alumno/getClientes', function (data) {
+            console.log(data);
+            $('#table_id').DataTable({
+                paging: false,
+                searching: false,
+                info: false,
+                data: data,
+                columns: [
+                    { title: "IdAlumno", data: "IdAlumno" },
+                    { title: "NomAlumno", data: "NomAlumno" },
+                    { title: "TelAlumno", data: "TelAlumno" },
+                    { title: "ApeMatAlumno", data: "ApeMatAlumno" },
+                    { title: "ApePatAlumno", data: "ApePatAlumno" },
+                    { title: "CodigoAlu", data: "CodigoAlu" },
+                    { title: "Creditos", data: "Creditos" },
+                    { title: "DNI", data: "DNI" },
+                    { title: "DirAlumno", data: "DirAlumno" },
+                    { title: "EmailAlumno", data: "EmailAlumno" },
+                    { title: "Escuela", data: "Escuela" },
+
+              /*      { title: "", data: "boton" }*/
+                ]
+            });
         });
-
-
-            //$('#table_id').DataTable({
-            //    dom: 'Bfrtip',
-
-            //    buttons: [
-
-            //        'excel',
-
-            //        {
-
-            //            extend: 'excelHtml5',
-
-            //            text: 'Exportar Excel',
-
-            //            filename: 'Reporte Empleados',
-
-            //            title: '',
-
-            //            exportOptions: {
-
-            //                columns: [1, 2, 3, 4, 5, 6]
-
-            //            },
-
-            //            className: 'btn-exportar-excel',
-
-            //        },]
-            //});
+   
     }
 
-    let GetDatosAlumno = () => {
-        $.ajax({
-            url: "/Ajax/AlumnoDatos",
-            success: function (alumno) {
-                var datos = "Codigo: " + alumno.ID + "<br/>"
-                    + "Nombre: " + alumno.Nombre + "<br/>"
-                    + "Curso : " + alumno.Curso + "<br/>"
-                    + "Notas: " + alumno.Notas;
-                $("#div2").html(datos);
-            }
-        });
-    }
+   
 
     tabsapp();
     TableConfig();
 
 
-    $(function () {
-        $("#btnGet").click(function () {
-            $.ajax({
-                type: "POST",
-                url: "/Home/AjaxMethod",
-                data: '{name: "' + $("#txtName").val() + '" }',
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {
-                    alert("Hola: " + response.Name + " .\nFecha y Hora: " + response.DateTime);
-                },
-                failure: function (response) {
-                    alert(response.responseText);
-                },
-                error: function (response) {
-                    alert(response.responseText);
-                }
-            });
-        });
-    });
+ 
 
 
     $(".sidebar-dropdown > a").click(function () {

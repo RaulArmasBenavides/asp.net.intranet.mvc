@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace intranet.entity
 {
-    [DataContract]
+    [DataContract(Name="Alumno")]
     public class Alumno
     {
         public Alumno()
@@ -26,38 +26,49 @@ namespace intranet.entity
 
         }
 
+
+        //IdAlumno = Convert.ToInt32(dr[0]),
+        //                    ApePatAlumno = dr[1].ToString(),
+        //                    ApeMatAlumno = dr[2].ToString(),
+        //                    NomAlumno = dr[3].ToString(),
+        //                    DNI = dr[4].ToString(),
+        //                    CodigoAlu = dr[5].ToString(),
+        //                    TelAlumno = dr[6].ToString(),
+        //                    Sexo = Convert.ToChar(dr[7].ToString()),
+        //                    EmailAlumno = dr[8].ToString(),
+        //                    DirAlumno = dr[9].ToString(),
         [DataMember(Name = "IdAlumno", Order = 1)]
         public int IdAlumno { get; set; }
 
-        [DataMember(Name = "CodigoAlu", Order = 2)]
-        public string CodigoAlu { get; set; }
-
-        [DataMember(Name = "ApePatAlumno", Order = 3)]
+        [DataMember(Name = "ApePatAlumno", Order = 2)]
         public string ApePatAlumno { get; set; }
 
-        [DataMember(Name = "ApeMatAlumno", Order = 4)]
+        [DataMember(Name = "ApeMatAlumno", Order = 3)]
         public string ApeMatAlumno { get; set; }
 
-        [DataMember(Name = "NomAlumno", Order = 5)]
+        [DataMember(Name = "NomAlumno", Order = 4)]
         public string NomAlumno { get; set; }
 
-        [DataMember(Name = "DirAlumno", Order = 6)]
-        public string DirAlumno { get; set; }
+        [DataMember(Name = "DNI", Order = 5)]
+        public string DNI { get; set; }
+
+        [DataMember(Name = "CodigoAlu", Order = 6)]
+        public string CodigoAlu { get; set; }
 
         [DataMember(Name = "TelAlumno", Order = 7)]
         public string TelAlumno { get; set; }
 
-        [DataMember(Name = "EmailAlumno", Order = 8)]
-        public string EmailAlumno { get; set; }
-
-        [DataMember(Name = "Sexo", Order = 9)]
+        [DataMember(Name = "Sexo", Order = 8)]
         public char Sexo { get; set; }
 
-        [DataMember(Name = "Tipo", Order = 10)]
-        public string Tipo { get; set; }
+        [DataMember(Name = "EmailAlumno", Order = 9)]
+        public string EmailAlumno { get; set; }
 
-        [DataMember(Name = "DNI", Order = 11)]
-        public string DNI { get; set; }
+        [DataMember(Name = "DirAlumno", Order = 10)]
+        public string DirAlumno { get; set; }
+
+        [DataMember(Name = "Tipo", Order = 11)]
+        public string Tipo { get; set; }
 
         [DataMember(Name = "Carrera", Order = 12)]
         public string Carrera { get; set; }

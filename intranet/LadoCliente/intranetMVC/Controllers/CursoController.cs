@@ -13,7 +13,7 @@ namespace intranetMVC.Controllers
         {
             //var cursoes = db.Cursoes.Include(c => c.Tarifa);
             //return View(cursoes.ToList());
-            return View(cliente.AlumnoListar());
+            return View(cliente.AlumnoListar(new AlumnoListarRequest()));
         }
 
         // GET: Curso/Details/5

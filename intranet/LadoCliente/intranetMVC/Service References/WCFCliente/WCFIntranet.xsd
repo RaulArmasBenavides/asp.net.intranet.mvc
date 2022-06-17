@@ -63,20 +63,6 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="SalaBuscarPorNombre">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/intranet.entity" minOccurs="0" name="pro" nillable="true" type="q5:Sala" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SalaBuscarPorNombreResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/intranet.entity" minOccurs="0" name="SalaBuscarPorNombreResult" nillable="true" type="q6:Sala" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="CursoListar">
     <xs:complexType>
       <xs:sequence />
@@ -85,7 +71,7 @@
   <xs:element name="CursoListarResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/intranet.entity" minOccurs="0" name="CursoListarResult" nillable="true" type="q7:ArrayOfCurso" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/intranet.entity" minOccurs="0" name="CursoListarResult" nillable="true" type="q5:ArrayOfCurso" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -97,14 +83,14 @@
   <xs:element name="SedesListarResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/intranet.entity" minOccurs="0" name="SedesListarResult" nillable="true" type="q8:ArrayOfSede" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/intranet.entity" minOccurs="0" name="SedesListarResult" nillable="true" type="q6:ArrayOfSede" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SedeAdicionar">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/intranet.entity" minOccurs="0" name="sed" nillable="true" type="q9:Sede" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/intranet.entity" minOccurs="0" name="sed" nillable="true" type="q7:Sede" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -116,7 +102,7 @@
   <xs:element name="SedeActualizar">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/intranet.entity" minOccurs="0" name="sed" nillable="true" type="q10:Sede" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/intranet.entity" minOccurs="0" name="sed" nillable="true" type="q8:Sede" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -147,14 +133,14 @@
   <xs:element name="SedeBuscarResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/intranet.entity" minOccurs="0" name="SedeBuscarResult" nillable="true" type="q11:Sede" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/intranet.entity" minOccurs="0" name="SedeBuscarResult" nillable="true" type="q9:Sede" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AsistenciaAdicionar">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/intranet.entity" minOccurs="0" name="emp" nillable="true" type="q12:Asistencias" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/intranet.entity" minOccurs="0" name="emp" nillable="true" type="q10:Asistencias" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -171,14 +157,14 @@
   <xs:element name="ParticipanteListarResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/intranet.entity" minOccurs="0" name="ParticipanteListarResult" nillable="true" type="q13:ArrayOfParticipante" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/intranet.entity" minOccurs="0" name="ParticipanteListarResult" nillable="true" type="q11:ArrayOfParticipante" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ParticipanteAdicionar">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/intranet.entity" minOccurs="0" name="emp" nillable="true" type="q14:Participante" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/intranet.entity" minOccurs="0" name="emp" nillable="true" type="q12:Participante" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -190,7 +176,7 @@
   <xs:element name="ParticipanteActualizar">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/intranet.entity" minOccurs="0" name="emp" nillable="true" type="q15:Participante" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/intranet.entity" minOccurs="0" name="emp" nillable="true" type="q13:Participante" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -221,14 +207,14 @@
   <xs:element name="ParticipanteBuscarResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/intranet.entity" minOccurs="0" name="ParticipanteBuscarResult" nillable="true" type="q16:Alumno" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/intranet.entity" minOccurs="0" name="ParticipanteBuscarResult" nillable="true" type="q14:Alumno" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Validarusuario">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/intranet.entity" minOccurs="0" name="u" nillable="true" type="q17:Usuario" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/intranet.entity" minOccurs="0" name="u" nillable="true" type="q15:Usuario" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

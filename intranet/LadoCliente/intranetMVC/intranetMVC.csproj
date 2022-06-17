@@ -340,23 +340,62 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Service References\WCFCliente\intranetMVC.WCFCliente.Alumno.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\WCFCliente\intranetMVC.WCFCliente.Curso.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\WCFCliente\intranetMVC.WCFCliente.Participante.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\WCFCliente\intranetMVC.WCFCliente.Sala.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <Content Include="Service References\WCFCliente\intranetMVC.WCFCliente.Sede.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.6.0.min.map" />
+    <Content Include="Service References\WCFCliente\intranetMVC.WCFCliente.AlumnoActualizarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WCFCliente\intranetMVC.WCFCliente.AlumnoAdicionarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WCFCliente\intranetMVC.WCFCliente.AlumnoBuscarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WCFCliente\intranetMVC.WCFCliente.AlumnoEliminarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WCFCliente\intranetMVC.WCFCliente.AlumnoListarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WCFCliente\intranetMVC.WCFCliente.AsistenciaAdicionarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WCFCliente\intranetMVC.WCFCliente.CursoListarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WCFCliente\intranetMVC.WCFCliente.ParticipanteActualizarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WCFCliente\intranetMVC.WCFCliente.ParticipanteAdicionarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WCFCliente\intranetMVC.WCFCliente.ParticipanteBuscarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WCFCliente\intranetMVC.WCFCliente.ParticipanteEliminarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WCFCliente\intranetMVC.WCFCliente.ParticipanteListarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WCFCliente\intranetMVC.WCFCliente.SedeActualizarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WCFCliente\intranetMVC.WCFCliente.SedeAdicionarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WCFCliente\intranetMVC.WCFCliente.SedeBuscarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WCFCliente\intranetMVC.WCFCliente.SedeEliminarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WCFCliente\intranetMVC.WCFCliente.SedesListarResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\WCFCliente\intranetMVC.WCFCliente.ValidarusuarioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Service References\WCFCliente\WCFIntranet.disco" />
     <None Include="Service References\WCFCliente\configuration91.svcinfo" />
     <None Include="Service References\WCFCliente\configuration.svcinfo" />

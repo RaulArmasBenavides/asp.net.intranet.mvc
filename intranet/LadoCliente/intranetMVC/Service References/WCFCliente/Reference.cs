@@ -23,37 +23,40 @@ namespace intranetMVC.WCFCliente {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ApeMatAlumnoField;
+        private int IdAlumnoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ApePatAlumnoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CodigoAluField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int CreditosField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DNIField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DirAlumnoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string EmailAlumnoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string EscuelaField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdAlumnoField;
+        private string ApeMatAlumnoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NomAlumnoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DNIField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CodigoAluField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TelAlumnoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private char SexoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmailAlumnoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DirAlumnoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TipoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CarreraField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -62,110 +65,6 @@ namespace intranetMVC.WCFCliente {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ApeMatAlumno {
-            get {
-                return this.ApeMatAlumnoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ApeMatAlumnoField, value) != true)) {
-                    this.ApeMatAlumnoField = value;
-                    this.RaisePropertyChanged("ApeMatAlumno");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ApePatAlumno {
-            get {
-                return this.ApePatAlumnoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ApePatAlumnoField, value) != true)) {
-                    this.ApePatAlumnoField = value;
-                    this.RaisePropertyChanged("ApePatAlumno");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CodigoAlu {
-            get {
-                return this.CodigoAluField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CodigoAluField, value) != true)) {
-                    this.CodigoAluField = value;
-                    this.RaisePropertyChanged("CodigoAlu");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Creditos {
-            get {
-                return this.CreditosField;
-            }
-            set {
-                if ((this.CreditosField.Equals(value) != true)) {
-                    this.CreditosField = value;
-                    this.RaisePropertyChanged("Creditos");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string DNI {
-            get {
-                return this.DNIField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DNIField, value) != true)) {
-                    this.DNIField = value;
-                    this.RaisePropertyChanged("DNI");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string DirAlumno {
-            get {
-                return this.DirAlumnoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DirAlumnoField, value) != true)) {
-                    this.DirAlumnoField = value;
-                    this.RaisePropertyChanged("DirAlumno");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string EmailAlumno {
-            get {
-                return this.EmailAlumnoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.EmailAlumnoField, value) != true)) {
-                    this.EmailAlumnoField = value;
-                    this.RaisePropertyChanged("EmailAlumno");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Escuela {
-            get {
-                return this.EscuelaField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.EscuelaField, value) != true)) {
-                    this.EscuelaField = value;
-                    this.RaisePropertyChanged("Escuela");
-                }
             }
         }
         
@@ -182,7 +81,33 @@ namespace intranetMVC.WCFCliente {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+        public string ApePatAlumno {
+            get {
+                return this.ApePatAlumnoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ApePatAlumnoField, value) != true)) {
+                    this.ApePatAlumnoField = value;
+                    this.RaisePropertyChanged("ApePatAlumno");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+        public string ApeMatAlumno {
+            get {
+                return this.ApeMatAlumnoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ApeMatAlumnoField, value) != true)) {
+                    this.ApeMatAlumnoField = value;
+                    this.RaisePropertyChanged("ApeMatAlumno");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=3)]
         public string NomAlumno {
             get {
                 return this.NomAlumnoField;
@@ -195,7 +120,33 @@ namespace intranetMVC.WCFCliente {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [System.Runtime.Serialization.DataMemberAttribute(Order=4)]
+        public string DNI {
+            get {
+                return this.DNIField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DNIField, value) != true)) {
+                    this.DNIField = value;
+                    this.RaisePropertyChanged("DNI");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=5)]
+        public string CodigoAlu {
+            get {
+                return this.CodigoAluField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CodigoAluField, value) != true)) {
+                    this.CodigoAluField = value;
+                    this.RaisePropertyChanged("CodigoAlu");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=6)]
         public string TelAlumno {
             get {
                 return this.TelAlumnoField;
@@ -208,159 +159,67 @@ namespace intranetMVC.WCFCliente {
             }
         }
         
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Sala", Namespace="http://schemas.datacontract.org/2004/07/intranet.entity")]
-    [System.SerializableAttribute()]
-    public partial class Sala : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int capacidadField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string estadoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> fecha_creacionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int idsalaField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string nombreField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string rol_creacionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string tipo_salaField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ubicacionField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+        [System.Runtime.Serialization.DataMemberAttribute(Order=7)]
+        public char Sexo {
             get {
-                return this.extensionDataField;
+                return this.SexoField;
             }
             set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int capacidad {
-            get {
-                return this.capacidadField;
-            }
-            set {
-                if ((this.capacidadField.Equals(value) != true)) {
-                    this.capacidadField = value;
-                    this.RaisePropertyChanged("capacidad");
+                if ((this.SexoField.Equals(value) != true)) {
+                    this.SexoField = value;
+                    this.RaisePropertyChanged("Sexo");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string estado {
+        [System.Runtime.Serialization.DataMemberAttribute(Order=8)]
+        public string EmailAlumno {
             get {
-                return this.estadoField;
+                return this.EmailAlumnoField;
             }
             set {
-                if ((object.ReferenceEquals(this.estadoField, value) != true)) {
-                    this.estadoField = value;
-                    this.RaisePropertyChanged("estado");
+                if ((object.ReferenceEquals(this.EmailAlumnoField, value) != true)) {
+                    this.EmailAlumnoField = value;
+                    this.RaisePropertyChanged("EmailAlumno");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> fecha_creacion {
+        [System.Runtime.Serialization.DataMemberAttribute(Order=9)]
+        public string DirAlumno {
             get {
-                return this.fecha_creacionField;
+                return this.DirAlumnoField;
             }
             set {
-                if ((this.fecha_creacionField.Equals(value) != true)) {
-                    this.fecha_creacionField = value;
-                    this.RaisePropertyChanged("fecha_creacion");
+                if ((object.ReferenceEquals(this.DirAlumnoField, value) != true)) {
+                    this.DirAlumnoField = value;
+                    this.RaisePropertyChanged("DirAlumno");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int idsala {
+        [System.Runtime.Serialization.DataMemberAttribute(Order=10)]
+        public string Tipo {
             get {
-                return this.idsalaField;
+                return this.TipoField;
             }
             set {
-                if ((this.idsalaField.Equals(value) != true)) {
-                    this.idsalaField = value;
-                    this.RaisePropertyChanged("idsala");
+                if ((object.ReferenceEquals(this.TipoField, value) != true)) {
+                    this.TipoField = value;
+                    this.RaisePropertyChanged("Tipo");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string nombre {
+        [System.Runtime.Serialization.DataMemberAttribute(Order=11)]
+        public string Carrera {
             get {
-                return this.nombreField;
+                return this.CarreraField;
             }
             set {
-                if ((object.ReferenceEquals(this.nombreField, value) != true)) {
-                    this.nombreField = value;
-                    this.RaisePropertyChanged("nombre");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string rol_creacion {
-            get {
-                return this.rol_creacionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.rol_creacionField, value) != true)) {
-                    this.rol_creacionField = value;
-                    this.RaisePropertyChanged("rol_creacion");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string tipo_sala {
-            get {
-                return this.tipo_salaField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.tipo_salaField, value) != true)) {
-                    this.tipo_salaField = value;
-                    this.RaisePropertyChanged("tipo_sala");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ubicacion {
-            get {
-                return this.ubicacionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ubicacionField, value) != true)) {
-                    this.ubicacionField = value;
-                    this.RaisePropertyChanged("ubicacion");
+                if ((object.ReferenceEquals(this.CarreraField, value) != true)) {
+                    this.CarreraField = value;
+                    this.RaisePropertyChanged("Carrera");
                 }
             }
         }
@@ -385,16 +244,25 @@ namespace intranetMVC.WCFCliente {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int cicloField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int idcursoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string mallaField;
+        private string NombreCursoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string nombrecursoField;
+        private string EstadoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private char TipoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private char MallaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idclcloField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idTarifaField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -403,19 +271,6 @@ namespace intranetMVC.WCFCliente {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ciclo {
-            get {
-                return this.cicloField;
-            }
-            set {
-                if ((this.cicloField.Equals(value) != true)) {
-                    this.cicloField = value;
-                    this.RaisePropertyChanged("ciclo");
-                }
             }
         }
         
@@ -432,28 +287,80 @@ namespace intranetMVC.WCFCliente {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string malla {
+        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+        public string NombreCurso {
             get {
-                return this.mallaField;
+                return this.NombreCursoField;
             }
             set {
-                if ((object.ReferenceEquals(this.mallaField, value) != true)) {
-                    this.mallaField = value;
-                    this.RaisePropertyChanged("malla");
+                if ((object.ReferenceEquals(this.NombreCursoField, value) != true)) {
+                    this.NombreCursoField = value;
+                    this.RaisePropertyChanged("NombreCurso");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string nombrecurso {
+        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+        public string Estado {
             get {
-                return this.nombrecursoField;
+                return this.EstadoField;
             }
             set {
-                if ((object.ReferenceEquals(this.nombrecursoField, value) != true)) {
-                    this.nombrecursoField = value;
-                    this.RaisePropertyChanged("nombrecurso");
+                if ((object.ReferenceEquals(this.EstadoField, value) != true)) {
+                    this.EstadoField = value;
+                    this.RaisePropertyChanged("Estado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=3)]
+        public char Tipo {
+            get {
+                return this.TipoField;
+            }
+            set {
+                if ((this.TipoField.Equals(value) != true)) {
+                    this.TipoField = value;
+                    this.RaisePropertyChanged("Tipo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=4)]
+        public char Malla {
+            get {
+                return this.MallaField;
+            }
+            set {
+                if ((this.MallaField.Equals(value) != true)) {
+                    this.MallaField = value;
+                    this.RaisePropertyChanged("Malla");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=5)]
+        public int idclclo {
+            get {
+                return this.idclcloField;
+            }
+            set {
+                if ((this.idclcloField.Equals(value) != true)) {
+                    this.idclcloField = value;
+                    this.RaisePropertyChanged("idclclo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=6)]
+        public int idTarifa {
+            get {
+                return this.idTarifaField;
+            }
+            set {
+                if ((this.idTarifaField.Equals(value) != true)) {
+                    this.idTarifaField = value;
+                    this.RaisePropertyChanged("idTarifa");
                 }
             }
         }
@@ -561,7 +468,7 @@ namespace intranetMVC.WCFCliente {
         private int idasistenciasField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private intranetMVC.WCFCliente.ListaAsistencias[] listaAsistentesField;
+        private System.Collections.Generic.List<intranetMVC.WCFCliente.ListaAsistencias> listaAsistentesField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -600,7 +507,7 @@ namespace intranetMVC.WCFCliente {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public intranetMVC.WCFCliente.ListaAsistencias[] listaAsistentes {
+        public System.Collections.Generic.List<intranetMVC.WCFCliente.ListaAsistencias> listaAsistentes {
             get {
                 return this.listaAsistentesField;
             }
@@ -1018,118 +925,536 @@ namespace intranetMVC.WCFCliente {
     public interface IWCFIntranet {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/AlumnoListar", ReplyAction="http://tempuri.org/IWCFIntranet/AlumnoListarResponse")]
-        intranetMVC.WCFCliente.Alumno[] AlumnoListar();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/AlumnoListar", ReplyAction="http://tempuri.org/IWCFIntranet/AlumnoListarResponse")]
-        System.Threading.Tasks.Task<intranetMVC.WCFCliente.Alumno[]> AlumnoListarAsync();
+        intranetMVC.WCFCliente.AlumnoListarResponse AlumnoListar(intranetMVC.WCFCliente.AlumnoListarRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/AlumnoAdicionar", ReplyAction="http://tempuri.org/IWCFIntranet/AlumnoAdicionarResponse")]
-        void AlumnoAdicionar(intranetMVC.WCFCliente.Alumno emp);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/AlumnoAdicionar", ReplyAction="http://tempuri.org/IWCFIntranet/AlumnoAdicionarResponse")]
-        System.Threading.Tasks.Task AlumnoAdicionarAsync(intranetMVC.WCFCliente.Alumno emp);
+        intranetMVC.WCFCliente.AlumnoAdicionarResponse AlumnoAdicionar(intranetMVC.WCFCliente.AlumnoAdicionarRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/AlumnoActualizar", ReplyAction="http://tempuri.org/IWCFIntranet/AlumnoActualizarResponse")]
-        void AlumnoActualizar(intranetMVC.WCFCliente.Alumno emp);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/AlumnoActualizar", ReplyAction="http://tempuri.org/IWCFIntranet/AlumnoActualizarResponse")]
-        System.Threading.Tasks.Task AlumnoActualizarAsync(intranetMVC.WCFCliente.Alumno emp);
+        intranetMVC.WCFCliente.AlumnoActualizarResponse AlumnoActualizar(intranetMVC.WCFCliente.AlumnoActualizarRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/AlumnoEliminar", ReplyAction="http://tempuri.org/IWCFIntranet/AlumnoEliminarResponse")]
-        void AlumnoEliminar(int emp);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/AlumnoEliminar", ReplyAction="http://tempuri.org/IWCFIntranet/AlumnoEliminarResponse")]
-        System.Threading.Tasks.Task AlumnoEliminarAsync(int emp);
+        intranetMVC.WCFCliente.AlumnoEliminarResponse AlumnoEliminar(intranetMVC.WCFCliente.AlumnoEliminarRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/AlumnoBuscar", ReplyAction="http://tempuri.org/IWCFIntranet/AlumnoBuscarResponse")]
-        intranetMVC.WCFCliente.Alumno AlumnoBuscar(int emp);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/AlumnoBuscar", ReplyAction="http://tempuri.org/IWCFIntranet/AlumnoBuscarResponse")]
-        System.Threading.Tasks.Task<intranetMVC.WCFCliente.Alumno> AlumnoBuscarAsync(int emp);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/SalaBuscarPorNombre", ReplyAction="http://tempuri.org/IWCFIntranet/SalaBuscarPorNombreResponse")]
-        intranetMVC.WCFCliente.Sala SalaBuscarPorNombre(intranetMVC.WCFCliente.Sala pro);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/SalaBuscarPorNombre", ReplyAction="http://tempuri.org/IWCFIntranet/SalaBuscarPorNombreResponse")]
-        System.Threading.Tasks.Task<intranetMVC.WCFCliente.Sala> SalaBuscarPorNombreAsync(intranetMVC.WCFCliente.Sala pro);
+        intranetMVC.WCFCliente.AlumnoBuscarResponse AlumnoBuscar(intranetMVC.WCFCliente.AlumnoBuscarRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/CursoListar", ReplyAction="http://tempuri.org/IWCFIntranet/CursoListarResponse")]
-        intranetMVC.WCFCliente.Curso[] CursoListar();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/CursoListar", ReplyAction="http://tempuri.org/IWCFIntranet/CursoListarResponse")]
-        System.Threading.Tasks.Task<intranetMVC.WCFCliente.Curso[]> CursoListarAsync();
+        intranetMVC.WCFCliente.CursoListarResponse CursoListar(intranetMVC.WCFCliente.CursoListarRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/SedesListar", ReplyAction="http://tempuri.org/IWCFIntranet/SedesListarResponse")]
-        intranetMVC.WCFCliente.Sede[] SedesListar();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/SedesListar", ReplyAction="http://tempuri.org/IWCFIntranet/SedesListarResponse")]
-        System.Threading.Tasks.Task<intranetMVC.WCFCliente.Sede[]> SedesListarAsync();
+        intranetMVC.WCFCliente.SedesListarResponse SedesListar(intranetMVC.WCFCliente.SedesListarRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/SedeAdicionar", ReplyAction="http://tempuri.org/IWCFIntranet/SedeAdicionarResponse")]
-        void SedeAdicionar(intranetMVC.WCFCliente.Sede sed);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/SedeAdicionar", ReplyAction="http://tempuri.org/IWCFIntranet/SedeAdicionarResponse")]
-        System.Threading.Tasks.Task SedeAdicionarAsync(intranetMVC.WCFCliente.Sede sed);
+        intranetMVC.WCFCliente.SedeAdicionarResponse SedeAdicionar(intranetMVC.WCFCliente.SedeAdicionarRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/SedeActualizar", ReplyAction="http://tempuri.org/IWCFIntranet/SedeActualizarResponse")]
-        void SedeActualizar(intranetMVC.WCFCliente.Sede sed);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/SedeActualizar", ReplyAction="http://tempuri.org/IWCFIntranet/SedeActualizarResponse")]
-        System.Threading.Tasks.Task SedeActualizarAsync(intranetMVC.WCFCliente.Sede sed);
+        intranetMVC.WCFCliente.SedeActualizarResponse SedeActualizar(intranetMVC.WCFCliente.SedeActualizarRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/SedeEliminar", ReplyAction="http://tempuri.org/IWCFIntranet/SedeEliminarResponse")]
-        void SedeEliminar(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/SedeEliminar", ReplyAction="http://tempuri.org/IWCFIntranet/SedeEliminarResponse")]
-        System.Threading.Tasks.Task SedeEliminarAsync(int id);
+        intranetMVC.WCFCliente.SedeEliminarResponse SedeEliminar(intranetMVC.WCFCliente.SedeEliminarRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/SedeBuscar", ReplyAction="http://tempuri.org/IWCFIntranet/SedeBuscarResponse")]
-        intranetMVC.WCFCliente.Sede SedeBuscar(int id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/SedeBuscar", ReplyAction="http://tempuri.org/IWCFIntranet/SedeBuscarResponse")]
-        System.Threading.Tasks.Task<intranetMVC.WCFCliente.Sede> SedeBuscarAsync(int id);
+        intranetMVC.WCFCliente.SedeBuscarResponse SedeBuscar(intranetMVC.WCFCliente.SedeBuscarRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/AsistenciaAdicionar", ReplyAction="http://tempuri.org/IWCFIntranet/AsistenciaAdicionarResponse")]
-        void AsistenciaAdicionar(intranetMVC.WCFCliente.Asistencias emp);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/AsistenciaAdicionar", ReplyAction="http://tempuri.org/IWCFIntranet/AsistenciaAdicionarResponse")]
-        System.Threading.Tasks.Task AsistenciaAdicionarAsync(intranetMVC.WCFCliente.Asistencias emp);
+        intranetMVC.WCFCliente.AsistenciaAdicionarResponse AsistenciaAdicionar(intranetMVC.WCFCliente.AsistenciaAdicionarRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/ParticipanteListar", ReplyAction="http://tempuri.org/IWCFIntranet/ParticipanteListarResponse")]
-        intranetMVC.WCFCliente.Participante[] ParticipanteListar();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/ParticipanteListar", ReplyAction="http://tempuri.org/IWCFIntranet/ParticipanteListarResponse")]
-        System.Threading.Tasks.Task<intranetMVC.WCFCliente.Participante[]> ParticipanteListarAsync();
+        intranetMVC.WCFCliente.ParticipanteListarResponse ParticipanteListar(intranetMVC.WCFCliente.ParticipanteListarRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/ParticipanteAdicionar", ReplyAction="http://tempuri.org/IWCFIntranet/ParticipanteAdicionarResponse")]
-        void ParticipanteAdicionar(intranetMVC.WCFCliente.Participante emp);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/ParticipanteAdicionar", ReplyAction="http://tempuri.org/IWCFIntranet/ParticipanteAdicionarResponse")]
-        System.Threading.Tasks.Task ParticipanteAdicionarAsync(intranetMVC.WCFCliente.Participante emp);
+        intranetMVC.WCFCliente.ParticipanteAdicionarResponse ParticipanteAdicionar(intranetMVC.WCFCliente.ParticipanteAdicionarRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/ParticipanteActualizar", ReplyAction="http://tempuri.org/IWCFIntranet/ParticipanteActualizarResponse")]
-        void ParticipanteActualizar(intranetMVC.WCFCliente.Participante emp);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/ParticipanteActualizar", ReplyAction="http://tempuri.org/IWCFIntranet/ParticipanteActualizarResponse")]
-        System.Threading.Tasks.Task ParticipanteActualizarAsync(intranetMVC.WCFCliente.Participante emp);
+        intranetMVC.WCFCliente.ParticipanteActualizarResponse ParticipanteActualizar(intranetMVC.WCFCliente.ParticipanteActualizarRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/ParticipanteEliminar", ReplyAction="http://tempuri.org/IWCFIntranet/ParticipanteEliminarResponse")]
-        void ParticipanteEliminar(int emp);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/ParticipanteEliminar", ReplyAction="http://tempuri.org/IWCFIntranet/ParticipanteEliminarResponse")]
-        System.Threading.Tasks.Task ParticipanteEliminarAsync(int emp);
+        intranetMVC.WCFCliente.ParticipanteEliminarResponse ParticipanteEliminar(intranetMVC.WCFCliente.ParticipanteEliminarRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/ParticipanteBuscar", ReplyAction="http://tempuri.org/IWCFIntranet/ParticipanteBuscarResponse")]
-        intranetMVC.WCFCliente.Alumno ParticipanteBuscar(int emp);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/ParticipanteBuscar", ReplyAction="http://tempuri.org/IWCFIntranet/ParticipanteBuscarResponse")]
-        System.Threading.Tasks.Task<intranetMVC.WCFCliente.Alumno> ParticipanteBuscarAsync(int emp);
+        intranetMVC.WCFCliente.ParticipanteBuscarResponse ParticipanteBuscar(intranetMVC.WCFCliente.ParticipanteBuscarRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/Validarusuario", ReplyAction="http://tempuri.org/IWCFIntranet/ValidarusuarioResponse")]
-        bool Validarusuario(intranetMVC.WCFCliente.Usuario u);
+        intranetMVC.WCFCliente.ValidarusuarioResponse Validarusuario(intranetMVC.WCFCliente.ValidarusuarioRequest request);
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AlumnoListar", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AlumnoListarRequest {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/Validarusuario", ReplyAction="http://tempuri.org/IWCFIntranet/ValidarusuarioResponse")]
-        System.Threading.Tasks.Task<bool> ValidarusuarioAsync(intranetMVC.WCFCliente.Usuario u);
+        public AlumnoListarRequest() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AlumnoListarResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AlumnoListarResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public System.Collections.Generic.List<intranetMVC.WCFCliente.Alumno> AlumnoListarResult;
+        
+        public AlumnoListarResponse() {
+        }
+        
+        public AlumnoListarResponse(System.Collections.Generic.List<intranetMVC.WCFCliente.Alumno> AlumnoListarResult) {
+            this.AlumnoListarResult = AlumnoListarResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AlumnoAdicionar", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AlumnoAdicionarRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public intranetMVC.WCFCliente.Alumno emp;
+        
+        public AlumnoAdicionarRequest() {
+        }
+        
+        public AlumnoAdicionarRequest(intranetMVC.WCFCliente.Alumno emp) {
+            this.emp = emp;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AlumnoAdicionarResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AlumnoAdicionarResponse {
+        
+        public AlumnoAdicionarResponse() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AlumnoActualizar", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AlumnoActualizarRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public intranetMVC.WCFCliente.Alumno emp;
+        
+        public AlumnoActualizarRequest() {
+        }
+        
+        public AlumnoActualizarRequest(intranetMVC.WCFCliente.Alumno emp) {
+            this.emp = emp;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AlumnoActualizarResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AlumnoActualizarResponse {
+        
+        public AlumnoActualizarResponse() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AlumnoEliminar", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AlumnoEliminarRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public int emp;
+        
+        public AlumnoEliminarRequest() {
+        }
+        
+        public AlumnoEliminarRequest(int emp) {
+            this.emp = emp;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AlumnoEliminarResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AlumnoEliminarResponse {
+        
+        public AlumnoEliminarResponse() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AlumnoBuscar", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AlumnoBuscarRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public int emp;
+        
+        public AlumnoBuscarRequest() {
+        }
+        
+        public AlumnoBuscarRequest(int emp) {
+            this.emp = emp;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AlumnoBuscarResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AlumnoBuscarResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public intranetMVC.WCFCliente.Alumno AlumnoBuscarResult;
+        
+        public AlumnoBuscarResponse() {
+        }
+        
+        public AlumnoBuscarResponse(intranetMVC.WCFCliente.Alumno AlumnoBuscarResult) {
+            this.AlumnoBuscarResult = AlumnoBuscarResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="CursoListar", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class CursoListarRequest {
+        
+        public CursoListarRequest() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="CursoListarResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class CursoListarResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public System.Collections.Generic.List<intranetMVC.WCFCliente.Curso> CursoListarResult;
+        
+        public CursoListarResponse() {
+        }
+        
+        public CursoListarResponse(System.Collections.Generic.List<intranetMVC.WCFCliente.Curso> CursoListarResult) {
+            this.CursoListarResult = CursoListarResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="SedesListar", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class SedesListarRequest {
+        
+        public SedesListarRequest() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="SedesListarResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class SedesListarResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public System.Collections.Generic.List<intranetMVC.WCFCliente.Sede> SedesListarResult;
+        
+        public SedesListarResponse() {
+        }
+        
+        public SedesListarResponse(System.Collections.Generic.List<intranetMVC.WCFCliente.Sede> SedesListarResult) {
+            this.SedesListarResult = SedesListarResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="SedeAdicionar", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class SedeAdicionarRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public intranetMVC.WCFCliente.Sede sed;
+        
+        public SedeAdicionarRequest() {
+        }
+        
+        public SedeAdicionarRequest(intranetMVC.WCFCliente.Sede sed) {
+            this.sed = sed;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="SedeAdicionarResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class SedeAdicionarResponse {
+        
+        public SedeAdicionarResponse() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="SedeActualizar", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class SedeActualizarRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public intranetMVC.WCFCliente.Sede sed;
+        
+        public SedeActualizarRequest() {
+        }
+        
+        public SedeActualizarRequest(intranetMVC.WCFCliente.Sede sed) {
+            this.sed = sed;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="SedeActualizarResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class SedeActualizarResponse {
+        
+        public SedeActualizarResponse() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="SedeEliminar", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class SedeEliminarRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public int id;
+        
+        public SedeEliminarRequest() {
+        }
+        
+        public SedeEliminarRequest(int id) {
+            this.id = id;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="SedeEliminarResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class SedeEliminarResponse {
+        
+        public SedeEliminarResponse() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="SedeBuscar", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class SedeBuscarRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public int id;
+        
+        public SedeBuscarRequest() {
+        }
+        
+        public SedeBuscarRequest(int id) {
+            this.id = id;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="SedeBuscarResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class SedeBuscarResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public intranetMVC.WCFCliente.Sede SedeBuscarResult;
+        
+        public SedeBuscarResponse() {
+        }
+        
+        public SedeBuscarResponse(intranetMVC.WCFCliente.Sede SedeBuscarResult) {
+            this.SedeBuscarResult = SedeBuscarResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AsistenciaAdicionar", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AsistenciaAdicionarRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public intranetMVC.WCFCliente.Asistencias emp;
+        
+        public AsistenciaAdicionarRequest() {
+        }
+        
+        public AsistenciaAdicionarRequest(intranetMVC.WCFCliente.Asistencias emp) {
+            this.emp = emp;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AsistenciaAdicionarResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AsistenciaAdicionarResponse {
+        
+        public AsistenciaAdicionarResponse() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ParticipanteListar", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ParticipanteListarRequest {
+        
+        public ParticipanteListarRequest() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ParticipanteListarResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ParticipanteListarResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public System.Collections.Generic.List<intranetMVC.WCFCliente.Participante> ParticipanteListarResult;
+        
+        public ParticipanteListarResponse() {
+        }
+        
+        public ParticipanteListarResponse(System.Collections.Generic.List<intranetMVC.WCFCliente.Participante> ParticipanteListarResult) {
+            this.ParticipanteListarResult = ParticipanteListarResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ParticipanteAdicionar", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ParticipanteAdicionarRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public intranetMVC.WCFCliente.Participante emp;
+        
+        public ParticipanteAdicionarRequest() {
+        }
+        
+        public ParticipanteAdicionarRequest(intranetMVC.WCFCliente.Participante emp) {
+            this.emp = emp;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ParticipanteAdicionarResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ParticipanteAdicionarResponse {
+        
+        public ParticipanteAdicionarResponse() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ParticipanteActualizar", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ParticipanteActualizarRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public intranetMVC.WCFCliente.Participante emp;
+        
+        public ParticipanteActualizarRequest() {
+        }
+        
+        public ParticipanteActualizarRequest(intranetMVC.WCFCliente.Participante emp) {
+            this.emp = emp;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ParticipanteActualizarResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ParticipanteActualizarResponse {
+        
+        public ParticipanteActualizarResponse() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ParticipanteEliminar", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ParticipanteEliminarRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public int emp;
+        
+        public ParticipanteEliminarRequest() {
+        }
+        
+        public ParticipanteEliminarRequest(int emp) {
+            this.emp = emp;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ParticipanteEliminarResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ParticipanteEliminarResponse {
+        
+        public ParticipanteEliminarResponse() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ParticipanteBuscar", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ParticipanteBuscarRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public int emp;
+        
+        public ParticipanteBuscarRequest() {
+        }
+        
+        public ParticipanteBuscarRequest(int emp) {
+            this.emp = emp;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ParticipanteBuscarResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ParticipanteBuscarResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public intranetMVC.WCFCliente.Alumno ParticipanteBuscarResult;
+        
+        public ParticipanteBuscarResponse() {
+        }
+        
+        public ParticipanteBuscarResponse(intranetMVC.WCFCliente.Alumno ParticipanteBuscarResult) {
+            this.ParticipanteBuscarResult = ParticipanteBuscarResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="Validarusuario", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ValidarusuarioRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public intranetMVC.WCFCliente.Usuario u;
+        
+        public ValidarusuarioRequest() {
+        }
+        
+        public ValidarusuarioRequest(intranetMVC.WCFCliente.Usuario u) {
+            this.u = u;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ValidarusuarioResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ValidarusuarioResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public bool ValidarusuarioResult;
+        
+        public ValidarusuarioResponse() {
+        }
+        
+        public ValidarusuarioResponse(bool ValidarusuarioResult) {
+            this.ValidarusuarioResult = ValidarusuarioResult;
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1159,156 +1484,76 @@ namespace intranetMVC.WCFCliente {
                 base(binding, remoteAddress) {
         }
         
-        public intranetMVC.WCFCliente.Alumno[] AlumnoListar() {
-            return base.Channel.AlumnoListar();
+        public intranetMVC.WCFCliente.AlumnoListarResponse AlumnoListar(intranetMVC.WCFCliente.AlumnoListarRequest request) {
+            return base.Channel.AlumnoListar(request);
         }
         
-        public System.Threading.Tasks.Task<intranetMVC.WCFCliente.Alumno[]> AlumnoListarAsync() {
-            return base.Channel.AlumnoListarAsync();
+        public intranetMVC.WCFCliente.AlumnoAdicionarResponse AlumnoAdicionar(intranetMVC.WCFCliente.AlumnoAdicionarRequest request) {
+            return base.Channel.AlumnoAdicionar(request);
         }
         
-        public void AlumnoAdicionar(intranetMVC.WCFCliente.Alumno emp) {
-            base.Channel.AlumnoAdicionar(emp);
+        public intranetMVC.WCFCliente.AlumnoActualizarResponse AlumnoActualizar(intranetMVC.WCFCliente.AlumnoActualizarRequest request) {
+            return base.Channel.AlumnoActualizar(request);
         }
         
-        public System.Threading.Tasks.Task AlumnoAdicionarAsync(intranetMVC.WCFCliente.Alumno emp) {
-            return base.Channel.AlumnoAdicionarAsync(emp);
+        public intranetMVC.WCFCliente.AlumnoEliminarResponse AlumnoEliminar(intranetMVC.WCFCliente.AlumnoEliminarRequest request) {
+            return base.Channel.AlumnoEliminar(request);
         }
         
-        public void AlumnoActualizar(intranetMVC.WCFCliente.Alumno emp) {
-            base.Channel.AlumnoActualizar(emp);
+        public intranetMVC.WCFCliente.AlumnoBuscarResponse AlumnoBuscar(intranetMVC.WCFCliente.AlumnoBuscarRequest request) {
+            return base.Channel.AlumnoBuscar(request);
         }
         
-        public System.Threading.Tasks.Task AlumnoActualizarAsync(intranetMVC.WCFCliente.Alumno emp) {
-            return base.Channel.AlumnoActualizarAsync(emp);
+        public intranetMVC.WCFCliente.CursoListarResponse CursoListar(intranetMVC.WCFCliente.CursoListarRequest request) {
+            return base.Channel.CursoListar(request);
         }
         
-        public void AlumnoEliminar(int emp) {
-            base.Channel.AlumnoEliminar(emp);
+        public intranetMVC.WCFCliente.SedesListarResponse SedesListar(intranetMVC.WCFCliente.SedesListarRequest request) {
+            return base.Channel.SedesListar(request);
         }
         
-        public System.Threading.Tasks.Task AlumnoEliminarAsync(int emp) {
-            return base.Channel.AlumnoEliminarAsync(emp);
+        public intranetMVC.WCFCliente.SedeAdicionarResponse SedeAdicionar(intranetMVC.WCFCliente.SedeAdicionarRequest request) {
+            return base.Channel.SedeAdicionar(request);
         }
         
-        public intranetMVC.WCFCliente.Alumno AlumnoBuscar(int emp) {
-            return base.Channel.AlumnoBuscar(emp);
+        public intranetMVC.WCFCliente.SedeActualizarResponse SedeActualizar(intranetMVC.WCFCliente.SedeActualizarRequest request) {
+            return base.Channel.SedeActualizar(request);
         }
         
-        public System.Threading.Tasks.Task<intranetMVC.WCFCliente.Alumno> AlumnoBuscarAsync(int emp) {
-            return base.Channel.AlumnoBuscarAsync(emp);
+        public intranetMVC.WCFCliente.SedeEliminarResponse SedeEliminar(intranetMVC.WCFCliente.SedeEliminarRequest request) {
+            return base.Channel.SedeEliminar(request);
         }
         
-        public intranetMVC.WCFCliente.Sala SalaBuscarPorNombre(intranetMVC.WCFCliente.Sala pro) {
-            return base.Channel.SalaBuscarPorNombre(pro);
+        public intranetMVC.WCFCliente.SedeBuscarResponse SedeBuscar(intranetMVC.WCFCliente.SedeBuscarRequest request) {
+            return base.Channel.SedeBuscar(request);
         }
         
-        public System.Threading.Tasks.Task<intranetMVC.WCFCliente.Sala> SalaBuscarPorNombreAsync(intranetMVC.WCFCliente.Sala pro) {
-            return base.Channel.SalaBuscarPorNombreAsync(pro);
+        public intranetMVC.WCFCliente.AsistenciaAdicionarResponse AsistenciaAdicionar(intranetMVC.WCFCliente.AsistenciaAdicionarRequest request) {
+            return base.Channel.AsistenciaAdicionar(request);
         }
         
-        public intranetMVC.WCFCliente.Curso[] CursoListar() {
-            return base.Channel.CursoListar();
+        public intranetMVC.WCFCliente.ParticipanteListarResponse ParticipanteListar(intranetMVC.WCFCliente.ParticipanteListarRequest request) {
+            return base.Channel.ParticipanteListar(request);
         }
         
-        public System.Threading.Tasks.Task<intranetMVC.WCFCliente.Curso[]> CursoListarAsync() {
-            return base.Channel.CursoListarAsync();
+        public intranetMVC.WCFCliente.ParticipanteAdicionarResponse ParticipanteAdicionar(intranetMVC.WCFCliente.ParticipanteAdicionarRequest request) {
+            return base.Channel.ParticipanteAdicionar(request);
         }
         
-        public intranetMVC.WCFCliente.Sede[] SedesListar() {
-            return base.Channel.SedesListar();
+        public intranetMVC.WCFCliente.ParticipanteActualizarResponse ParticipanteActualizar(intranetMVC.WCFCliente.ParticipanteActualizarRequest request) {
+            return base.Channel.ParticipanteActualizar(request);
         }
         
-        public System.Threading.Tasks.Task<intranetMVC.WCFCliente.Sede[]> SedesListarAsync() {
-            return base.Channel.SedesListarAsync();
+        public intranetMVC.WCFCliente.ParticipanteEliminarResponse ParticipanteEliminar(intranetMVC.WCFCliente.ParticipanteEliminarRequest request) {
+            return base.Channel.ParticipanteEliminar(request);
         }
         
-        public void SedeAdicionar(intranetMVC.WCFCliente.Sede sed) {
-            base.Channel.SedeAdicionar(sed);
+        public intranetMVC.WCFCliente.ParticipanteBuscarResponse ParticipanteBuscar(intranetMVC.WCFCliente.ParticipanteBuscarRequest request) {
+            return base.Channel.ParticipanteBuscar(request);
         }
         
-        public System.Threading.Tasks.Task SedeAdicionarAsync(intranetMVC.WCFCliente.Sede sed) {
-            return base.Channel.SedeAdicionarAsync(sed);
-        }
-        
-        public void SedeActualizar(intranetMVC.WCFCliente.Sede sed) {
-            base.Channel.SedeActualizar(sed);
-        }
-        
-        public System.Threading.Tasks.Task SedeActualizarAsync(intranetMVC.WCFCliente.Sede sed) {
-            return base.Channel.SedeActualizarAsync(sed);
-        }
-        
-        public void SedeEliminar(int id) {
-            base.Channel.SedeEliminar(id);
-        }
-        
-        public System.Threading.Tasks.Task SedeEliminarAsync(int id) {
-            return base.Channel.SedeEliminarAsync(id);
-        }
-        
-        public intranetMVC.WCFCliente.Sede SedeBuscar(int id) {
-            return base.Channel.SedeBuscar(id);
-        }
-        
-        public System.Threading.Tasks.Task<intranetMVC.WCFCliente.Sede> SedeBuscarAsync(int id) {
-            return base.Channel.SedeBuscarAsync(id);
-        }
-        
-        public void AsistenciaAdicionar(intranetMVC.WCFCliente.Asistencias emp) {
-            base.Channel.AsistenciaAdicionar(emp);
-        }
-        
-        public System.Threading.Tasks.Task AsistenciaAdicionarAsync(intranetMVC.WCFCliente.Asistencias emp) {
-            return base.Channel.AsistenciaAdicionarAsync(emp);
-        }
-        
-        public intranetMVC.WCFCliente.Participante[] ParticipanteListar() {
-            return base.Channel.ParticipanteListar();
-        }
-        
-        public System.Threading.Tasks.Task<intranetMVC.WCFCliente.Participante[]> ParticipanteListarAsync() {
-            return base.Channel.ParticipanteListarAsync();
-        }
-        
-        public void ParticipanteAdicionar(intranetMVC.WCFCliente.Participante emp) {
-            base.Channel.ParticipanteAdicionar(emp);
-        }
-        
-        public System.Threading.Tasks.Task ParticipanteAdicionarAsync(intranetMVC.WCFCliente.Participante emp) {
-            return base.Channel.ParticipanteAdicionarAsync(emp);
-        }
-        
-        public void ParticipanteActualizar(intranetMVC.WCFCliente.Participante emp) {
-            base.Channel.ParticipanteActualizar(emp);
-        }
-        
-        public System.Threading.Tasks.Task ParticipanteActualizarAsync(intranetMVC.WCFCliente.Participante emp) {
-            return base.Channel.ParticipanteActualizarAsync(emp);
-        }
-        
-        public void ParticipanteEliminar(int emp) {
-            base.Channel.ParticipanteEliminar(emp);
-        }
-        
-        public System.Threading.Tasks.Task ParticipanteEliminarAsync(int emp) {
-            return base.Channel.ParticipanteEliminarAsync(emp);
-        }
-        
-        public intranetMVC.WCFCliente.Alumno ParticipanteBuscar(int emp) {
-            return base.Channel.ParticipanteBuscar(emp);
-        }
-        
-        public System.Threading.Tasks.Task<intranetMVC.WCFCliente.Alumno> ParticipanteBuscarAsync(int emp) {
-            return base.Channel.ParticipanteBuscarAsync(emp);
-        }
-        
-        public bool Validarusuario(intranetMVC.WCFCliente.Usuario u) {
-            return base.Channel.Validarusuario(u);
-        }
-        
-        public System.Threading.Tasks.Task<bool> ValidarusuarioAsync(intranetMVC.WCFCliente.Usuario u) {
-            return base.Channel.ValidarusuarioAsync(u);
+        public intranetMVC.WCFCliente.ValidarusuarioResponse Validarusuario(intranetMVC.WCFCliente.ValidarusuarioRequest request) {
+            return base.Channel.Validarusuario(request);
         }
     }
 }

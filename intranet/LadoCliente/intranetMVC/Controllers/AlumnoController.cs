@@ -16,13 +16,13 @@ namespace intranetMVC.Controllers
         // GET: Alumno
         public ActionResult Index()
         {
-            return View(cliente.AlumnoListar());
+            return View(cliente.AlumnoListar(new AlumnoListarRequest()));
         }
 
 
         public JsonResult getClientes()
         {
-            var res =  Json(cliente.AlumnoListar(), JsonRequestBehavior.AllowGet);
+            var res = Json(cliente.AlumnoListar(new AlumnoListarRequest()), JsonRequestBehavior.AllowGet) ;
             return res;
         }
 
@@ -96,26 +96,30 @@ namespace intranetMVC.Controllers
             //    //db.SaveChanges();
             //    return RedirectToAction("Index");
             //}
-            cliente.AlumnoAdicionar(alumno);
+            AlumnoAdicionarRequest re = new AlumnoAdicionarRequest();
+            re.emp = alumno;
+            cliente.AlumnoAdicionar(re);
             ViewBag.JavaScriptFunction = "swal('Éxito!', 'Se registró el nuevo alumno con éxito!', 'Éxito');";
             return View();
             //return View(alumno);
         }
 
         // GET: Alumno/Edit/5
-        public ActionResult Edit(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Alumno alumno = cliente.AlumnoBuscar(Convert.ToInt32(id)); //null; // db.Alumnoes.Find(id);
-            if (alumno == null)
-            {
-                return HttpNotFound();
-            }
-            return View(alumno);
-        }
+        //public ActionResult Edit(string id)
+        //{
+        //    AlumnoBuscarRequest re = new AlumnoBuscarRequest();
+        //    re.emp = Convert.ToInt32(id);
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Alumno alumno = cliente.AlumnoBuscar(req); //null; // db.Alumnoes.Find(id);
+        //    if (alumno == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(alumno);
+        //}
 
         // POST: Alumno/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -124,9 +128,11 @@ namespace intranetMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "IdAlumno,ApePatAlumno,ApeMatAlumno,NomAlumno,DirAlumno,TelAlumno,EmailAlumno,DNI,Sexo")] Alumno alumno)
         {
+     
             if (ModelState.IsValid)
             {
-                cliente.AlumnoActualizar(alumno);
+
+                cliente.AlumnoActualizar(new AlumnoActualizarRequest(alumno));
                 //db.SaveChanges();
                 return RedirectToAction("Index");
             }

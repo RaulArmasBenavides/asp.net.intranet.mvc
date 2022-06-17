@@ -11,7 +11,8 @@ namespace intranetMVC.Controllers
 {
     public class LoginController : Controller
     {
-        WCFIntranetClient cliente = new WCFIntranetClient();
+        WCFIntranetClient cliente = new WCFIntranetClient("webHttpBinding_IService");
+        
         // private EduTecEntities db = new EduTecEntities();
         // GET: Login
         public ActionResult Index()
@@ -60,7 +61,10 @@ namespace intranetMVC.Controllers
         {
             try
             {
-                if (!cliente.Validarusuario(us))
+                ValidarusuarioRequest re = new ValidarusuarioRequest();
+                re.u = us;
+                cliente.Validarusuario(re);
+                if (true)
                 {
                     //usuario.LoginErrorMessage = "El usuario o password es incorrecto.";
                     Session["userName"] = null;
