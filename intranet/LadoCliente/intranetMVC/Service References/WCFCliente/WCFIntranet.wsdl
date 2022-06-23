@@ -37,12 +37,6 @@
   <wsdl:message name="IWCFIntranet_AlumnoBuscar_OutputMessage">
     <wsdl:part name="parameters" element="tns:AlumnoBuscarResponse" />
   </wsdl:message>
-  <wsdl:message name="IWCFIntranet_SalaBuscarPorNombre_InputMessage">
-    <wsdl:part name="parameters" element="tns:SalaBuscarPorNombre" />
-  </wsdl:message>
-  <wsdl:message name="IWCFIntranet_SalaBuscarPorNombre_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SalaBuscarPorNombreResponse" />
-  </wsdl:message>
   <wsdl:message name="IWCFIntranet_CursoListar_InputMessage">
     <wsdl:part name="parameters" element="tns:CursoListar" />
   </wsdl:message>
@@ -142,10 +136,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IWCFIntranet/AlumnoBuscar" message="tns:IWCFIntranet_AlumnoBuscar_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IWCFIntranet/AlumnoBuscarResponse" message="tns:IWCFIntranet_AlumnoBuscar_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="SalaBuscarPorNombre">
-      <wsdl:input wsaw:Action="http://tempuri.org/IWCFIntranet/SalaBuscarPorNombre" message="tns:IWCFIntranet_SalaBuscarPorNombre_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IWCFIntranet/SalaBuscarPorNombreResponse" message="tns:IWCFIntranet_SalaBuscarPorNombre_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="CursoListar">
       <wsdl:input wsaw:Action="http://tempuri.org/IWCFIntranet/CursoListar" message="tns:IWCFIntranet_CursoListar_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IWCFIntranet/CursoListarResponse" message="tns:IWCFIntranet_CursoListar_OutputMessage" />
@@ -239,15 +229,6 @@
     </wsdl:operation>
     <wsdl:operation name="AlumnoBuscar">
       <soap:operation soapAction="http://tempuri.org/IWCFIntranet/AlumnoBuscar" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="SalaBuscarPorNombre">
-      <soap:operation soapAction="http://tempuri.org/IWCFIntranet/SalaBuscarPorNombre" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

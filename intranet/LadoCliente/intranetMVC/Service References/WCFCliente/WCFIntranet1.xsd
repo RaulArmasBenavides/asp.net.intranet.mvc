@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/intranet.entity" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/intranet.entity" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/intranet.entity" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/intranet.entity" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:17476/WCFIntranet.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:complexType name="ArrayOfAlumno">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Alumno" nillable="true" type="tns:Alumno" />
@@ -8,33 +9,21 @@
   <xs:element name="ArrayOfAlumno" nillable="true" type="tns:ArrayOfAlumno" />
   <xs:complexType name="Alumno">
     <xs:sequence>
-      <xs:element minOccurs="0" name="ApeMatAlumno" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ApePatAlumno" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CodigoAlu" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Creditos" type="xs:int" />
-      <xs:element minOccurs="0" name="DNI" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="DirAlumno" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="EmailAlumno" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Escuela" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="IdAlumno" type="xs:int" />
+      <xs:element minOccurs="0" name="ApePatAlumno" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ApeMatAlumno" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="NomAlumno" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DNI" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CodigoAlu" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TelAlumno" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sexo" type="ser:char" />
+      <xs:element minOccurs="0" name="EmailAlumno" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DirAlumno" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Tipo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Carrera" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Alumno" nillable="true" type="tns:Alumno" />
-  <xs:complexType name="Sala">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="capacidad" type="xs:int" />
-      <xs:element minOccurs="0" name="estado" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="fecha_creacion" nillable="true" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="idsala" type="xs:int" />
-      <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="rol_creacion" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="tipo_sala" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="ubicacion" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="Sala" nillable="true" type="tns:Sala" />
   <xs:complexType name="ArrayOfCurso">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Curso" nillable="true" type="tns:Curso" />
@@ -43,10 +32,13 @@
   <xs:element name="ArrayOfCurso" nillable="true" type="tns:ArrayOfCurso" />
   <xs:complexType name="Curso">
     <xs:sequence>
-      <xs:element minOccurs="0" name="ciclo" type="xs:int" />
       <xs:element minOccurs="0" name="idcurso" type="xs:int" />
-      <xs:element minOccurs="0" name="malla" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="nombrecurso" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NombreCurso" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Estado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Tipo" type="ser:char" />
+      <xs:element minOccurs="0" name="Malla" type="ser:char" />
+      <xs:element minOccurs="0" name="idclclo" type="xs:int" />
+      <xs:element minOccurs="0" name="idTarifa" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Curso" nillable="true" type="tns:Curso" />

@@ -104,16 +104,14 @@ $(document).ready(function () {
                 $('#table_id').dataTable({
                     data: o,
                     columns: [
-                       { "data": "ApeMatAlumno" },
+                       { "data": "IdAlumno" },
+                       { "data": "NomAlumno" },
                        { "data": "ApePatAlumno" },
+                       { "data": "ApeMatAlumno" },
                        { "data": "CodigoAlu" },
-                       { "data": "Creditos" },
                        { "data": "DNI" },
                        { "data": "DirAlumno" },
                        { "data": "EmailAlumno" },
-                       { "data": "Escuela" },
-                       { "data": "IdAlumno" },
-                       { "data": "NomAlumno" },
                        { "data": "TelAlumno" }
 
                    ],

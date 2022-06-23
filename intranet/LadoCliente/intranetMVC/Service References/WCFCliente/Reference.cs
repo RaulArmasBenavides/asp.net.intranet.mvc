@@ -23,37 +23,40 @@ namespace intranetMVC.WCFCliente {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ApeMatAlumnoField;
+        private int IdAlumnoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ApePatAlumnoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string CodigoAluField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int CreditosField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DNIField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DirAlumnoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string EmailAlumnoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string EscuelaField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdAlumnoField;
+        private string ApeMatAlumnoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NomAlumnoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DNIField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CodigoAluField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string TelAlumnoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private char SexoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmailAlumnoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DirAlumnoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TipoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CarreraField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -62,110 +65,6 @@ namespace intranetMVC.WCFCliente {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ApeMatAlumno {
-            get {
-                return this.ApeMatAlumnoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ApeMatAlumnoField, value) != true)) {
-                    this.ApeMatAlumnoField = value;
-                    this.RaisePropertyChanged("ApeMatAlumno");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ApePatAlumno {
-            get {
-                return this.ApePatAlumnoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ApePatAlumnoField, value) != true)) {
-                    this.ApePatAlumnoField = value;
-                    this.RaisePropertyChanged("ApePatAlumno");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string CodigoAlu {
-            get {
-                return this.CodigoAluField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CodigoAluField, value) != true)) {
-                    this.CodigoAluField = value;
-                    this.RaisePropertyChanged("CodigoAlu");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Creditos {
-            get {
-                return this.CreditosField;
-            }
-            set {
-                if ((this.CreditosField.Equals(value) != true)) {
-                    this.CreditosField = value;
-                    this.RaisePropertyChanged("Creditos");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string DNI {
-            get {
-                return this.DNIField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DNIField, value) != true)) {
-                    this.DNIField = value;
-                    this.RaisePropertyChanged("DNI");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string DirAlumno {
-            get {
-                return this.DirAlumnoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DirAlumnoField, value) != true)) {
-                    this.DirAlumnoField = value;
-                    this.RaisePropertyChanged("DirAlumno");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string EmailAlumno {
-            get {
-                return this.EmailAlumnoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.EmailAlumnoField, value) != true)) {
-                    this.EmailAlumnoField = value;
-                    this.RaisePropertyChanged("EmailAlumno");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Escuela {
-            get {
-                return this.EscuelaField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.EscuelaField, value) != true)) {
-                    this.EscuelaField = value;
-                    this.RaisePropertyChanged("Escuela");
-                }
             }
         }
         
@@ -182,7 +81,33 @@ namespace intranetMVC.WCFCliente {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+        public string ApePatAlumno {
+            get {
+                return this.ApePatAlumnoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ApePatAlumnoField, value) != true)) {
+                    this.ApePatAlumnoField = value;
+                    this.RaisePropertyChanged("ApePatAlumno");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+        public string ApeMatAlumno {
+            get {
+                return this.ApeMatAlumnoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ApeMatAlumnoField, value) != true)) {
+                    this.ApeMatAlumnoField = value;
+                    this.RaisePropertyChanged("ApeMatAlumno");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=3)]
         public string NomAlumno {
             get {
                 return this.NomAlumnoField;
@@ -195,7 +120,33 @@ namespace intranetMVC.WCFCliente {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
+        [System.Runtime.Serialization.DataMemberAttribute(Order=4)]
+        public string DNI {
+            get {
+                return this.DNIField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DNIField, value) != true)) {
+                    this.DNIField = value;
+                    this.RaisePropertyChanged("DNI");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=5)]
+        public string CodigoAlu {
+            get {
+                return this.CodigoAluField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CodigoAluField, value) != true)) {
+                    this.CodigoAluField = value;
+                    this.RaisePropertyChanged("CodigoAlu");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=6)]
         public string TelAlumno {
             get {
                 return this.TelAlumnoField;
@@ -208,159 +159,67 @@ namespace intranetMVC.WCFCliente {
             }
         }
         
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Sala", Namespace="http://schemas.datacontract.org/2004/07/intranet.entity")]
-    [System.SerializableAttribute()]
-    public partial class Sala : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int capacidadField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string estadoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> fecha_creacionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int idsalaField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string nombreField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string rol_creacionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string tipo_salaField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ubicacionField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+        [System.Runtime.Serialization.DataMemberAttribute(Order=7)]
+        public char Sexo {
             get {
-                return this.extensionDataField;
+                return this.SexoField;
             }
             set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int capacidad {
-            get {
-                return this.capacidadField;
-            }
-            set {
-                if ((this.capacidadField.Equals(value) != true)) {
-                    this.capacidadField = value;
-                    this.RaisePropertyChanged("capacidad");
+                if ((this.SexoField.Equals(value) != true)) {
+                    this.SexoField = value;
+                    this.RaisePropertyChanged("Sexo");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string estado {
+        [System.Runtime.Serialization.DataMemberAttribute(Order=8)]
+        public string EmailAlumno {
             get {
-                return this.estadoField;
+                return this.EmailAlumnoField;
             }
             set {
-                if ((object.ReferenceEquals(this.estadoField, value) != true)) {
-                    this.estadoField = value;
-                    this.RaisePropertyChanged("estado");
+                if ((object.ReferenceEquals(this.EmailAlumnoField, value) != true)) {
+                    this.EmailAlumnoField = value;
+                    this.RaisePropertyChanged("EmailAlumno");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> fecha_creacion {
+        [System.Runtime.Serialization.DataMemberAttribute(Order=9)]
+        public string DirAlumno {
             get {
-                return this.fecha_creacionField;
+                return this.DirAlumnoField;
             }
             set {
-                if ((this.fecha_creacionField.Equals(value) != true)) {
-                    this.fecha_creacionField = value;
-                    this.RaisePropertyChanged("fecha_creacion");
+                if ((object.ReferenceEquals(this.DirAlumnoField, value) != true)) {
+                    this.DirAlumnoField = value;
+                    this.RaisePropertyChanged("DirAlumno");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int idsala {
+        [System.Runtime.Serialization.DataMemberAttribute(Order=10)]
+        public string Tipo {
             get {
-                return this.idsalaField;
+                return this.TipoField;
             }
             set {
-                if ((this.idsalaField.Equals(value) != true)) {
-                    this.idsalaField = value;
-                    this.RaisePropertyChanged("idsala");
+                if ((object.ReferenceEquals(this.TipoField, value) != true)) {
+                    this.TipoField = value;
+                    this.RaisePropertyChanged("Tipo");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string nombre {
+        [System.Runtime.Serialization.DataMemberAttribute(Order=11)]
+        public string Carrera {
             get {
-                return this.nombreField;
+                return this.CarreraField;
             }
             set {
-                if ((object.ReferenceEquals(this.nombreField, value) != true)) {
-                    this.nombreField = value;
-                    this.RaisePropertyChanged("nombre");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string rol_creacion {
-            get {
-                return this.rol_creacionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.rol_creacionField, value) != true)) {
-                    this.rol_creacionField = value;
-                    this.RaisePropertyChanged("rol_creacion");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string tipo_sala {
-            get {
-                return this.tipo_salaField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.tipo_salaField, value) != true)) {
-                    this.tipo_salaField = value;
-                    this.RaisePropertyChanged("tipo_sala");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ubicacion {
-            get {
-                return this.ubicacionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ubicacionField, value) != true)) {
-                    this.ubicacionField = value;
-                    this.RaisePropertyChanged("ubicacion");
+                if ((object.ReferenceEquals(this.CarreraField, value) != true)) {
+                    this.CarreraField = value;
+                    this.RaisePropertyChanged("Carrera");
                 }
             }
         }
@@ -385,16 +244,25 @@ namespace intranetMVC.WCFCliente {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int cicloField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int idcursoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string mallaField;
+        private string NombreCursoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string nombrecursoField;
+        private string EstadoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private char TipoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private char MallaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idclcloField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idTarifaField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -403,19 +271,6 @@ namespace intranetMVC.WCFCliente {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ciclo {
-            get {
-                return this.cicloField;
-            }
-            set {
-                if ((this.cicloField.Equals(value) != true)) {
-                    this.cicloField = value;
-                    this.RaisePropertyChanged("ciclo");
-                }
             }
         }
         
@@ -432,28 +287,80 @@ namespace intranetMVC.WCFCliente {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string malla {
+        [System.Runtime.Serialization.DataMemberAttribute(Order=1)]
+        public string NombreCurso {
             get {
-                return this.mallaField;
+                return this.NombreCursoField;
             }
             set {
-                if ((object.ReferenceEquals(this.mallaField, value) != true)) {
-                    this.mallaField = value;
-                    this.RaisePropertyChanged("malla");
+                if ((object.ReferenceEquals(this.NombreCursoField, value) != true)) {
+                    this.NombreCursoField = value;
+                    this.RaisePropertyChanged("NombreCurso");
                 }
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string nombrecurso {
+        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
+        public string Estado {
             get {
-                return this.nombrecursoField;
+                return this.EstadoField;
             }
             set {
-                if ((object.ReferenceEquals(this.nombrecursoField, value) != true)) {
-                    this.nombrecursoField = value;
-                    this.RaisePropertyChanged("nombrecurso");
+                if ((object.ReferenceEquals(this.EstadoField, value) != true)) {
+                    this.EstadoField = value;
+                    this.RaisePropertyChanged("Estado");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=3)]
+        public char Tipo {
+            get {
+                return this.TipoField;
+            }
+            set {
+                if ((this.TipoField.Equals(value) != true)) {
+                    this.TipoField = value;
+                    this.RaisePropertyChanged("Tipo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=4)]
+        public char Malla {
+            get {
+                return this.MallaField;
+            }
+            set {
+                if ((this.MallaField.Equals(value) != true)) {
+                    this.MallaField = value;
+                    this.RaisePropertyChanged("Malla");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=5)]
+        public int idclclo {
+            get {
+                return this.idclcloField;
+            }
+            set {
+                if ((this.idclcloField.Equals(value) != true)) {
+                    this.idclcloField = value;
+                    this.RaisePropertyChanged("idclclo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=6)]
+        public int idTarifa {
+            get {
+                return this.idTarifaField;
+            }
+            set {
+                if ((this.idTarifaField.Equals(value) != true)) {
+                    this.idTarifaField = value;
+                    this.RaisePropertyChanged("idTarifa");
                 }
             }
         }
@@ -1047,12 +954,6 @@ namespace intranetMVC.WCFCliente {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/AlumnoBuscar", ReplyAction="http://tempuri.org/IWCFIntranet/AlumnoBuscarResponse")]
         System.Threading.Tasks.Task<intranetMVC.WCFCliente.Alumno> AlumnoBuscarAsync(int emp);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/SalaBuscarPorNombre", ReplyAction="http://tempuri.org/IWCFIntranet/SalaBuscarPorNombreResponse")]
-        intranetMVC.WCFCliente.Sala SalaBuscarPorNombre(intranetMVC.WCFCliente.Sala pro);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/SalaBuscarPorNombre", ReplyAction="http://tempuri.org/IWCFIntranet/SalaBuscarPorNombreResponse")]
-        System.Threading.Tasks.Task<intranetMVC.WCFCliente.Sala> SalaBuscarPorNombreAsync(intranetMVC.WCFCliente.Sala pro);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IWCFIntranet/CursoListar", ReplyAction="http://tempuri.org/IWCFIntranet/CursoListarResponse")]
         intranetMVC.WCFCliente.Curso[] CursoListar();
         
@@ -1197,14 +1098,6 @@ namespace intranetMVC.WCFCliente {
         
         public System.Threading.Tasks.Task<intranetMVC.WCFCliente.Alumno> AlumnoBuscarAsync(int emp) {
             return base.Channel.AlumnoBuscarAsync(emp);
-        }
-        
-        public intranetMVC.WCFCliente.Sala SalaBuscarPorNombre(intranetMVC.WCFCliente.Sala pro) {
-            return base.Channel.SalaBuscarPorNombre(pro);
-        }
-        
-        public System.Threading.Tasks.Task<intranetMVC.WCFCliente.Sala> SalaBuscarPorNombreAsync(intranetMVC.WCFCliente.Sala pro) {
-            return base.Channel.SalaBuscarPorNombreAsync(pro);
         }
         
         public intranetMVC.WCFCliente.Curso[] CursoListar() {

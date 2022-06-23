@@ -349,9 +349,6 @@
     <Content Include="Service References\WCFCliente\intranetMVC.WCFCliente.Participante.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <Content Include="Service References\WCFCliente\intranetMVC.WCFCliente.Sala.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <Content Include="Service References\WCFCliente\intranetMVC.WCFCliente.Sede.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
