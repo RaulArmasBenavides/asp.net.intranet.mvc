@@ -190,7 +190,7 @@ namespace intranet.ServiceWCF
         RequestFormat = WebMessageFormat.Json,
         ResponseFormat = WebMessageFormat.Json,
         BodyStyle = WebMessageBodyStyle.WrappedRequest)]
-        bool Validarusuario(Usuario u);
+        bool Validarusuario(Usuario myObject);
         #endregion
     }
 

@@ -7,13 +7,13 @@ namespace intranetMVC.Controllers
 {
     public class CursoController : Controller
     {
-        WCFIntranetClient cliente = new WCFIntranetClient();
+        //WCFIntranetClient cliente = new WCFIntranetClient();
         // GET: Curso
         public ActionResult Index()
         {
             //var cursoes = db.Cursoes.Include(c => c.Tarifa);
             //return View(cursoes.ToList());
-            return View(cliente.AlumnoListar());
+            return View();
         }
 
         // GET: Curso/Details/5

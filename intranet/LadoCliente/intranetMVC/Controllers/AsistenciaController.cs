@@ -6,7 +6,7 @@ namespace intranetMVC.Controllers
     public class AsistenciaController : Controller
     {
 
-        WCFIntranetClient cliente = new WCFIntranetClient();
+        //WCFIntranetClient cliente = new WCFIntranetClient();
 
         // GET: Asistencia
         public ActionResult Index()
@@ -32,7 +32,7 @@ namespace intranetMVC.Controllers
         {
             try
             {
-                cliente.AsistenciaAdicionar(asis);
+                //cliente.AsistenciaAdicionar(asis);
 
                 return RedirectToAction("Index");
             }

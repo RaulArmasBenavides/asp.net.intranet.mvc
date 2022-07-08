@@ -5,13 +5,18 @@ using System.Linq;
 using System.Web;
 using intranetMVC.Models;
 using System.Web.Mvc;
-using intranetMVC.WCFCliente;
+//using intranetMVC.WCFCliente;
+using System.Runtime.Serialization.Json;
+using System.IO;
+using System.Net;
+using System.Text;
 
 namespace intranetMVC.Controllers
 {
     public class LoginController : Controller
     {
-        WCFIntranetClient cliente = new WCFIntranetClient();
+        private string BASE_URL = "http://localhost:17476/WCFIntranet.svc/";
+        //WCFIntranetClient cliente = new WCFIntranetClient();
         // private EduTecEntities db = new EduTecEntities();
         // GET: Login
         public ActionResult Index()
@@ -55,12 +60,36 @@ namespace intranetMVC.Controllers
 
         //  }
 
-        [HttpPost]
-        public ActionResult Autenticar(WCFCliente.Usuario us)
+
+        public bool Validarusuario(Response<Usuario> u)
         {
             try
             {
-                if (!cliente.Validarusuario(us))
+                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Response<Usuario>));
+                MemoryStream mem = new MemoryStream();
+                ser.WriteObject(mem, u);
+                string data = Encoding.UTF8.GetString(mem.ToArray(), 0, (int)mem.Length);
+
+                WebClient webclient = new WebClient();
+                webclient.Headers["Content-type"] = "Application/json";
+                webclient.Encoding = Encoding.UTF8;
+                webclient.UploadString(BASE_URL + "Usuario/Validarusuario", "POST", data);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }//
+        [HttpPost]
+        public ActionResult Autenticar(Usuario us)
+        {
+            try
+            {
+
+                Response<Usuario> res = new Response<Usuario>();
+                res.myObject = us;
+                if (!this.Validarusuario(res))
                 {
                     //usuario.LoginErrorMessage = "El usuario o password es incorrecto.";
                     Session["userName"] = null;

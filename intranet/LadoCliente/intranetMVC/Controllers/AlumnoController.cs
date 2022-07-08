@@ -11,21 +11,19 @@ namespace intranetMVC.Controllers
     {
         //private EduTecEntities db = new EduTecEntities();
 
-        WCFIntranetClient cliente = new WCFIntranetClient();
+        //WCFIntranetClient cliente = new WCFIntranetClient();
 
         // GET: Alumno
         public ActionResult Index()
         {
-            return View(cliente.AlumnoListar());
+            return View();
         }
 
-
-        public JsonResult getClientes()
-        {
-            var res =  Json(cliente.AlumnoListar(), JsonRequestBehavior.AllowGet);
-            return res;
-        }
-
+        //public JsonResult getClientes()
+        //{
+        //    var res =  Json(cliente.AlumnoListar(), JsonRequestBehavior.AllowGet);
+        //    return res;
+        //}
 
         public ActionResult Search()
         {
@@ -96,7 +94,7 @@ namespace intranetMVC.Controllers
             //    //db.SaveChanges();
             //    return RedirectToAction("Index");
             //}
-            cliente.AlumnoAdicionar(alumno);
+           // cliente.AlumnoAdicionar(alumno);
             ViewBag.JavaScriptFunction = "swal('Éxito!', 'Se registró el nuevo alumno con éxito!', 'Éxito');";
             return View();
             //return View(alumno);
@@ -105,16 +103,16 @@ namespace intranetMVC.Controllers
         // GET: Alumno/Edit/5
         public ActionResult Edit(string id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Alumno alumno = cliente.AlumnoBuscar(Convert.ToInt32(id)); //null; // db.Alumnoes.Find(id);
-            if (alumno == null)
-            {
-                return HttpNotFound();
-            }
-            return View(alumno);
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            ////Alumno alumno = cliente.AlumnoBuscar(Convert.ToInt32(id)); //null; // db.Alumnoes.Find(id);
+            //if (alumno == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            return View();
         }
 
         // POST: Alumno/Edit/5
@@ -126,7 +124,7 @@ namespace intranetMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                cliente.AlumnoActualizar(alumno);
+                //cliente.AlumnoActualizar(alumno);
                 //db.SaveChanges();
                 return RedirectToAction("Index");
             }

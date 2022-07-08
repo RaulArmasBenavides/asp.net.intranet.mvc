@@ -10,11 +10,11 @@ namespace intranetMVC.Models
 
         public Usuario()
         {
-            usuario = string.Empty;
+            user = string.Empty;
             password = string.Empty;
         }
 
-        public string usuario { get; set; }
+        public string user { get; set; }
 
         public string password { get; set; }
     }

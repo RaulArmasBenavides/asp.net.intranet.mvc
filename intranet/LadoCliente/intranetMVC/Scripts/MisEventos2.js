@@ -90,9 +90,7 @@ $(document).ready(function () {
     //ALUMNOS CONTROLLER
 
     let tabsapp = () => {
-
         $("#pestañas").tabs();
-        console.log("hola");
     }
 
     let TableConfig = () => {
