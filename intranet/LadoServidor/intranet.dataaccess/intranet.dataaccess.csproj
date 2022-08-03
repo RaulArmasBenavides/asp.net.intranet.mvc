@@ -70,11 +70,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActividadDAO.cs" />
-    <Compile Include="AlumnoDAO.cs" />
+    <Compile Include="AlumnoDAO2.cs" />
     <Compile Include="AsistenciasDAO.cs" />
     <Compile Include="Constantes.cs" />
     <Compile Include="CursoDAO.cs" />
+    <Compile Include="DataBase\AccesoDB.cs" />
     <Compile Include="EquipoDAO.cs" />
+    <Compile Include="Factory\Class1.cs" />
+    <Compile Include="Factory\DataAccessFactory.cs" />
+    <Compile Include="AlumnoDAO.cs" />
+    <Compile Include="Factory\ProductoTestDao.cs" />
     <Compile Include="ListaEquiposDAO.cs" />
     <Compile Include="ParticipanteDAO.cs" />
     <Compile Include="SedeDAO.cs" />

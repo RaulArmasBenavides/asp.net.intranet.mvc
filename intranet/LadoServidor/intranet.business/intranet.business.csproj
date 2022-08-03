@@ -95,6 +95,10 @@
       <Project>{D8AC91FE-8FF5-4C49-8C80-01C79B64C385}</Project>
       <Name>intranet.entity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\intranet.service\intranet.service.csproj">
+      <Project>{E6DDC900-C9AE-410F-98A0-509CAB49A777}</Project>
+      <Name>intranet.service</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

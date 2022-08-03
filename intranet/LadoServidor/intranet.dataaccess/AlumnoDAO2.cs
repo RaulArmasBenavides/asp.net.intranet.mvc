@@ -1,26 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using intranet.entity;
+using intranet.service;
 using System.Data.SqlClient;
 using System.Data;
-using intranet.service;
-using intranet.entity;
-using System;
-using System.Configuration;
+using intranet.dataaccess;
 
-namespace intranet.dataaccess.Factory
+namespace iintranet.dataaccess
 {
-    public class AlumnoDAO : IAlumnoDataAccess
+    public class AlumnoDao: Service<Alumno>
     {
         SqlConnection cn;
-        public string CadenaConexion { get; set; }
-
-        public AlumnoDAO()
-        {
-            CadenaConexion = Constantes.CADENA_CONEXION;//ConfigurationManager.ConnectionStrings["neptuno"].ConnectionString;
-        }
-
         public void create(Alumno o)
         {
-            using (cn = new SqlConnection(CadenaConexion))
+            using (cn = new SqlConnection(Constantes.CADENA_CONEXION))
             {
                 var cmd = new SqlCommand("usp_alumno_registrar", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -50,7 +43,7 @@ namespace intranet.dataaccess.Factory
 
         public void delete(Alumno o)
         {
-            using (cn = new SqlConnection(CadenaConexion))
+            using (cn = new SqlConnection(Constantes.CADENA_CONEXION))
             {
                 var cmd = new SqlCommand("usp_alumno_eliminar_id", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -70,7 +63,7 @@ namespace intranet.dataaccess.Factory
 
         public void update(Alumno o)
         {
-            using (cn = new SqlConnection(CadenaConexion))
+            using (cn = new SqlConnection(Constantes.CADENA_CONEXION))
             {
                 var cmd = new SqlCommand("usp_alumno_actualizar", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -103,7 +96,7 @@ namespace intranet.dataaccess.Factory
             try
             {
                 Alumno al = null;
-                using (cn = new SqlConnection(CadenaConexion))
+                using (cn = new SqlConnection(Constantes.CADENA_CONEXION))
                 {
                     var cmd = new SqlCommand("usp_buscar_alumno_id", cn);
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -149,7 +142,7 @@ namespace intranet.dataaccess.Factory
         public List<Alumno> readAll()
         {
             List<Alumno> lista = new List<Alumno>();
-            using (cn = new SqlConnection(CadenaConexion))
+            using (cn = new SqlConnection(Constantes.CADENA_CONEXION))
             {
                 var cmd = new SqlCommand("usp_alumnos_listar_all", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -191,9 +184,6 @@ namespace intranet.dataaccess.Factory
             throw new NotImplementedException();
         }
 
-        public Alumno findForId(Alumno t)
-        {
-            throw new System.NotImplementedException();
-        }
+        
     }
 }
