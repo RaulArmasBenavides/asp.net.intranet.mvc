@@ -84,6 +84,7 @@
     <Compile Include="ParticipanteDAO.cs" />
     <Compile Include="SedeDAO.cs" />
     <Compile Include="UsuarioDAO.cs" />
+    <Compile Include="Util\CustomXMLReader.cs" />
     <Compile Include="_doIntranet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
