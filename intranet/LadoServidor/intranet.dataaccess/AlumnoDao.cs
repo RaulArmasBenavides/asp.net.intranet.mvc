@@ -152,7 +152,7 @@ namespace intranet.dataaccess.Factory
             List<Alumno> lista = new List<Alumno>();
             using (cn = new SqlConnection(CadenaConexion))
             {
-                var cmd = new SqlCommand("usp_alumnos_listar_all", cn);
+                var cmd = new SqlCommand("usp_listar_alumnos_all", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 try
                 {
