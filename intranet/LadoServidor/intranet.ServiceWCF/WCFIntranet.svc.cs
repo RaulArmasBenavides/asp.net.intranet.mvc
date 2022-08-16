@@ -56,7 +56,7 @@ namespace intranet.ServiceWCF
         
 
         #region Gestión de asistencias
-        public void AsistenciaAdicionar(Asistencias asis)
+        public void AsistenciaAdicionar(Asistencia asis)
         {
             try
             {

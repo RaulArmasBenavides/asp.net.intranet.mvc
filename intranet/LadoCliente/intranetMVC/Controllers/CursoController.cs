@@ -1,7 +1,6 @@
-﻿using System.Net;
+﻿using intranetMVC.Models;
+using System.Net;
 using System.Web.Mvc;
-using intranetMVC.Models;
-using intranetMVC.WCFCliente;
 
 namespace intranetMVC.Controllers
 {

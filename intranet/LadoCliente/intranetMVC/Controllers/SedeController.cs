@@ -1,11 +1,4 @@
 ﻿using intranetMVC.Models;
-using intranetMVC.WCFCliente;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading;
-using System.Web;
 using System.Web.Mvc;
 
 namespace intranetMVC.Controllers

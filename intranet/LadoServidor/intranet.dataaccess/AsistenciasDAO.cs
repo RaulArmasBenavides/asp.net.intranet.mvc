@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace intranet.dataaccess
 {
-    public class AsistenciasDAO : Service<Asistencias>
+    public class AsistenciasDAO : Service<Asistencia>
     {
         // entidades  usando ENTITY FRAMEWORK
         //bdcongresoEntities entidades = new bdcongresoEntities();
@@ -144,7 +144,7 @@ namespace intranet.dataaccess
         //    throw new NotImplementedException();
         //}
 
-        public void create(Asistencias asist)
+        public void create(Asistencia asist)
         {
             SqlConnection cn;
 
@@ -178,27 +178,27 @@ namespace intranet.dataaccess
             }
         }
 
-        public void update(Asistencias o)
+        public void update(Asistencia o)
         {
             throw new NotImplementedException();
         }
 
-        public void delete(Asistencias o)
+        public void delete(Asistencia o)
         {
             throw new NotImplementedException();
         }
 
-        public Asistencias find(Asistencias o)
+        public Asistencia find(Asistencia o)
         {
             throw new NotImplementedException();
         }
 
-        public Asistencias findForId(int o)
+        public Asistencia findForId(int o)
         {
             throw new NotImplementedException();
         }
 
-        List<Asistencias> Service<Asistencias>.readAll()
+        List<Asistencia> Service<Asistencia>.readAll()
         {
             throw new NotImplementedException();
         }

@@ -16,7 +16,7 @@ namespace intranet.business
             dao = new AsistenciasDAO();
         }
 
-        public void AsistenciaAdicionar(Asistencias asis)
+        public void AsistenciaAdicionar(Asistencia asis)
         {
             try
             {

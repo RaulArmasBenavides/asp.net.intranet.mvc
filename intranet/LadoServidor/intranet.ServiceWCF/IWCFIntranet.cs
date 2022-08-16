@@ -152,7 +152,7 @@ namespace intranet.ServiceWCF
          RequestFormat = WebMessageFormat.Json,
          ResponseFormat = WebMessageFormat.Json,
          BodyStyle = WebMessageBodyStyle.WrappedRequest)]
-        void AsistenciaAdicionar(Asistencias emp);
+        void AsistenciaAdicionar(Asistencia emp);
         #endregion
 
         #region Módulo de congreso

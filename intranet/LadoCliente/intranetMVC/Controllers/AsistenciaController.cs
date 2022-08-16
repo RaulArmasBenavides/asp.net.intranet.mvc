@@ -1,4 +1,4 @@
-﻿using intranetMVC.WCFCliente;
+﻿using intranetMVC.Models;
 using System.Web.Mvc;
 
 namespace intranetMVC.Controllers
@@ -28,7 +28,7 @@ namespace intranetMVC.Controllers
 
         // POST: Asistencia/Create
         [HttpPost]
-        public ActionResult Create(Asistencias asis)
+        public ActionResult Create(Asistencia asis)
         {
             try
             {

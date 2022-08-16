@@ -15,6 +15,7 @@ using System.Web.Script.Serialization;
 
 namespace intranetMVC.Proxy
 {
+    //This replace the old service reference
     public class WCFCustomIntranetClient
     {
         private string BASE_URL = "http://localhost:17476/WCFIntranet.svc/";

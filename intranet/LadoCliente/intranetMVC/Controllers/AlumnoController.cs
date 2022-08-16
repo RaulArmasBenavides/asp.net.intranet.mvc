@@ -1,6 +1,6 @@
-﻿using intranetMVC.Proxy;
+﻿using intranetMVC.Models;
+using intranetMVC.Proxy;
 using intranetMVC.Reportes;
-using intranetMVC.WCFCliente;
 using System;
 using System.Net;
 using System.Web.Mvc;
