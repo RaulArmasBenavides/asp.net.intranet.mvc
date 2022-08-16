@@ -18,7 +18,7 @@ namespace intranet.ServiceWCF
         #region Alumno
         [OperationContract]
         [WebInvoke(
-            Method = "POST",
+            Method = "GET",
             UriTemplate = "/Alumno/AlumnoListar",
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,

@@ -1,4 +1,5 @@
-﻿using intranetMVC.Reportes;
+﻿using intranetMVC.Proxy;
+using intranetMVC.Reportes;
 using intranetMVC.WCFCliente;
 using System;
 using System.Net;
@@ -12,18 +13,20 @@ namespace intranetMVC.Controllers
         //private EduTecEntities db = new EduTecEntities();
 
         //WCFIntranetClient cliente = new WCFIntranetClient();
+        WCFCustomIntranetClient client = new WCFCustomIntranetClient();
 
+        
         // GET: Alumno
         public ActionResult Index()
         {
             return View();
         }
 
-        //public JsonResult getClientes()
-        //{
-        //    var res =  Json(cliente.AlumnoListar(), JsonRequestBehavior.AllowGet);
-        //    return res;
-        //}
+        public JsonResult getClientes()
+        {
+            var res = Json(client.AlumnoListar3(),JsonRequestBehavior.AllowGet);
+            return res;
+        }
 
         public ActionResult Search()
         {

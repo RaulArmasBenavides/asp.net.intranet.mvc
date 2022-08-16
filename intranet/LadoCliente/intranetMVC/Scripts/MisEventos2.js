@@ -95,7 +95,7 @@ $(document).ready(function () {
 
     let TableConfig = () => {
         $.ajax({
-            url: "http://localhost:17476/WCFIntranet.svc/Alumno/AlumnoListar",
+            url: "http://localhost:11828/Alumno/getClientes",
             success: function (data) {
                 console.log(data);
                 var o = data;//A la variable le asigno el json decodificado
