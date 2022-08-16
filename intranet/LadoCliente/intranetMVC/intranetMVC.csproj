@@ -206,6 +206,7 @@
     <Compile Include="Models\Empleado.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Response.cs" />
+    <Compile Include="Models\Sala.cs" />
     <Compile Include="Models\Sede.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -286,6 +287,7 @@
     <Content Include="obj\Debug\WebApplication2.csproj.FileListAbsolute.txt" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="Scripts\AlumnoList.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />

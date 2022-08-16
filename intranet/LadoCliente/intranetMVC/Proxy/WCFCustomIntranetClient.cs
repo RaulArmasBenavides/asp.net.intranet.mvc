@@ -31,7 +31,6 @@ namespace intranetMVC.Proxy
                 webclient.Headers["Content-type"] = "application/json";
                 webclient.Encoding = Encoding.UTF8;
                 var json = webclient.DownloadString(BASE_URL + "Alumno/AlumnoListar");
-                //var json = webclient.DownloadString(BASE_URL + "Alumno/AlumnoListar");
                 var js = new JavaScriptSerializer();
                 return js.Deserialize<List<Alumno>>(json.ToString());
             }
@@ -41,13 +40,12 @@ namespace intranetMVC.Proxy
             }
         }//
 
+        //using DataContractJsonSerializer
         public List<Alumno> AlumnoListar2()
         {
             try
             {
                 var webclient = new WebClient();
-                //webclient.Headers["Content-type"] = "Application/json";
-                //webclient.Encoding = Encoding.UTF8;
                 var json = webclient.DownloadString(BASE_URL + "Alumno/AlumnoListar");
                 var deserializedUser = new List<Alumno>();
                 var ms = new MemoryStream(Encoding.UTF8.GetBytes(json));
@@ -58,12 +56,9 @@ namespace intranetMVC.Proxy
             }
             catch (Exception ex)
             {
-
                 Debug.Print(ex.Message);
                 throw;
             }
-
-
         }
 
         public async Task<List<Alumno>> AlumnoListar()
@@ -98,10 +93,11 @@ namespace intranetMVC.Proxy
 
                 throw ex;
             }
-        
-
             return lis;
         }
+
+
+
 
         public Alumno find(string id)
         {
