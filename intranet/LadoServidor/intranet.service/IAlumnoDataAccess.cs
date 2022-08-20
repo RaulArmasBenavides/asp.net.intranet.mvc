@@ -3,7 +3,7 @@ using intranet.entity;
 
 namespace intranet.service
 {
-    public interface IAlumnoDataAccess
+    public interface IAlumnoDataAccess : Service<Alumno>
     {
         //definir las firmas
         void create(Alumno t);

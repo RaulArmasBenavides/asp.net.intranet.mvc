@@ -6,20 +6,19 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*@System.Web.Optimization.Styles.Render("~/Css/obligatorios")
-    @System.Web.Optimization.Styles.Render("~/Css/LDS")
-    @System.Web.Optimization.Scripts.Render("~/js/obligatorios")
-    @System.Web.Optimization.Scripts.Render("~/js/LDS")*@
-
-@*<script src="js/jquery.min.js" type="text/javascript"></script>
-<script src="js/jquery.dataTables.min.js" type="text/javascript"></script>*@
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/jqueryui")
 @Scripts.Render("~/bundles/dataTable")
-<script src="~/Scripts/AlumnoList.js"></script>
-<p>
+<script src="~/Scripts/Generic.js"></script>
+<script src="~/Scripts/Alumno.js"></script>
+
+<h2>Listado Alumno</h2>
+<div id="divTabla">
+
+</div>
+<!--<p>-->
     @*@Html.ActionLink("Create New", "Create")*@
-    <form>
+    <!--<form>
         <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
             <div class="col-md-4">
@@ -55,9 +54,9 @@
 
     <table id="table_id" class="display">
         <thead>
-            <tr>
+            <tr>-->
                 @*<th>ExtensionData</th>*@
-                <th>IdAlumno</th>
+                <!--<th>IdAlumno</th>
                 <th>NomAlumno</th>
                 <th>ApePatAlumno</th>
                 <th>ApeMatAlumno</th>
@@ -69,9 +68,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr>-->
                 @*<td>ga</td>*@
-                <td>Row</td>
+                <!--<td>Row</td>
                 <td>Row</td>
                 <td>Row</td>
                 <td>Row</td>
@@ -84,7 +83,7 @@
         </tbody>
     </table>
 
-</div>
+</div>-->
 
 
 

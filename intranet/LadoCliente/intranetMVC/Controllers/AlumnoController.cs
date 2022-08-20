@@ -24,7 +24,7 @@ namespace intranetMVC.Controllers
 
         public JsonResult getClientes()
         {
-            var res = Json(client.AlumnoListar2(),JsonRequestBehavior.AllowGet);
+            var res = Json(client.AlumnoListar3(),JsonRequestBehavior.AllowGet);
             return res;
         }
 

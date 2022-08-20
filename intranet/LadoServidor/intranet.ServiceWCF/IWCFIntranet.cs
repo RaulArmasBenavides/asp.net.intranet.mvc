@@ -178,8 +178,6 @@ namespace intranet.ServiceWCF
         Alumno ParticipanteBuscar(int emp);
         #endregion
 
-
-
         #region Módulo de seguridad
 
 

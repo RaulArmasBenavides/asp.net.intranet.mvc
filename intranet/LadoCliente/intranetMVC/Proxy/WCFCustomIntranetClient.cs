@@ -96,9 +96,6 @@ namespace intranetMVC.Proxy
             return lis;
         }
 
-
-
-
         public Alumno find(string id)
         {
             try
