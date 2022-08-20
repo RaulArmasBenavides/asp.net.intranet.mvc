@@ -32,7 +32,7 @@ namespace intranet.ServiceWCF
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.WrappedRequest)]
-        void AlumnoAdicionar(Alumno emp);
+        void AlumnoAdicionar(Alumno data);
 
         [OperationContract]
         [WebInvoke(

@@ -88,7 +88,7 @@ namespace intranetMVC.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IdAlumno,ApePatAlumno,ApeMatAlumno,NomAlumno,DirAlumno,TelAlumno,EmailAlumno,DNI,Sexo")] Alumno alumno)
         {
             //if (ModelState.IsValid)
@@ -97,7 +97,8 @@ namespace intranetMVC.Controllers
             //    //db.SaveChanges();
             //    return RedirectToAction("Index");
             //}
-           // cliente.AlumnoAdicionar(alumno);
+            // cliente.AlumnoAdicionar(alumno);
+            client.createStudent(alumno);
             ViewBag.JavaScriptFunction = "swal('Éxito!', 'Se registró el nuevo alumno con éxito!', 'Éxito');";
             return View();
             //return View(alumno);

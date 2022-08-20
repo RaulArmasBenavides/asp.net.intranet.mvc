@@ -544,6 +544,7 @@ function fetchGet(url, callback) {
     var raiz = document.getElementById("hdfOculto").value;
     var urlAbsoluta = window.location.protocol + "//" +
         window.location.host + raiz + url;
+    console.log(urlAbsoluta);
     setD("cargando", "block");
     fetch(urlAbsoluta).then(res => res.json())
         .then(res => {
@@ -576,6 +577,7 @@ function fetchPostText(url, frm, callback) {
     var raiz = document.getElementById("hdfOculto").value;
     var urlAbsoluta = window.location.protocol + "//" +
         window.location.host + raiz + url;
+    console.log(urlAbsoluta);
     setD("cargando", "block");
     fetch(urlAbsoluta, {
         method: "POST",
@@ -963,7 +965,7 @@ function GuardarGenerico(idformulario, urlguardar) {
                 }
             })
         });
-
+    
 }
 
 function EditarGenerico(id, idFormulario) {

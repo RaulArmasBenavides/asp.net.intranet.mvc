@@ -63,8 +63,8 @@ namespace intranetMVC
 
             //bundles.Add(new Bundle("~/bundles/jquery", "http://code.jquery.com/jquery-2.0.3.min.js")
             // .Include("~/Scripts/jquery-{version}.js"));
-            //bundles.Add(new ScriptBundle("~/bundles/sweetalert", "//cdn.jsdelivr.net/npm/sweetalert2@11")
-            //       .Include("~/Scripts/sweetalemin.js"));
+            bundles.Add(new ScriptBundle("~/bundles/sweetalert", "//cdn.jsdelivr.net/npm/sweetalert2@11")
+                   .Include("~/Scripts/sweetalemin.js"));
 
         }
     }

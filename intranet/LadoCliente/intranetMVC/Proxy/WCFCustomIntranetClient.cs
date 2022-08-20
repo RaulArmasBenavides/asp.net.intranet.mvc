@@ -110,28 +110,33 @@ namespace intranetMVC.Proxy
             {
                 return null;
             }
-        }//
-
-        public bool create(Alumno empleado)
+        }
+        /// <summary>
+        /// Create a new student
+        /// </summary>
+        /// <param name="student"></param>
+        /// <returns></returns>
+        public bool createStudent(Alumno student)
         {
             try
             {
-                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Alumno));
+                Entidad<Alumno> data = new Entidad<Alumno>();
+                data.MyProperty = student;
+                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Entidad<Alumno>));
                 MemoryStream mem = new MemoryStream();
-                ser.WriteObject(mem, empleado);
-                string data = Encoding.UTF8.GetString(mem.ToArray(), 0, (int)mem.Length);
-
+                ser.WriteObject(mem, data);
+                string alumno = Encoding.UTF8.GetString(mem.ToArray(), 0, (int)mem.Length);
                 WebClient webclient = new WebClient();
                 webclient.Headers["Content-type"] = "Application/json";
                 webclient.Encoding = Encoding.UTF8;
-                webclient.UploadString(BASE_URL + "create", "POST", data);
+                webclient.UploadString(BASE_URL + "/Alumno/AlumnoAdicionar", "POST", alumno);
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }
-        }//
+        }
 
         public bool edit(Alumno empleado)
         {

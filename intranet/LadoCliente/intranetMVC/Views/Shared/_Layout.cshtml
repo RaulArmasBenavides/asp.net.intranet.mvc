@@ -8,216 +8,222 @@
 
 </head>
 <body>
-    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-        <i class="fas fa-bars"></i>
-    </a>
-    <div class="page-wrapper chiller-theme toggled">
-        <nav id="sidebar" class="sidebar-wrapper">
-            <div class="sidebar-content">
-                <div class="sidebar-brand">
-                    <a href="/Home/Index">INTRANET</a>
 
+
+    <div style="display:none;position:absolute;top:0px;left:0px;width:100%;
+    height:100%;background-repeat:no-repeat;
+    background-position:center;z-index:100000" id="cargando"></div>
+
+        <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+            <i class="fas fa-bars"></i>
+        </a>
+        <div class="page-wrapper chiller-theme toggled">
+            <nav id="sidebar" class="sidebar-wrapper">
+                <div class="sidebar-content">
+                    <div class="sidebar-brand">
+                        <a href="/Home/Index">INTRANET</a>
+
+                    </div>
+                    <div id="close-sidebar">
+                        <i class="fas fa-times">close</i>
+                    </div>
+                    <!-- sidebar-search  -->
+                    <div class="sidebar-menu">
+                        <ul>
+                            <li class="header-menu">
+                                <span>General</span>
+                            </li>
+
+                            <li class="sidebar-dropdown">
+                                <a href="#">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    <span>Mi información</span>
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="/Alumno/Perfil">Mi Perfil</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Historial académico</a>
+                                        </li>
+                                        <li>
+                                            <a href="Alumno/Search">Datos personales</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+
+
+                            <li class="sidebar-dropdown">
+                                <a href="#">
+                                    <i class="far fa-gem"></i>
+                                    <span>Matrícula</span>
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="#">Matrícula de cursos</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Horarios</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Docentes</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Laboratorios</a>
+                                        </li>
+                                        <li>
+                                            <a href="/Sede/Index">Sedes</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="sidebar-dropdown">
+                                <a href="#">
+                                    <i class="fa fa-chart-line"></i>
+                                    <span>Reportes</span>
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="#">Pre-Matrícula</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Matrícula</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Evaluaciones</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Horario</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Deudas</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="sidebar-dropdown">
+                                <a href="#">
+                                    <i class="fa fa-globe"></i>
+                                    <span>Asistencias</span>
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="#">Mis asistencias</a>
+                                        </li>
+                                        @*<li>
+                                                <a href="#">Open street map</a>
+                                            </li>*@
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="sidebar-dropdown">
+                                <a>
+                                    <i class="fa fa-tachometer-alt"></i>
+                                    <span>Opciones ( Mantenedores) </span>
+                                    @*<span class="badge badge-pill badge-warning">New</span>*@
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="/Alumno/Index">Alumno</a>
+                                        </li>
+                                        <li>
+                                        <li>
+                                            <a href="#"> Docente</a>
+                                        </li>
+                                        <li>
+                                            <a href="">Cursos</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Matrícula</a>
+                                        </li>
+                                        <li>
+                                            <a href="/Sala/Index">Sala</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="header-menu">
+                                <span>Información extra</span>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-book"></i>
+                                    <span>Manuales</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-calendar"></i>
+                                    <span>Plan de estudios</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-folder"></i>
+                                    <span>Calendario</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- sidebar-menu  -->
                 </div>
-                <div id="close-sidebar">
-                    <i class="fas fa-times">close</i>
+                <!-- sidebar-content  -->
+                <div class="sidebar-footer">
+                    @*<a href="#">
+                            <i class="fa fa-bell"></i>
+                            <span class="badge badge-pill badge-warning notification">3</span>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-envelope"></i>
+                            <span class="badge badge-pill badge-success notification">7</span>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-cog"></i>
+                            <span class="badge-sonar"></span>
+                        </a>
+                        <a href="#">
+                            <i class="fa fa-power-off"></i>
+                        </a>*@
                 </div>
-                <!-- sidebar-search  -->
-                <div class="sidebar-menu">
-                    <ul>
-                        <li class="header-menu">
-                            <span>General</span>
-                        </li>
+            </nav>
 
-                        <li class="sidebar-dropdown">
-                            <a href="#">
-                                <i class="fa fa-shopping-cart"></i>
-                                <span>Mi información</span>
-                            </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="/Alumno/Perfil">Mi Perfil</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Historial académico</a>
-                                    </li>
-                                    <li>
-                                        <a href="Alumno/Search">Datos personales</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-
-
-
-                        <li class="sidebar-dropdown">
-                            <a href="#">
-                                <i class="far fa-gem"></i>
-                                <span>Matrícula</span>
-                            </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="#">Matrícula de cursos</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Horarios</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Docentes</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Laboratorios</a>
-                                    </li>
-                                    <li>
-                                        <a href="/Sede/Index">Sedes</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-
-                        <li class="sidebar-dropdown">
-                            <a href="#">
-                                <i class="fa fa-chart-line"></i>
-                                <span>Reportes</span>
-                            </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="#">Pre-Matrícula</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Matrícula</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Evaluaciones</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Horario</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Deudas</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-
-                        <li class="sidebar-dropdown">
-                            <a href="#">
-                                <i class="fa fa-globe"></i>
-                                <span>Asistencias</span>
-                            </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="#">Mis asistencias</a>
-                                    </li>
-                                    @*<li>
-                                            <a href="#">Open street map</a>
-                                        </li>*@
-                                </ul>
-                            </div>
-                        </li>
-
-                        <li class="sidebar-dropdown">
-                            <a>
-                                <i class="fa fa-tachometer-alt"></i>
-                                <span>Opciones ( Mantenedores) </span>
-                                @*<span class="badge badge-pill badge-warning">New</span>*@
-                            </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="/Alumno/Index">Alumno</a>
-                                    </li>
-                                    <li>
-                                    <li>
-                                        <a href="#"> Docente</a>
-                                    </li>
-                                    <li>
-                                        <a href="">Cursos</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Matrícula</a>
-                                    </li>
-                                    <li>
-                                        <a href="/Sala/Index">Sala</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-
-                        <li class="header-menu">
-                            <span>Información extra</span>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-book"></i>
-                                <span>Manuales</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-calendar"></i>
-                                <span>Plan de estudios</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-folder"></i>
-                                <span>Calendario</span>
-                            </a>
-                        </li>
-                    </ul>
+            <!-- sidebar-wrapper  -->
+            <main class="page-content">
+                <div class="container-fluid">
+                    @RenderBody()
                 </div>
-                <!-- sidebar-menu  -->
-            </div>
-            <!-- sidebar-content  -->
-            <div class="sidebar-footer">
-                @*<a href="#">
-                        <i class="fa fa-bell"></i>
-                        <span class="badge badge-pill badge-warning notification">3</span>
-                    </a>
-                    <a href="#">
-                        <i class="fa fa-envelope"></i>
-                        <span class="badge badge-pill badge-success notification">7</span>
-                    </a>
-                    <a href="#">
-                        <i class="fa fa-cog"></i>
-                        <span class="badge-sonar"></span>
-                    </a>
-                    <a href="#">
-                        <i class="fa fa-power-off"></i>
-                    </a>*@
-            </div>
-        </nav>
 
-        <!-- sidebar-wrapper  -->
-        <main class="page-content">
-            <div class="container-fluid">
-                @RenderBody()
-            </div>
+                <input type="hidden" id="hdfOculto" value="@Url.Content("~")" />
+            </main>
 
-            <input type="hidden" id="hdfOculto" value="@Url.Content("~")" />
-        </main>
-
-    </div>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryui")
-    @Scripts.Render("~/bundles/dataTable")
-    @*@Scripts.Render("~/bundles/bootstrap")*@
-    @Scripts.Render("~/bundles/respond")
-    @Scripts.Render("~/bundles/MiEstilo")
-    @Scripts.Render("~/bundles/alert")
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/MisEventos2")
-    <!-- page-content" -->
-    @*SCRIPTS DE BOTONES*@
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
-    @*excel*@
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
-    @RenderSection("scripts", required: false)
+        </div>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryui")
+        @Scripts.Render("~/bundles/dataTable")
+        @*@Scripts.Render("~/bundles/bootstrap")*@
+        @Scripts.Render("~/bundles/respond")
+        @Scripts.Render("~/bundles/MiEstilo")
+        @Scripts.Render("~/bundles/alert")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/MisEventos2")
+        <!-- page-content" -->
+        @*SCRIPTS DE BOTONES*@
+        <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+        @*excel*@
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+        @RenderSection("scripts", required: false)
 </body>
 </html>

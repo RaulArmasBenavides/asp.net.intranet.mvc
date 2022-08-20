@@ -2,15 +2,15 @@
 
 window.onload = function () {
     ListarAlumnos();
-    TableConfig();
+   // TableConfig();
 }
 
 function ListarAlumnos() {
     pintar({
         url: "Alumno/getClientes",
         id: "divTabla",
-        cabeceras: ["IdAlumno", "NomAlumno", "ApePatAlumno"],
-        propiedades: ["IdAlumno", "NomAlumno", "ApePatAlumno"],
+        cabeceras: ["IdAlumno", "NomAlumno", "ApePatAlumno", "ApeMatAlumno", "DNI","TelAlumno"],
+        propiedades: ["IdAlumno", "NomAlumno", "ApePatAlumno", "ApeMatAlumno", "DNI", "TelAlumno", "EmailAlumno","DirAlumno"],
         editar: true,
         eliminar: true,
         urlEliminar: "Alumno/eliminarCama",
@@ -28,26 +28,61 @@ function ListarAlumnos() {
             id: "txtnombrecama"
         }
         , {
-            id: "frmCama",
+            id: "frmAlumno",
             type: "fieldset",
-            urlGuardar: "Cama/guardarCama",
-            legend: "Datos de la Cama",
+            urlGuardar: "Alumno/Create",
+            legend: "Datos del alumno",
             formulario: [
                 [
                     {
                         class: "mb-3 col-md-5",
-                        label: "Id Cama",
-                        name: "idcama",
+                        label: "Id Alumno",
+                        name: "IdAlumno",
                         value: 0,
                         readonly: true
                     },
                     {
                         class: "mb-3 col-md-7",
-                        label: "Nombre cama",
-                        name: "nombre",
+                        label: "Nombre Alumno",
+                        name: "NomAlumno",
+                        classControl: "o max-50 min-3"
+                    },
+                    {
+                        class: "mb-3 col-md-7",
+                        label: "Apellido Paterno del Alumno",
+                        name: "ApePatAlumno",
+                        classControl: "o max-50 min-3"
+                    },
+                    {
+                        class: "mb-3 col-md-7",
+                        label: "Apellido Materno del Alumno",
+                        name: "ApeMatAlumno",
+                        classControl: "o max-50 min-3"
+                    },
+                    {
+                        class: "mb-3 col-md-7",
+                        label: "DNI",
+                        name: "DNI",
+                        classControl: "o max-50 min-3"
+                    },
+                    {
+                        class: "mb-3 col-md-7",
+                        label: "Teléfono",
+                        name: "TelAlumno", 
+                        classControl: "o max-50 min-3"
+                    },
+                    {
+                        class: "mb-3 col-md-7",
+                        label: "Email",
+                        name: "EmailAlumno",
+                        classControl: "o max-50 min-3"
+                    },
+                    {
+                        class: "mb-3 col-md-7",
+                        label: "Dirección",
+                        name: "DirAlumno",
                         classControl: "o max-50 min-3"
                     }
-
                 ],
                 [
                     {

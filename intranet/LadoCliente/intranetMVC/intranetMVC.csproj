@@ -204,6 +204,7 @@
     <Compile Include="Models\Asistencia.cs" />
     <Compile Include="Models\Curso.cs" />
     <Compile Include="Models\Empleado.cs" />
+    <Compile Include="Models\Entidad.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\Sala.cs" />

@@ -16,12 +16,12 @@ namespace intranet.ServiceWCF
             throw new NotImplementedException();
         }
 
-        public void AlumnoAdicionar(Alumno emp)
+        public void AlumnoAdicionar(Alumno data)
         {
             try
             {
                 AlumnoBll b = new AlumnoBll();
-                b.AlumnoAdicionar(emp);
+                b.AlumnoAdicionar(data);
             }
             catch (Exception ex)
             {
