@@ -16,6 +16,11 @@ namespace intranet.dataaccess.Factory
             throw new System.NotImplementedException();
         }
 
+        public void delete(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public Alumno find(Alumno o)
         {
             throw new System.NotImplementedException();

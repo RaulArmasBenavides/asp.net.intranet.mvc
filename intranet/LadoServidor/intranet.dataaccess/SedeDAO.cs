@@ -7,7 +7,7 @@ using System.Data;
 
 namespace intranet.dataaccess
 {
-    public class SedeDAO : Service<Sede>
+    public class SedeDAO : IService<Sede>
     {
 
         SqlConnection cn;

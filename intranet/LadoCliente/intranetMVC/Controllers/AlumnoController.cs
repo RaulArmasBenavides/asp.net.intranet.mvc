@@ -3,6 +3,7 @@ using intranetMVC.Proxy;
 using intranetMVC.Reportes;
 using System;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 
@@ -11,7 +12,6 @@ namespace intranetMVC.Controllers
     public class AlumnoController : Controller
     {
         //private EduTecEntities db = new EduTecEntities();
-
         //WCFIntranetClient cliente = new WCFIntranetClient();
         WCFCustomIntranetClient client = new WCFCustomIntranetClient();
 
@@ -99,7 +99,7 @@ namespace intranetMVC.Controllers
             //}
             // cliente.AlumnoAdicionar(alumno);
             client.createStudent(alumno);
-            ViewBag.JavaScriptFunction = "swal('Éxito!', 'Se registró el nuevo alumno con éxito!', 'Éxito');";
+            //ViewBag.JavaScriptFunction = "swal('Éxito!', 'Se registró el nuevo alumno con éxito!', 'Éxito');";
             return View();
             //return View(alumno);
         }
@@ -136,18 +136,23 @@ namespace intranetMVC.Controllers
         }
 
         // GET: Alumno/Delete/5
-        public ActionResult Delete(string id)
+        public async Task<bool> Delete(string IdAlumno)
         {
-            if (id == null)
+            bool res = false;
+            if (IdAlumno != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+               res = await client.delete(IdAlumno);
+                //   return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Alumno alumno = null; // db.Alumnoes.Find(id);
-            if (alumno == null)
-            {
-                return HttpNotFound();
-            }
-            return View(alumno);
+
+
+            return res;
+            //Alumno alumno = null; // db.Alumnoes.Find(id);
+            //if (alumno == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //return View();
         }
 
         // POST: Alumno/Delete/5

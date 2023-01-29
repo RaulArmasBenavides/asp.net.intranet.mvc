@@ -159,26 +159,32 @@ namespace intranetMVC.Proxy
             }
         }//
 
-        public bool delete(Alumno empleado)
+        public async Task<bool> delete(string IdAlumno)
         {
+            bool resu = false;
             try
             {
-                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Alumno));
-                MemoryStream mem = new MemoryStream();
-                ser.WriteObject(mem, empleado);
-                string data = Encoding.UTF8.GetString(mem.ToArray(), 0, (int)mem.Length);
-
-                WebClient webclient = new WebClient();
-                webclient.Headers["Content-type"] = "Application/json";
-                webclient.Encoding = Encoding.UTF8;
-                webclient.UploadString(BASE_URL + "delete", "DELETE", data);
-                return true;
+                var client = new HttpClient();
+                var request = new HttpRequestMessage
+                {
+                    Method = HttpMethod.Get,
+                    RequestUri = new Uri("http://localhost:17476/WCFIntranet.svc/Alumno/AlumnoEliminar/"+ IdAlumno)
+                };
+                using (var response = await client.SendAsync(request))
+                {
+                    response.EnsureSuccessStatusCode();
+                    var body =  response.Content.ReadAsStringAsync();
+                    resu = Convert.ToBoolean(body.Result);
+                    Console.WriteLine(body);
+                }
+                    
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return false;
+                throw ex;
             }
-        }//
+            return resu;
+        }
         #endregion
 
     }

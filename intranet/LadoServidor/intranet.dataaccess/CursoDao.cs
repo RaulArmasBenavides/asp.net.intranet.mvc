@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace intranet.dataaccess
 {
-    public class CursoDAO: Service<Curso>
+    public class CursoDAO: IService<Curso>
     {
         //variables
         Curso[] lista = new Curso[100];
@@ -69,7 +69,7 @@ namespace intranet.dataaccess
             throw new NotImplementedException();
         }
 
-        List<Curso> Service<Curso>.readAll()
+        List<Curso> IService<Curso>.readAll()
         {
             throw new NotImplementedException();
         }

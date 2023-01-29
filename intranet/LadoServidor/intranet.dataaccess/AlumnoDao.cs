@@ -22,8 +22,8 @@ namespace intranet.dataaccess.Factory
         public void create(Alumno o)
         {
             using (cn = new SqlConnection(CadenaConexion))
+            using (SqlCommand cmd = new SqlCommand("usp_alumno_registrar", cn))
             {
-                var cmd = new SqlCommand("usp_alumno_registrar", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@nombre", o.NomAlumno);
                 cmd.Parameters.AddWithValue("@ap_paterno", o.ApePatAlumno);
@@ -40,6 +40,7 @@ namespace intranet.dataaccess.Factory
                 {
                     cn.Open();
                     cmd.ExecuteNonQuery();
+                    cn.Close();
                     //emp.IdEmpleado = (int)cmd.Parameters["@IdEmpleado"].Value;
                 }
                 catch (Exception ex)
@@ -68,6 +69,28 @@ namespace intranet.dataaccess.Factory
                 }
             }
         }
+
+        public void delete(int id)
+        {
+            using (cn = new SqlConnection(CadenaConexion))
+            {
+                var cmd = new SqlCommand("usp_alumno_eliminar_id", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@idalumno", id);
+                try
+                {
+                    cn.Open();
+                    cmd.ExecuteNonQuery();
+                    //emp.IdEmpleado = (int)cmd.Parameters["@IdEmpleado"].Value;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        
 
         public void update(Alumno o)
         {

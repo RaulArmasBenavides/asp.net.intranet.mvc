@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace intranet.dataaccess
 {
-    public class ParticipanteDAO : Service<Participante>
+    public class ParticipanteDAO : IService<Participante>
     {
         SqlConnection cn;
         //bdcongresoEntities e = new bdcongresoEntities();

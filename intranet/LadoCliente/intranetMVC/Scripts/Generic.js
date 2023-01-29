@@ -1,4 +1,5 @@
-﻿function get(id) {
+﻿console.log("test");
+function get(id) {
     return document.getElementById(id).value;
 }
 
@@ -12,7 +13,7 @@ function Error(texto = "Ocurrio un error") {
 
 function Correcto(texto = "Se realizo correctamente") {
     Swal.fire({
-        position: 'top-end',
+        position: 'top',
         icon: 'success',
         title: texto,
         showConfirmButton: false,
@@ -60,29 +61,29 @@ function setC(selector) {
     document.querySelector(selector).checked = true;
 }
 
-
-
-
-
-
 var objConfiguracionGlobal;
 var objBusquedaGlobal;
 var objFormularioGlobal;
 function pintar(objConfiguracion, objBusqueda, objFormulario) {
-
+    console.log("Testing the world");
     //URL Absolute  https://localhos
     var raiz = document.getElementById("hdfOculto").value;
     var urlAbsoluta = window.location.protocol + "//" +
         window.location.host + raiz + objConfiguracion.url;
-    // alert(urlAbsoluta)
+    //alert(urlAbsoluta);
     //Controles//accion
     fetch(urlAbsoluta)
         .then(res => res.json())
         .then(res => {
             var contenido = "";
             console.log("re");
+            console.log("re2");
+            console.log("t" + res);
             console.log(res);
-
+            console.log(urlAbsoluta);
+            console.log(objConfiguracion);
+            console.log(combosLlenar)
+            console.log(objFormulario);
             //Configuracion del formulario
             if (objConfiguracion != undefined) {
                 if (objConfiguracion.editar == undefined)
@@ -125,13 +126,14 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                 if (objFormulario.tituloconfirmacionguardar == undefined)
                     objFormulario.tituloconfirmacionguardar = "Desea guardar los cambios?"
                 var type = objFormulario.type;
+                console.log("El tipo es " + type);
                 if (type == "fieldset") {
                     contenido += "<fieldset>";
                     if (objFormulario.legend != undefined) {
                         contenido += "<legend>" + objFormulario.legend + "</legend>"
                     }
 
-
+                    console.log("testeeeando");
                     contenido += construirFormulario(objFormulario)
                     contenido += `
                      ${objFormulario.guardar == true ?
@@ -192,9 +194,6 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                 }
 
             }
-
-
-
             if (objBusqueda != undefined && objBusqueda.busqueda == true) {
                 if (objBusqueda.placeholder == undefined)
                     objBusqueda.placeholder = "Ingrese un valor"
@@ -208,7 +207,6 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                     objBusqueda.button = true;
 
                 //Asignar los valores
-
                 objBusquedaGlobal = objBusqueda;
                 var type = objBusqueda.type;
                 contenido += `
@@ -254,7 +252,7 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                         item.propiedadId)
                 }
             }
-
+            console.log(contenido);
 
         })
 
@@ -467,6 +465,7 @@ function ValidarObligatorios(idFormulario) {
 
 function generarTabla(objConfiguracion, res, objFormulario, primeravez = false) {
     // objFormulario.formulariogenerico = true
+    console.log("Testing the world");
     var listaPintar = res;
     if (objConfiguracion != null && objConfiguracion.name != undefined && primeravez == true) {
         var nombrePropiedad = objConfiguracion.name;
@@ -520,12 +519,9 @@ function generarTabla(objConfiguracion, res, objFormulario, primeravez = false) 
 
             if (objConfiguracion.eliminar == true) {
                 contenido += `<i class="btn btn-danger" 
-                onclick='${(objFormulario != undefined &&
-                        objFormulario.formulariogenerico != undefined
-                        &&
-                        objFormulario.formulariogenerico == true) ? "EliminarGenerico"
-                        : objConfiguracion.callbackEliminar
-                    }(${fila[objConfiguracion.propiedadId]}) '  ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                onclick='${(objFormulario != undefined && objFormulario.formulariogenerico != undefined
+                        && objFormulario.formulariogenerico == true) ? "EliminarGenerico"
+                        : objConfiguracion.callbackEliminar}(${fila[objConfiguracion.propiedadId]}) '  ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                        </svg></i>`
             }
@@ -554,7 +550,6 @@ function fetchGet(url, callback) {
             setD("cargando", "none");
             console.log(err)
         })
-
 }
 
 function fetchGetText(url, callback) {
@@ -744,10 +739,10 @@ var combosLlenar = [];
 var radioLimpiar = [];
 var radioNames = [];
 function construirFormulario(objFormulario) {
+    console.log("Tesss");
     console.log(objFormulario)
     var type = objFormulario.type;
     var elementos = objFormulario.formulario;
-
     var contenido = "<div class='mt-3 mb-3'>";
     contenido += `<form id='${objFormulario.id}'  method='POST'>`;
     //FILAS
@@ -878,6 +873,7 @@ function construirFormulario(objFormulario) {
         contenido += "</div>";
 
     }
+    console.log(contenido);
     contenido += "</form>";
     contenido += "</div>"
 
@@ -1003,35 +999,21 @@ function EliminarGenerico(id) {
     var objConf = objConfiguracionGlobal;
     var objBus = objBusquedaGlobal;
 
-
-    Confirmacion("Desea eliminar el tipo habitacion?", "Confirmar eliminaciòn",
+    Confirmacion("Desea eliminar el alumno?", "Confirmar eliminaciòn",
         function (res) {
 
             fetchGetText(`${url}/?${nombreparametro}=` + id,
                 function (rpta) {
-                    if (rpta == "1") {
+                    console.log("eliminando");
+                    console.log(rpta);
+                    //Correcto("Se elimino correctamente");
+                    if (Boolean(rpta)  == true) {
                         Correcto("Se elimino correctamente");
-                        if (objBus != null && objBus != undefined) {
-                            var valor = get(objBus.id)
-                            fetchGet(`${objBus.url}/?${objBus.nombreparametro}=` + valor, function (res) {
-                                var rpta = generarTabla(objConf, res, objFormularioGlobal);
-                                document.getElementById("divContenedor").innerHTML = rpta;
-                            })
-                        } else {
-                            fetchGet(`${objConf.url}`, function (res) {
-                                if (objConf.name != undefined && objConf.name != "")
-                                    res = res[objConf.name]
-                                var rpta = generarTabla(objConf, res, objFormularioGlobal);
-                                document.getElementById("divContenedor").innerHTML = rpta;
-
-                            })
-                        }
-
-                        // listarTipoHabitacion();
-                    }
-                })
-        })
+                        ListarAlumnos();}     
+             })
+     });
 }
+
 
 function LimpiarGenerico(idFormulario) {
     //[].concat(["iidestado"]) =["iidestado"]

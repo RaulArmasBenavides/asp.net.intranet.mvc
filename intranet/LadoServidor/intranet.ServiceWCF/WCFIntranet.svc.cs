@@ -25,10 +25,8 @@ namespace intranet.ServiceWCF
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
-  
         }
 
         public Alumno AlumnoBuscar(int alu)
@@ -37,10 +35,17 @@ namespace intranet.ServiceWCF
             return b.AlumnoBuscar(alu);
         }
 
-        public void AlumnoEliminar(int emp)
+        public bool AlumnoEliminar(string IdAlumno)
         {
-            throw new NotImplementedException();
+            AlumnoBll b = new AlumnoBll();
+            return b.AlumnoEliminar2(Convert.ToInt32(IdAlumno));
         }
+
+        //public void AlumnoEliminar(Alumno alu)
+        //{
+        //    AlumnoBll b = new AlumnoBll();
+        //    b.AlumnoEliminar(alu);
+        //}
 
         public List<Alumno> AlumnoListar()
         {
@@ -143,9 +148,11 @@ namespace intranet.ServiceWCF
             return u.validarusuario(us);
         }
 
+        public void AlumnoEliminar(int emp)
+        {
+            throw new NotImplementedException();
+        }
 
-
-
-
+     
     }
 }

@@ -72,7 +72,7 @@
     <Compile Include="IUsuarioDataAccess.cs" />
     <Compile Include="IDBComConnection.cs" />
     <Compile Include="IAlumnoDataAccess.cs" />
-    <Compile Include="Service.cs" />
+    <Compile Include="IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

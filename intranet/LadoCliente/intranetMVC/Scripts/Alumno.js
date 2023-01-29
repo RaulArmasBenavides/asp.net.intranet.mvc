@@ -1,6 +1,7 @@
 ﻿//eventos 
 
 window.onload = function () {
+    console.log("test");
     ListarAlumnos();
    // TableConfig();
 }
@@ -13,19 +14,19 @@ function ListarAlumnos() {
         propiedades: ["IdAlumno", "NomAlumno", "ApePatAlumno", "ApeMatAlumno", "DNI", "TelAlumno", "EmailAlumno","DirAlumno"],
         editar: true,
         eliminar: true,
-        urlEliminar: "Alumno/eliminarCama",
-        parametroEliminar: "idcama",
-        urlRecuperar: "Alumno/recuperarCama",
-        parametroRecuperar: "idcamita",
-        propiedadId: "idcama"
+        urlEliminar: "Alumno/Delete",
+        parametroEliminar: "IdAlumno",
+        urlRecuperar: "Alumno/AlumnoBuscar",
+        parametroRecuperar: "IdAlumno",
+        propiedadId: "IdAlumno"
     },
         {
             busqueda: true,
-            url: "Cama/filtrarCama",
+            url: "Alumno/AlumnoBuscar",
             nombreparametro: "nombre",
             type: "text",
             button: false,
-            id: "txtnombrecama"
+            id: "txtnombrealumno"
         }
         , {
             id: "frmAlumno",
@@ -34,13 +35,13 @@ function ListarAlumnos() {
             legend: "Datos del alumno",
             formulario: [
                 [
-                    {
-                        class: "mb-3 col-md-5",
-                        label: "Id Alumno",
-                        name: "IdAlumno",
-                        value: 0,
-                        readonly: true
-                    },
+                    //{
+                    //    class: "mb-3 col-md-5",
+                    //    label: "Id Alumno",
+                    //    name: "IdAlumno",
+                    //    value: 0,
+                    //    readonly: true
+                    //},
                     {
                         class: "mb-3 col-md-7",
                         label: "Nombre Alumno",
@@ -88,7 +89,7 @@ function ListarAlumnos() {
                     {
                         class: "col-md-12",
                         type: "textarea",
-                        label: "Descripcion Cama",
+                        label: "Descripcion Alumno",
                         name: "descripcion",
                         rows: "5",
                         cols: "20",
@@ -117,6 +118,7 @@ let TableConfig = () => {
             url: "http://localhost:11828/Alumno/getClientes",
             success: function (data) {
                 console.log(data);
+                console.log("ga");
                 var o = data;//A la variable le asigno el json decodificado
                 $('#table_id').dataTable({
                     data: o,

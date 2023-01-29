@@ -92,14 +92,5 @@ namespace intranet.dataaccess
             throw new NotImplementedException();
         }
 
-        Alumno IUsuarioDataAccess.findForId(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        List<Alumno> IUsuarioDataAccess.readAll()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

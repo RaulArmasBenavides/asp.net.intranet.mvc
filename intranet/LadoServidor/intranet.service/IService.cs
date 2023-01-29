@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace intranet.service
 {
-    public interface Service<T>
+    public interface IService<T>
     {
         //definir las firmas
         void create(T o);

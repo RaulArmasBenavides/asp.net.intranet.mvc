@@ -8,7 +8,7 @@ using System.Data;
 
 namespace intranet.dataaccess
 {
-    public class ActividadDAO : Service<Actividad>
+    public class ActividadDAO : IService<Actividad>
     {
         SqlConnection cn;
         public void create(Actividad o)

@@ -6,7 +6,7 @@ using System;
 
 namespace intranet.dataaccess
 {
-    public class ListaEquiposDAO : Service<ListaEquipos>
+    public class ListaEquiposDAO : IService<ListaEquipos>
     {
 
         // entidades  usando ENTITY FRAMEWORK

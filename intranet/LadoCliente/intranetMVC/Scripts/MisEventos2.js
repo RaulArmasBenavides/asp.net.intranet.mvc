@@ -1,27 +1,6 @@
 ﻿//eventos 
 $(document).ready(function () {
     "use strict";
-
-    $(".btn-create").click(function (e) {
-        $("#modal").load("/Alumno/Create").attr("title", "Nuevo Alumno").dialog({ width: 550, height: 'auto' });
-    });
-
-    $(".btn-details").click(function () {
-        var codigo = $(this).attr("data-codigo");
-        $("#modal").load("/Alumno/Details/" + codigo).attr("title", "Visualizar").dialog();
-    });
-
-    $(".btn-edit").click(function () {
-        var codigo = $(this).attr("data-codigo");
-        $("#modal").load("/Alumno/Edit/" + codigo).attr("title", "Editar Alumno").dialog({ width: 550, height: 'auto' });
-    });
-
-    $(".btn-delete").click(function () {
-        var codigo = $(this).attr("data-codigo");
-        $("#modal").load("/Alumno/Delete/" + codigo).attr("title", "Eliminar Alumno").dialog();
-    });
-
-
     $("#btnSedesListas").click(function () {
         console.log('ok');
         $.ajax({
@@ -139,9 +118,6 @@ $(document).ready(function () {
     }
 
     tabsapp();
-
-
-
     $(function () {
         $("#btnGet").click(function () {
             $.ajax({
@@ -192,21 +168,6 @@ $(document).ready(function () {
     $("#show-sidebar").click(function () {
         $(".page-wrapper").addClass("toggled");
     });
-
-
-    $('#GetCustomers').click(function () {
-        $.getJSON('/Cliente/CustomerList/' + $('#Country').val(), function (data) {
-
-            var items = '<table><tr><th>Nombre de Cliente</th><th>Direccion</th></tr>';
-            $.each(data, function (i, country) {
-                items += "<tr><td>" + country.NombreCompañía + "</td><td>" + country.Dirección + "</td></tr>";
-            });
-            items += "</table>";
-
-            $('#rData').html(items);
-        });
-    })
-
     //$(document).ready(function () {
     //    $.ajax({
     //        url: "/Ajax/FechaHora",
@@ -215,8 +176,4 @@ $(document).ready(function () {
     //        }
     //    });
     //});
-
-
-       //CURSO CONTROLLER
-
 });

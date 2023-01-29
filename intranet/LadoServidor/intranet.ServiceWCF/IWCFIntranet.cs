@@ -43,14 +43,23 @@ namespace intranet.ServiceWCF
             BodyStyle = WebMessageBodyStyle.WrappedRequest)]
         void AlumnoActualizar(Alumno emp);
 
+        //[OperationContract]
+        //[WebInvoke(
+        //    Method = "POST",
+        //    UriTemplate = "/Alumno/AlumnoEliminar",
+        //    RequestFormat = WebMessageFormat.Json,
+        //    ResponseFormat = WebMessageFormat.Json,
+        //    BodyStyle = WebMessageBodyStyle.WrappedRequest)]
+        //void AlumnoEliminar(int emp);
+
         [OperationContract]
         [WebInvoke(
-            Method = "POST",
-            UriTemplate = "/Alumno/AlumnoEliminar",
+            Method = "GET",
+            UriTemplate = "/Alumno/AlumnoEliminar/{IdAlumno}",
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.WrappedRequest)]
-        void AlumnoEliminar(int emp);
+        bool AlumnoEliminar(string IdAlumno);
 
         [OperationContract]
         [WebInvoke(

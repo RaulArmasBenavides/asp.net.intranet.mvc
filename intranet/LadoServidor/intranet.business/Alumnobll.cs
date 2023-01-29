@@ -24,11 +24,25 @@ namespace intranet.business
             _AluDataAccess.update(pro);
         }
 
-        public void AlumnoEliminar(Alumno pro)
+        //public void AlumnoEliminar(Alumno pro)
+        //{
+        //    _AluDataAccess.delete(pro);
+        //}
+        public bool AlumnoEliminar2(int id)
         {
-            _AluDataAccess.delete(pro);
+            bool result = false;
+            try
+            {
+                _AluDataAccess.delete(id);
+                result = true;
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+            return result;
         }
-        
+
         public List<Alumno> AlumnoListar()
         {
             return _AluDataAccess.readAll();

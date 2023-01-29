@@ -8,7 +8,7 @@ using intranet.dataaccess;
 
 namespace iintranet.dataaccess
 {
-    public class AlumnoDao: Service<Alumno>
+    public class AlumnoDao: IService<Alumno>
     {
         SqlConnection cn;
         public void create(Alumno o)

@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace intranet.dataaccess
 {
-    public class AsistenciasDAO : Service<Asistencia>
+    public class AsistenciasDAO : IService<Asistencia>
     {
         // entidades  usando ENTITY FRAMEWORK
         //bdcongresoEntities entidades = new bdcongresoEntities();
@@ -198,7 +198,12 @@ namespace intranet.dataaccess
             throw new NotImplementedException();
         }
 
-        List<Asistencia> Service<Asistencia>.readAll()
+        List<Asistencia> readAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        List<Asistencia> IService<Asistencia>.readAll()
         {
             throw new NotImplementedException();
         }
