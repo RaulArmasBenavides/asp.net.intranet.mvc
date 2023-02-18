@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="app.erp.rmab.common">
+      <HintPath>..\..\..\..\..\..\..\..\..\..\..\run\app.erp.rmab.common.dll</HintPath>
+    </Reference>
     <Reference Include="EPPlus, Version=5.8.8.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EPPlus.5.8.8\lib\net45\EPPlus.dll</HintPath>
     </Reference>
@@ -84,7 +87,6 @@
     <Compile Include="ParticipanteDAO.cs" />
     <Compile Include="SedeDAO.cs" />
     <Compile Include="UsuarioDAO.cs" />
-    <Compile Include="Util\CustomXMLReader.cs" />
     <Compile Include="_doIntranet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

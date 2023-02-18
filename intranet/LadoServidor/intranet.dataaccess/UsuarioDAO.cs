@@ -4,7 +4,7 @@ using intranet.entity;
 using System.Data.SqlClient;
 using System.Data;
 using System.Collections.Generic;
-using intranet.dataaccess.Util;
+using app.erp.rmab.common;
 
 namespace intranet.dataaccess
 {
@@ -15,7 +15,7 @@ namespace intranet.dataaccess
 
         public UsuarioDAO()
         {
-            CadenaConexion = CustomXMLReader.leerConexion();//Constantes.CADENA_CONEXION;//ConfigurationManager.ConnectionStrings["neptuno"].ConnectionString;
+            CadenaConexion = CustomXMLReader.leerConexion(1);//Constantes.CADENA_CONEXION;//ConfigurationManager.ConnectionStrings["neptuno"].ConnectionString;
         }
         public bool  valida_usuario_exists(Usuario u)
         {

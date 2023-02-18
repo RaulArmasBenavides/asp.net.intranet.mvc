@@ -5,7 +5,7 @@ using intranet.service;
 using intranet.entity;
 using System;
 using System.Configuration;
-using intranet.dataaccess.Util;
+using app.erp.rmab.common;
 
 namespace intranet.dataaccess.Factory
 {
@@ -16,7 +16,7 @@ namespace intranet.dataaccess.Factory
 
         public AlumnoDAO()
         {
-            CadenaConexion = CustomXMLReader.leerConexion();//Constantes.CADENA_CONEXION;//ConfigurationManager.ConnectionStrings["neptuno"].ConnectionString;
+            CadenaConexion = CustomXMLReader.leerConexion(1);//Constantes.CADENA_CONEXION;//ConfigurationManager.ConnectionStrings["neptuno"].ConnectionString;
         }
 
         public void create(Alumno o)
