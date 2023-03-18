@@ -16,7 +16,7 @@ function ListarAlumnos() {
         eliminar: true,
         urlEliminar: "Alumno/Delete",
         parametroEliminar: "IdAlumno",
-        urlRecuperar: "Alumno/AlumnoBuscar",
+        urlRecuperar: "Alumno/Edit",
         parametroRecuperar: "IdAlumno",
         propiedadId: "IdAlumno"
     },
@@ -115,7 +115,7 @@ function ListarAlumnos() {
 }
 let TableConfig = () => {
         $.ajax({
-            url: "http://localhost:11828/Alumno/getClientes",
+            url: "http://localhost:17476/WCFIntranet.svc/Alumno/AlumnoListar",
             success: function (data) {
                 console.log(data);
                 console.log("ga");

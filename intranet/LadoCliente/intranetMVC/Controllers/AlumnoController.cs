@@ -11,11 +11,7 @@ namespace intranetMVC.Controllers
 {
     public class AlumnoController : Controller
     {
-        //private EduTecEntities db = new EduTecEntities();
-        //WCFIntranetClient cliente = new WCFIntranetClient();
-        WCFCustomIntranetClient client = new WCFCustomIntranetClient();
-
-        
+        WCFCustomIntranetClient client = new WCFCustomIntranetClient();        
         // GET: Alumno
         public ActionResult Index()
         {

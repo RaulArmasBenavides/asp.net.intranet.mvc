@@ -540,7 +540,6 @@ function fetchGet(url, callback) {
     var raiz = document.getElementById("hdfOculto").value;
     var urlAbsoluta = window.location.protocol + "//" +
         window.location.host + raiz + url;
-    console.log(urlAbsoluta);
     setD("cargando", "block");
     fetch(urlAbsoluta).then(res => res.json())
         .then(res => {
@@ -600,7 +599,7 @@ function Buscar() {
     var objBus = objBusquedaGlobal;
     //Id del control
     var valor = get(objBus.id)
-    fetchGet(`${objBus.url}/?${objBus.nombreparametro}=` + valor, function (res) {
+    fetchGet(`${objBus.url}/${objBus.nombreparametro}=` + valor, function (res) {
         var rpta = generarTabla(objConf, res, objFormularioGlobal);
         document.getElementById("divContenedor").innerHTML = rpta;
     })

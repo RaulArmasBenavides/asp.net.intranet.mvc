@@ -23,9 +23,9 @@ namespace intranetMVC
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+            //bundles.Add(new StyleBundle("~/Content/css").Include(
+            //          "~/Content/bootstrap.css",
+            //          "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include("~/Scripts/jquery-ui.js"));
 
@@ -54,6 +54,9 @@ namespace intranetMVC
             bundles.Add(new ScriptBundle("~/bundles/alert").Include("~/Scripts/alert.js"));
             bundles.Add(new ScriptBundle("~/bundles/MisEventos2").Include("~/Scripts/MisEventos2.js"));
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include("~/Scripts/jquery.validate*"));
+            bundles.Add(new ScriptBundle("~/bundles/sweetalert").Include("~/Scripts/sweetalert.js"));
+
+               //< script src = "~/Scripts/sweetalert.js" ></ script >
             //bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
             //          "~/Scripts/bootstrap.js",
             //          "~/Scripts/MisEventos2.js",

@@ -36,17 +36,6 @@
     }
 }
 
-@keyframes sonar {
-    0% {
-        transform: scale(0.9);
-        opacity: 1;
-    }
-
-    100% {
-        transform: scale(2);
-        opacity: 0;
-    }
-}
 
 body {
     font-size: 0.9rem;
@@ -538,7 +527,7 @@ body {
     }
 }
 
-@keyframes sonar {
+/*@keyframes sonar {
     0% {
         transform: scale(0.9);
         opacity: 1;
@@ -548,7 +537,7 @@ body {
         transform: scale(2);
         opacity: 0;
     }
-}
+}*/
 
 body {
     font-size: 0.9rem;

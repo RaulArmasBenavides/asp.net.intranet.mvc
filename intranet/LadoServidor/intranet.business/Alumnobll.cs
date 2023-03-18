@@ -1,5 +1,4 @@
-﻿using iintranet.dataaccess;
-using intranet.dataaccess.Factory;
+﻿using intranet.dataaccess.Factory;
 using intranet.entity;
 using intranet.service;
 using System.Collections.Generic;

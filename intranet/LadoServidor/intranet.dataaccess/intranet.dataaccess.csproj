@@ -73,7 +73,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActividadDAO.cs" />
-    <Compile Include="AlumnoDAO2.cs" />
     <Compile Include="AsistenciasDAO.cs" />
     <Compile Include="Constantes.cs" />
     <Compile Include="CursoDAO.cs" />
