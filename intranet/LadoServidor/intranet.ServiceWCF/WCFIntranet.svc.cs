@@ -47,10 +47,10 @@ namespace intranet.ServiceWCF
         //    b.AlumnoEliminar(alu);
         //}
 
-        public List<Alumno> AlumnoListar()
+        public List<Alumno> AlumnoListar(int skip, int limit)
         {
             AlumnoBll b = new AlumnoBll();
-            return b.AlumnoListar();
+            return b.AlumnoListar(skip,limit);
         }
 
         public List<Curso> CursoListar()

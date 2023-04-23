@@ -233,5 +233,10 @@ namespace intranet.dataaccess
         {
             throw new NotImplementedException();
         }
+
+        public List<Sede> readAll(int skip, int limit)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

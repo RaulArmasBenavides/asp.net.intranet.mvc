@@ -203,7 +203,9 @@ namespace intranet.dataaccess
             throw new NotImplementedException();
         }
 
-        List<Asistencia> IService<Asistencia>.readAll()
+ 
+
+        public List<Asistencia> readAll(int skip, int limit)
         {
             throw new NotImplementedException();
         }

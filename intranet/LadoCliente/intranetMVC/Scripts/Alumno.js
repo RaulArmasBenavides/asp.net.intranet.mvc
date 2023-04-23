@@ -25,7 +25,7 @@ function ListarAlumnos() {
             url: "Alumno/AlumnoBuscar",
             nombreparametro: "nombre",
             type: "text",
-            button: false,
+            button: true,
             id: "txtnombrealumno"
         }
         , {

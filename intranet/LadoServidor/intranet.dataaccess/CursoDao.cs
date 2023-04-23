@@ -69,10 +69,7 @@ namespace intranet.dataaccess
             throw new NotImplementedException();
         }
 
-        List<Curso> IService<Curso>.readAll()
-        {
-            throw new NotImplementedException();
-        }
+    
 
         public void delete(Curso o)
         {
@@ -134,7 +131,9 @@ namespace intranet.dataaccess
             return null;
         }
 
-
-
+        public List<Curso> readAll(int skip, int limit)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

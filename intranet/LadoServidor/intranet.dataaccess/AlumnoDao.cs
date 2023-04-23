@@ -4,7 +4,6 @@ using System.Data;
 using intranet.service;
 using intranet.entity;
 using System;
-using System.Configuration;
 using app.erp.rmab.common;
 
 namespace intranet.dataaccess.Factory
@@ -170,43 +169,65 @@ namespace intranet.dataaccess.Factory
         }
 
 
-        public List<Alumno> readAll()
+        public List<Alumno> readAll(int skip, int limit)
         {
-            List<Alumno> lista = new List<Alumno>();
-            using (cn = new SqlConnection(CadenaConexion))
+            try
             {
-                var cmd = new SqlCommand("usp_listar_alumnos_all", cn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                try
+                List<Alumno> lista = new List<Alumno>();
+                int pageNumber = skip;  // Página 2
+                int pageSize = limit;   // 10 elementos por página
+                using (cn = new SqlConnection(CadenaConexion))
                 {
                     cn.Open();
-                    SqlDataReader dr = cmd.ExecuteReader();
-                    while (dr.Read())
+                    SqlCommand countCommand = new SqlCommand("SELECT COUNT(*) FROM alumnos where estado ='S'", cn);
+                    int totalRecords = (int)countCommand.ExecuteScalar();
+
+                    // Calcular el índice de inicio y el número de registros para la página actual
+                    int startIndex = 0;
+                    if (pageNumber > 0)
                     {
-                        Alumno al = new Alumno()
-                        {
-
-                            IdAlumno = Convert.ToInt32(dr[0]),
-                            ApePatAlumno = dr[1].ToString(),
-                            ApeMatAlumno = dr[2].ToString(),
-                            NomAlumno = dr[3].ToString(),
-                            DNI = dr[4].ToString(),
-                            CodigoAlu = dr[5].ToString(),
-                            TelAlumno = dr[6].ToString(),
-                            Sexo = Convert.ToChar(dr[7].ToString()),
-                            EmailAlumno = dr[8].ToString(),
-                            DirAlumno = dr[9].ToString(),
-
-                        };
-                        lista.Add(al);
+                        startIndex = (pageNumber - 1) * pageSize;
                     }
-                    dr.Close();
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
+
+                    int endIndex = startIndex + pageSize;
+                    // Obtener los registros de la página actual
+                    SqlCommand command = new SqlCommand(
+                        "SELECT * FROM (" +
+                        "   SELECT ROW_NUMBER() OVER (ORDER BY x.idalumno) AS RowNum,* " +
+                        "   FROM (select * from  alumnos where estado ='S') x " +
+                        ") AS T " +
+                        "WHERE T.RowNum > @startIndex AND T.RowNum <= @endIndex ", cn);
+                    command.Parameters.AddWithValue("@startIndex", startIndex);
+                    command.Parameters.AddWithValue("@endIndex", endIndex);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        // Leer los registros de la página actual
+                        while (reader.Read())
+                        {
+                            Alumno alu = new Alumno()
+                            {
+                                IdAlumno = Convert.ToInt32(reader["idalumno"]),
+                                ApePatAlumno = reader["ap_paterno"].ToString(),
+                                ApeMatAlumno = reader["ap_materno"].ToString(),
+                                NomAlumno = reader["nombre"].ToString(),
+                                DNI = reader["DNI"].ToString(),
+                                CodigoAlu = reader["codigo"].ToString(),
+                                TelAlumno = reader["telefono"].ToString(),
+                                Sexo = Convert.ToChar(reader["sexo"].ToString()),
+                                EmailAlumno = reader["correo"].ToString(),
+                                DirAlumno = reader["direccion"].ToString(),
+                            };
+                            lista.Add(alu);
+                        }
+                    }
+                    cn.Close();
                 }
                 return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 

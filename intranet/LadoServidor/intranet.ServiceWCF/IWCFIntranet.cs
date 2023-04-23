@@ -14,16 +14,15 @@ namespace intranet.ServiceWCF
     public interface IWCFIntranet
     {
 
-        // TODO: Add your service operations here
         #region Alumno
         [OperationContract]
         [WebInvoke(
             Method = "GET",
-            UriTemplate = "/Alumno/AlumnoListar",
+            UriTemplate = "/Alumno/AlumnoListar?skip={skip}&limit={limit}",
             RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.WrappedRequest)]
-        List<Alumno> AlumnoListar();
+        List<Alumno> AlumnoListar(int skip, int limit);
 
         [OperationContract]
         [WebInvoke(

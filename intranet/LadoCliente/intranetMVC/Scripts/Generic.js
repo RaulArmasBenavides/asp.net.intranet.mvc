@@ -70,7 +70,7 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
     var raiz = document.getElementById("hdfOculto").value;
     var urlAbsoluta = window.location.protocol + "//" +
         window.location.host + raiz + objConfiguracion.url;
-    //alert(urlAbsoluta);
+    alert(urlAbsoluta);
     //Controles//accion
     fetch(urlAbsoluta)
         .then(res => res.json())

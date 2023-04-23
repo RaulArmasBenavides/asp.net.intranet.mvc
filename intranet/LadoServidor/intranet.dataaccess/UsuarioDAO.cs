@@ -92,5 +92,9 @@ namespace intranet.dataaccess
             throw new NotImplementedException();
         }
 
+        public List<Usuario> readAll(int skip, int limit)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

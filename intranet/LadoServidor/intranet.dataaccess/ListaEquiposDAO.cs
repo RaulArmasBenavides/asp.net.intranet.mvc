@@ -93,6 +93,11 @@ namespace intranet.dataaccess
             throw new NotImplementedException();
         }
 
+        public List<ListaEquipos> readAll(int skip, int limit)
+        {
+            throw new NotImplementedException();
+        }
+
         public void update(ListaEquipos o)
         {
             throw new NotImplementedException();

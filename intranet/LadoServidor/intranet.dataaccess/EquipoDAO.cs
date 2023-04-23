@@ -76,6 +76,11 @@ namespace intranet.dataaccess
             throw new NotImplementedException();
         }
 
+        public List<Equipo> readAll(int skip, int limit)
+        {
+            throw new NotImplementedException();
+        }
+
         //public usp_equipo_listar_all_Result find_codigo(usp_equipo_listar_all_Result t)
         //{
         //    usp_equipo_listar_all_Result dato = null;
@@ -96,28 +101,11 @@ namespace intranet.dataaccess
         //}
 
 
-  
+
         public void update(Equipo o)
         {
             throw new NotImplementedException();
         }
 
-        //public void update(usp_equipo_listar_all_Result t)
-        //{
-        //    try
-        //    {
-        //        e.usp_actualizar_equipo(t.idEquipo,t.Nombre,t.SO,t.Procesador,t.RAM,t.TarjetaMadre);
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //        throw;
-        //    }
-        //}
-
-        List<Equipo> IService<Equipo>.readAll()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

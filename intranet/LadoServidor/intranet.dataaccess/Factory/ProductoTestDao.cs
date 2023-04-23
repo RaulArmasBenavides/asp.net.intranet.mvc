@@ -41,6 +41,11 @@ namespace intranet.dataaccess.Factory
             throw new System.NotImplementedException();
         }
 
+        public List<Alumno> readAll(int skip, int limit)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void update(Alumno t)
         {
             throw new System.NotImplementedException();

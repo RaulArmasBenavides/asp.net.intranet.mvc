@@ -30,7 +30,7 @@ namespace intranetMVC.Proxy
                 var webclient = new WebClient();
                 webclient.Headers["Content-type"] = "application/json";
                 webclient.Encoding = Encoding.UTF8;
-                var json = webclient.DownloadString(BASE_URL + "Alumno/AlumnoListar");
+                var json = webclient.DownloadString(BASE_URL + "Alumno/AlumnoListar"+ "?skip=0&limit=10");
                 var js = new JavaScriptSerializer();
                 return js.Deserialize<List<Alumno>>(json.ToString());
             }

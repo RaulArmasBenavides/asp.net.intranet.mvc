@@ -92,5 +92,10 @@ namespace intranet.dataaccess
                 return lista;
             }
         }
+
+        public List<Actividad> readAll(int skip, int limit)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

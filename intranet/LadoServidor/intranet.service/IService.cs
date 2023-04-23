@@ -14,6 +14,6 @@ namespace intranet.service
         void delete(T o);
         T find(T o);
         T findForId(int o);
-        List<T> readAll();
+        List<T> readAll(int skip , int limit);
     }
 }

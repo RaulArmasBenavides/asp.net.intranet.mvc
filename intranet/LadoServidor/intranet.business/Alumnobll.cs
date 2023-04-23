@@ -42,9 +42,9 @@ namespace intranet.business
             return result;
         }
 
-        public List<Alumno> AlumnoListar()
+        public List<Alumno> AlumnoListar(int skip , int limit)
         {
-            return _AluDataAccess.readAll();
+            return _AluDataAccess.readAll(skip ,limit);
         }
 
         public Alumno AlumnoBuscar(int id)
