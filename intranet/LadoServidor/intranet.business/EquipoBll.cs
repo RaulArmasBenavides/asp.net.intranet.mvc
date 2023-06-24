@@ -7,21 +7,16 @@ namespace intranet.business
 {
     public class EquipoBll
     {
-        //variable de la clase EquipoDAO
         EquipoDAO dao;
-
         public EquipoBll()
         {
             dao = new EquipoDAO();
         }
-
-
-        //metodos de persistencia de datos en sqlserver
         public void EquipoAdicionar(Equipo pro)
         {
             try
             {
-                dao.create(pro);
+                dao.Create(pro);
             }
             catch (SqlException ex)
             {
@@ -33,7 +28,7 @@ namespace intranet.business
         {
             try
             {
-                dao.update(pro);
+                dao.Update(pro);
             }
             catch (SqlException ex)
             {
@@ -45,7 +40,7 @@ namespace intranet.business
         {
             try
             {
-                dao.delete(pro);
+                dao.Delete(pro);
             }
             catch (SqlException ex)
             {
@@ -58,7 +53,7 @@ namespace intranet.business
         {
             try
             {
-                return dao.find(pro);
+                return dao.Find(pro);
             }
             catch (SqlException ex)
             {

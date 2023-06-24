@@ -1,4 +1,4 @@
-﻿console.log("test");
+﻿ 
 function get(id) {
     return document.getElementById(id).value;
 }
@@ -70,13 +70,12 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
     var raiz = document.getElementById("hdfOculto").value;
     var urlAbsoluta = window.location.protocol + "//" +
         window.location.host + raiz + objConfiguracion.url;
-    alert(urlAbsoluta);
     //Controles//accion
     fetch(urlAbsoluta)
         .then(res => res.json())
         .then(res => {
             var contenido = "";
-            console.log("re");
+            console.log("gaa");
             console.log("re2");
             console.log("t" + res);
             console.log(res);
@@ -413,7 +412,7 @@ function ValidarObligatorios(idFormulario) {
     var error = "";
     var elementos = document.querySelectorAll("#" + idFormulario + " .o")
     var contenedorcheckbox = document.querySelectorAll("#" + idFormulario + " [class*='o-']")
-    console.log(contenedorcheckbox)
+ 
     for (var i = 0; i < contenedorcheckbox.length; i++) {
         //Contenedor div     <div class="o-1"> 
         var contenedor = contenedorcheckbox[i];

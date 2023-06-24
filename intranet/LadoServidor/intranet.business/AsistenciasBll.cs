@@ -20,7 +20,7 @@ namespace intranet.business
         {
             try
             {
-                dao.create(asis);
+                dao.Create(asis);
             }
             catch (System.Exception ex)
             {

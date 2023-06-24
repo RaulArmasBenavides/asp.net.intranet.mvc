@@ -7,20 +7,17 @@ namespace intranet.business
 {
     public class ActividadBll
     {
-        //variable de la clase actividadeDAO
         ActividadDAO dao;
-        //constructor
         public ActividadBll()
         {
             dao = new ActividadDAO();
         }
 
-        //metodos de persistencia de datos en sqlserver
         public void actividadeAdicionar(Actividad pro)
         {
             try
             {
-                dao.create(pro);
+                dao.Create(pro);
             }
             catch (SqlException ex)
             {
@@ -32,7 +29,7 @@ namespace intranet.business
         {
             try
             {
-                dao.update(pro);
+                dao.Update(pro);
             }
             catch (SqlException ex)
             {
@@ -44,7 +41,7 @@ namespace intranet.business
         {
             try
             {
-                dao.delete(pro);
+                dao.Delete(pro);
             }
             catch (SqlException ex)
             {
@@ -76,23 +73,11 @@ namespace intranet.business
         //    }
         //}
 
-        //public Actividad actividadeBuscarporDescripcion(Actividad pro)
-        //{
-        //    try
-        //    {
-        //        return dao.BuscarporDescripcion(pro);
-        //    } 
-        //    catch (SqlException ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
-
         public List<Actividad> ActividadListar()
         {
             try
             {
-                return dao.readAll();
+                return dao.ReadAll();
             }
             catch (SqlException ex)
             {

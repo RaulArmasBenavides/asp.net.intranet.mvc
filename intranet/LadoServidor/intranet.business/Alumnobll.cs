@@ -15,24 +15,24 @@ namespace intranet.business
 
         public void AlumnoAdicionar(Alumno pro)
         {
-            _AluDataAccess.create(pro);
+            _AluDataAccess.Create(pro);
         }
 
         public void AlumnoActualizar(Alumno pro)
         {
-            _AluDataAccess.update(pro);
+            _AluDataAccess.Update(pro);
         }
 
-        //public void AlumnoEliminar(Alumno pro)
-        //{
-        //    _AluDataAccess.delete(pro);
-        //}
+        public void AlumnoEliminar(Alumno pro)
+        {
+            _AluDataAccess.Delete(pro.IdAlumno);
+        }
         public bool AlumnoEliminar2(int id)
         {
             bool result = false;
             try
             {
-                _AluDataAccess.delete(id);
+                _AluDataAccess.Delete(id);
                 result = true;
             }
             catch (System.Exception ex)
@@ -44,12 +44,12 @@ namespace intranet.business
 
         public List<Alumno> AlumnoListar(int skip , int limit)
         {
-            return _AluDataAccess.readAll(skip ,limit);
+            return _AluDataAccess.ReadAll(skip ,limit);
         }
 
         public Alumno AlumnoBuscar(int id)
         {
-            return _AluDataAccess.findForId(id);
+            return _AluDataAccess.FindById(id);
         }
 
     }

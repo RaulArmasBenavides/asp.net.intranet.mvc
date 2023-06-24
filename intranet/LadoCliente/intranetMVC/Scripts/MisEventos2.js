@@ -64,16 +64,10 @@ $(document).ready(function () {
         }).modal('show');
     }
 
-
-
     //ALUMNOS CONTROLLER
-
     let tabsapp = () => {
         $("#pestañas").tabs();
     }
-
-   
-
 
             //$('#table_id').DataTable({
             //    dom: 'Bfrtip',
@@ -168,12 +162,4 @@ $(document).ready(function () {
     $("#show-sidebar").click(function () {
         $(".page-wrapper").addClass("toggled");
     });
-    //$(document).ready(function () {
-    //    $.ajax({
-    //        url: "/Ajax/FechaHora",
-    //        success: function (data) {
-    //            $("#div1").html(data);
-    //        }
-    //    });
-    //});
 });

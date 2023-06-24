@@ -7,20 +7,17 @@ namespace intranet.business
 {
     public class ParticipanteBll
     {
-        //variable de la clase ParticipanteDAO
         ParticipanteDAO dao;
-        //constructor
         public ParticipanteBll()
         {
             dao = new ParticipanteDAO();
         }
 
-        //metodos de persistencia de datos en sqlserver
         public void ParticipanteAdicionar(Participante pro)
         {
             try
             {
-                dao.create(pro);
+                dao.Create(pro);
             }
             catch (SqlException ex)
             {
@@ -32,7 +29,7 @@ namespace intranet.business
         {
             try
             {
-                dao.update(pro);
+                dao.Update(pro);
             }
             catch (SqlException ex)
             {
@@ -44,7 +41,7 @@ namespace intranet.business
         {
             try
             {
-                dao.delete(pro);
+                dao.Delete(pro);
             }
             catch (SqlException ex)
             {
@@ -56,90 +53,23 @@ namespace intranet.business
         {
             try
             {
-                return dao.find(pro);
+                return dao.Find(pro);
             }
             catch (SqlException ex)
             {
                 throw ex;
             }
         }
-
-
-
         public List<Participante> ParticipanteListar()
         {
             try
             {
-                return dao.readAll();
+                return dao.ReadAll();
             }
             catch (SqlException ex)
             {
                 throw ex;
             }
         }
-
-        //public List<Participante> ParticipanteAlumnoListar()
-        //{
-        //    try
-        //    {
-        //        return dao.readAlumnos();
-        //    }
-        //    catch (SqlException ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
-        //public List<Participante> ParticipantePonenteListar()
-        //{
-        //    try
-        //    {
-        //        return dao.readPonentes();
-        //    }
-        //    catch (SqlException ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
-        //public List<Participante> ParticipanteProfesionalListar()
-        //{
-        //    try
-        //    {
-        //        return dao.readProfesionales();
-        //    }
-        //    catch (SqlException ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
-
-
-
-
-        /* 
-        public List<usp_Proveedor_Listar_Result> ProveedorListar()
-        {
-            try
-            {
-                return dao.listaProveedores();
-            }
-            catch (SqlException ex)
-            {
-                throw ex;
-            }
-        }
-
-        public List<usp_Categoria_Listar_Result> CategoriaListar()
-        {
-            try
-            {
-                return dao.listaCategoria();
-            }
-            catch (SqlException ex)
-            {
-                throw ex;
-            }
-        }
-
-        */
     }
 }

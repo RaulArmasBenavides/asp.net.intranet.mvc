@@ -5,9 +5,8 @@ using System.Configuration;
 
 namespace intranet.dataaccess.DataBase
 {
-    public class AccesoDB : IDBComConnection
+    public class AccesoDB  
     {   
-        //constructor
         public AccesoDB()
         {
         }

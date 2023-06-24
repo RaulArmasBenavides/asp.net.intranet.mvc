@@ -19,7 +19,7 @@ namespace intranet.business
         // metodos de negocio
         public void CursoAdicionar(Curso pro)
         {
-            dao.create(pro);
+            dao.Create(pro);
         }
 
         public void CursoActualizar(Curso pro)
@@ -38,7 +38,7 @@ namespace intranet.business
         {
             try
             {
-                return dao.readAll();
+                return dao.ReadAll();
             }
             catch (SqlException ex)
             {
@@ -48,7 +48,7 @@ namespace intranet.business
 
         public Curso CursoBuscar(int id)
         {
-            return dao.findForId(id);
+            return dao.FindById(id);
         }
     }
 }

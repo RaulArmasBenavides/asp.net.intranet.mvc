@@ -73,20 +73,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActividadDAO.cs" />
-    <Compile Include="AsistenciasDAO.cs" />
-    <Compile Include="Constantes.cs" />
-    <Compile Include="CursoDAO.cs" />
+    <Compile Include="Repository\ADO\ActividadDAO.cs" />
+    <Compile Include="Repository\ADO\AsistenciasDAO.cs" />
+    <Compile Include="Repository\ADO\Constantes.cs" />
+    <Compile Include="Repository\ADO\CursoDAO.cs" />
     <Compile Include="DataBase\AccesoDB.cs" />
-    <Compile Include="EquipoDAO.cs" />
-    <Compile Include="Factory\Class1.cs" />
-    <Compile Include="Factory\DataAccessFactory.cs" />
-    <Compile Include="AlumnoDAO.cs" />
-    <Compile Include="Factory\ProductoTestDao.cs" />
-    <Compile Include="ListaEquiposDAO.cs" />
-    <Compile Include="ParticipanteDAO.cs" />
-    <Compile Include="SedeDAO.cs" />
-    <Compile Include="UsuarioDAO.cs" />
+    <Compile Include="Repository\ADO\EquipoDAO.cs" />
+    <Compile Include="DataBase\DataAccessFactory.cs" />
+    <Compile Include="Repository\ADO\AlumnoDAO.cs" />
+    <Compile Include="Repository\ADO\ProductoTestDao.cs" />
+    <Compile Include="Repository\ADO\ListaEquiposDAO.cs" />
+    <Compile Include="Repository\ADO\ParticipanteDAO.cs" />
+    <Compile Include="Repository\ADO\SedeDAO.cs" />
+    <Compile Include="Repository\ADO\UsuarioDAO.cs" />
+    <Compile Include="Repository\IRepository\IAlumnoDataAccess.cs" />
+    <Compile Include="Repository\IRepository\IParticipantRepository.cs" />
+    <Compile Include="Repository\IRepository\IRepository.cs" />
+    <Compile Include="Repository\IRepository\ISedeRepository.cs" />
+    <Compile Include="Repository\IRepository\IUsuarioDataAccess.cs" />
+    <Compile Include="UnitOfWork\IUnitOfWorkContainer.cs" />
+    <Compile Include="UnitOfWork\UnitOfWorkContainer.cs" />
     <Compile Include="_doIntranet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -98,10 +104,6 @@
     <ProjectReference Include="..\intranet.entity\intranet.entity.csproj">
       <Project>{D8AC91FE-8FF5-4C49-8C80-01C79B64C385}</Project>
       <Name>intranet.entity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\intranet.service\intranet.service.csproj">
-      <Project>{E6DDC900-C9AE-410F-98A0-509CAB49A777}</Project>
-      <Name>intranet.service</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

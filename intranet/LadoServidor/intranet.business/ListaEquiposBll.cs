@@ -15,7 +15,7 @@ namespace intranet.business
         {
             try
             {
-                return dao.find(pro);
+                return dao.Find(pro);
             }
             catch (SqlException ex)
             {

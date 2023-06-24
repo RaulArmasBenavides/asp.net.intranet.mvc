@@ -1,9 +1,8 @@
 ﻿//eventos 
 
 window.onload = function () {
-    console.log("test");
+  
     ListarAlumnos();
-   // TableConfig();
 }
 
 function ListarAlumnos() {
@@ -113,30 +112,6 @@ function ListarAlumnos() {
 
         })
 }
-let TableConfig = () => {
-        $.ajax({
-            url: "http://localhost:17476/WCFIntranet.svc/Alumno/AlumnoListar",
-            success: function (data) {
-                console.log(data);
-                console.log("ga");
-                var o = data;//A la variable le asigno el json decodificado
-                $('#table_id').dataTable({
-                    data: o,
-                    columns: [
-                        { "data": "IdAlumno" },
-                        { "data": "NomAlumno" },
-                        { "data": "ApePatAlumno" },
-                        { "data": "ApeMatAlumno" },
-                        { "data": "CodigoAlu" },
-                        { "data": "DNI" },
-                        { "data": "DirAlumno" },
-                        { "data": "EmailAlumno" },
-                        { "data": "TelAlumno" }
-
-                    ],
-                });
-            }
-        });
-}
+ 
 
 

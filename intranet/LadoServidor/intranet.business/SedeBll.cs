@@ -1,28 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.Data.SqlClient;
 using intranet.dataaccess;
+using intranet.dataaccess.Repository.IRepository;
 using intranet.entity;
 
 namespace intranet.business
 {
     public class SedeBll
     {
-
-        //variable de la clase SalaDAO
-        SedeDAO dao;
-
+        ISedeRepository dao;
         public SedeBll()
         {
             dao = new SedeDAO();
         }
 
-
-        //metodos de persistencia de datos en sqlserver
         public void SedeAdicionar(Sede pro)
         {
             try
             {
-                dao.create(pro);
+                dao.Create(pro);
             }
             catch (SqlException ex)
             {
@@ -34,7 +30,7 @@ namespace intranet.business
         {
             try
             {
-                dao.update(pro);
+                dao.Update(pro);
             }
             catch (SqlException ex)
             {
@@ -46,7 +42,7 @@ namespace intranet.business
         {
             try
             {
-                dao.delete(pro);
+                dao.Delete(pro.idsede);
             }
             catch (SqlException ex)
             {
@@ -59,84 +55,24 @@ namespace intranet.business
         {
             try
             {
-                return dao.find(pro);
+                return dao.Find(pro);
             }
             catch (SqlException ex)
             {
                 throw ex;
             }
         }
-
-
 
         public List<Sede> SedesListar()
         {
             try
             {
-                return dao.readAll();
+                return dao.ReadAll();
             }
             catch (SqlException ex)
             {
                 throw ex;
             }
         }
-
-
-        //metodos de persistencia de datos en sqlserver
-        public void SalaAdicionar(Sala pro)
-        {
-            try
-            {
-                dao.create(pro);
-            }
-            catch (SqlException ex)
-            {
-                throw ex;
-            }
-        }
-
-        public void SalaActualizar(Sala pro)
-        {
-            try
-            {
-                dao.update(pro);
-            }
-            catch (SqlException ex)
-            {
-                throw ex;
-            }
-        }
-
-        public void SalaEliminar(Sala pro)
-        {
-            try
-            {
-                dao.delete(pro);
-            }
-            catch (SqlException ex)
-            {
-                throw ex;
-            }
-        }
-
-
- 
- 
-
-
-
-        public List<Sala> SalaListar()
-        {
-            try
-            {
-                return dao.readAllSalas();
-            }
-            catch (SqlException ex)
-            {
-                throw ex;
-            }
-        }
-
-
     }
 }
