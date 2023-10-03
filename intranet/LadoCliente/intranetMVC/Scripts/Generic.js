@@ -125,7 +125,7 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                 if (objFormulario.tituloconfirmacionguardar == undefined)
                     objFormulario.tituloconfirmacionguardar = "Desea guardar los cambios?"
                 var type = objFormulario.type;
-                console.log("El tipo es " + type);
+            
                 if (type == "fieldset") {
                     contenido += "<fieldset>";
                     if (objFormulario.legend != undefined) {
