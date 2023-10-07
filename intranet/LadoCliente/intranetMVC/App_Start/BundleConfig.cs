@@ -29,6 +29,10 @@ namespace intranetMVC
               "~/Content/bootstrap.css",
               "~/Content/miEstilo.css"));
 
+            bundles.Add(new StyleBundle("~/Content/css/Login").Include(
+             "~/Content/bootstrap.css",
+             "~/Content/Login.css"));
+
             //bundles.Add(new ScriptBundle("~/bundles/jquery").Include("~/Scripts/jquery-3.6.0.min.js"));
             //bundles.Add(new Bundle("~/bundles/jquery2", "https://code.jquery.com/ui/1.13.1/jquery-ui.js"));
             //bundles.Add(new Bundle("~/bundles/jquery2", "https://code.jquery.com/ui/1.13.1/jquery-ui.js"));

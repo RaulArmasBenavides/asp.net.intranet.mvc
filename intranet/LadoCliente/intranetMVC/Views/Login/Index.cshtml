@@ -9,55 +9,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: 'Arial', sans-serif;
-        }
-
-        #login-div {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #ffffff;
-            padding: 40px 60px;
-            border-radius: 8px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            width: 350px;
-        }
-
-        .header-title {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #007BFF;
-            font-size: 24px;
-        }
-
-        .field-validation-error {
-            color: red;
-        }
-
-        .btn-primary {
-            width: 100%;
-        }
-
-        .btn-danger {
-            width: 100%;
-            margin-top: 10px;
-        }
-    </style>
-
-    @Scripts.Render("~/bundles/jquery")
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </head>
 <body>
     <div id="login-div">
         <div class="header-title">Acceso al Sistema</div>
-
         @using (Html.BeginForm("Autenticar", "Login", FormMethod.Post))
         {
             <div class="form-group">
@@ -71,11 +26,9 @@
                 @Html.EditorFor(model => model.password, new { @class = "form-control", type = "password", placeholder = "Ingrese su contraseña" })
                 @Html.ValidationMessageFor(model => model.password)
             </div>
-
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Aceptar" />
             </div>
-
             <div class="form-group">
                 <input type="reset" class="btn btn-danger" value="Limpiar" />
             </div>
@@ -83,3 +36,6 @@
     </div>
 </body>
 </html>
+
+@Styles.Render("~/Content/css/Login")
+@Scripts.Render("~/bundles/jquery")
