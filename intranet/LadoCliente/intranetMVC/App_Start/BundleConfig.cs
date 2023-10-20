@@ -23,11 +23,12 @@ namespace intranetMVC
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include("~/Scripts/jquery-ui.js"));
+            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include("~/Scripts/jquery-ui-1.13.2.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
               "~/Content/bootstrap.css",
-              "~/Content/miEstilo.css"));
+              "~/Content/miEstilo.css", "~/Content/themes/base/jquery-ui-min.css"));
+
 
             bundles.Add(new StyleBundle("~/Content/css/Login").Include(
              "~/Content/bootstrap.css",

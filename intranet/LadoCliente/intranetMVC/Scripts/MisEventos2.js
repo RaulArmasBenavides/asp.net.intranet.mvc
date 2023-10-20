@@ -64,10 +64,7 @@ $(document).ready(function () {
         }).modal('show');
     }
 
-    //ALUMNOS CONTROLLER
-    let tabsapp = () => {
-        $("#pestañas").tabs();
-    }
+  
 
             //$('#table_id').DataTable({
             //    dom: 'Bfrtip',
@@ -110,8 +107,7 @@ $(document).ready(function () {
             }
         });
     }
-
-    tabsapp();
+   
     $(function () {
         $("#btnGet").click(function () {
             $.ajax({

@@ -31,7 +31,7 @@ namespace intranetMVC.Controllers
 
         public ActionResult Perfil()
         {
-            return View();
+            return PartialView();
         }
 
         //public JsonResult Search3(string input)

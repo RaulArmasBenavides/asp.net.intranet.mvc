@@ -6,8 +6,6 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
 </head>
 <body>
-
-
     <div style="display:none;position:absolute;top:0px;left:0px;width:100%;
     height:100%;background-repeat:no-repeat;
     background-position:center;z-index:100000" id="cargando"></div>
@@ -198,12 +196,8 @@
             <div class="container-fluid">
                 @RenderBody()
             </div>
-
-
         </main>
-
     </div>
-
     <input type="hidden" id="hdfOculto" value="@Url.Content("~")" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/jquery")
