@@ -1,9 +1,0 @@
-{
-  "name": "nodejs-intranet-service",
-  "version": "0.0.0",
-  "description": "NodejsIntranetService",
-  "main": "app.js",
-  "author": {
-    "name": ""
-  }
-}

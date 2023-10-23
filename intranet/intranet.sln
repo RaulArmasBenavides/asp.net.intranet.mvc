@@ -3,22 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31829.152
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LadoServidor", "LadoServidor", "{C0DF713B-ECC1-47B6-96C8-F9709CC9249E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "intranet.business", "LadoServidor\intranet.business\intranet.business.csproj", "{02D17C4C-177C-49DD-A68E-7AABAD1FAE4C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "intranet.dataaccess", "LadoServidor\intranet.dataaccess\intranet.dataaccess.csproj", "{B8645D16-8696-4A9F-BED0-84168EC9C28F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "intranet.entity", "LadoServidor\intranet.entity\intranet.entity.csproj", "{D8AC91FE-8FF5-4C49-8C80-01C79B64C385}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "intranet.ServiceWCF", "LadoServidor\intranet.ServiceWCF\intranet.ServiceWCF.csproj", "{89A8CEE3-7D3C-46A7-A511-A0927A41E61E}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LadoCliente", "LadoCliente", "{B54652EB-D2E3-4E32-A503-5AF6682BA6ED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "intranetMVC", "LadoCliente\intranetMVC\intranetMVC.csproj", "{8FFB0976-2CAB-4B8A-82CA-23372302C294}"
-	ProjectSection(ProjectDependencies) = postProject
-		{89A8CEE3-7D3C-46A7-A511-A0927A41E61E} = {89A8CEE3-7D3C-46A7-A511-A0927A41E61E}
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,22 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{02D17C4C-177C-49DD-A68E-7AABAD1FAE4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{02D17C4C-177C-49DD-A68E-7AABAD1FAE4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{02D17C4C-177C-49DD-A68E-7AABAD1FAE4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{02D17C4C-177C-49DD-A68E-7AABAD1FAE4C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B8645D16-8696-4A9F-BED0-84168EC9C28F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B8645D16-8696-4A9F-BED0-84168EC9C28F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B8645D16-8696-4A9F-BED0-84168EC9C28F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B8645D16-8696-4A9F-BED0-84168EC9C28F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D8AC91FE-8FF5-4C49-8C80-01C79B64C385}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D8AC91FE-8FF5-4C49-8C80-01C79B64C385}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D8AC91FE-8FF5-4C49-8C80-01C79B64C385}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D8AC91FE-8FF5-4C49-8C80-01C79B64C385}.Release|Any CPU.Build.0 = Release|Any CPU
-		{89A8CEE3-7D3C-46A7-A511-A0927A41E61E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{89A8CEE3-7D3C-46A7-A511-A0927A41E61E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{89A8CEE3-7D3C-46A7-A511-A0927A41E61E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{89A8CEE3-7D3C-46A7-A511-A0927A41E61E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8FFB0976-2CAB-4B8A-82CA-23372302C294}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8FFB0976-2CAB-4B8A-82CA-23372302C294}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FFB0976-2CAB-4B8A-82CA-23372302C294}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,10 +22,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{02D17C4C-177C-49DD-A68E-7AABAD1FAE4C} = {C0DF713B-ECC1-47B6-96C8-F9709CC9249E}
-		{B8645D16-8696-4A9F-BED0-84168EC9C28F} = {C0DF713B-ECC1-47B6-96C8-F9709CC9249E}
-		{D8AC91FE-8FF5-4C49-8C80-01C79B64C385} = {C0DF713B-ECC1-47B6-96C8-F9709CC9249E}
-		{89A8CEE3-7D3C-46A7-A511-A0927A41E61E} = {C0DF713B-ECC1-47B6-96C8-F9709CC9249E}
 		{8FFB0976-2CAB-4B8A-82CA-23372302C294} = {B54652EB-D2E3-4E32-A503-5AF6682BA6ED}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
