@@ -1,0 +1,32 @@
+﻿body {
+}
+
+.card-perfil {
+    justify-content: center;
+    align-items: center;
+}
+
+.card-perfil .banner {
+   justify-content: center;
+   align-items: center;
+   display: flex;
+}
+
+.myprofile-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 50px;
+}
+
+.follow-info {
+    display: flex;
+    align-items:center;
+    gap: 30px;
+}
+
+.info-scores-student {
+    display: flex;
+    flex-direction: column;
+    border: solid;
+}

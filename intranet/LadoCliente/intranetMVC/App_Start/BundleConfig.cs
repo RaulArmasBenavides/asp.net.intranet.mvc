@@ -27,7 +27,9 @@ namespace intranetMVC
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
               "~/Content/bootstrap.css",
-              "~/Content/miEstilo.css", "~/Content/themes/base/jquery-ui-min.css"));
+              "~/Content/miEstilo.css",
+              "~/Content/miPerfil/miPerfil.css",
+              "~/Content/themes/base/jquery-ui-min.css"));
 
 
             bundles.Add(new StyleBundle("~/Content/css/Login").Include(

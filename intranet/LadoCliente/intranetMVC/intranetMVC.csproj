@@ -240,6 +240,8 @@
     <Content Include="Content\img\dewey4.jpg" />
     <Content Include="Content\Login.css" />
     <Content Include="Content\miEstilo.css" />
+    <Content Include="Content\miEstilo2.css" />
+    <Content Include="Content\miPerfil\miPerfil.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
