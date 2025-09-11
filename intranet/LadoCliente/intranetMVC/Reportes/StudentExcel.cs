@@ -18,7 +18,7 @@ namespace intranetMVC.Reportes
         public StudentExcel()
         { }
 
-        public byte[] GenerateExcel(List<Alumno> alumnos)
+        public byte[] GenerateExcel(List<Student> alumnos)
         {
             // If you use EPPlus in a noncommercial context
             // according to the Polyform Noncommercial license:
@@ -124,7 +124,7 @@ namespace intranetMVC.Reportes
                 if (alumnos.Count > 1)
                 {
 
-                    foreach (Alumno al in alumnos)
+                    foreach (Student al in alumnos)
                     {
 
                         cell = sheet.Cells[rowIndex, 2];

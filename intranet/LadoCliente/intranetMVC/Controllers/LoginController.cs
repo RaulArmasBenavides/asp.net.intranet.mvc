@@ -32,7 +32,7 @@ namespace intranetMVC.Controllers
             return RedirectToAction("Index", "Login");
         }
         //[HttpPost]
-        //public ActionResult Autenticar(Empleado usuario)
+        //public ActionResult Autenticar(Employee usuario)
         //{
 
         //try

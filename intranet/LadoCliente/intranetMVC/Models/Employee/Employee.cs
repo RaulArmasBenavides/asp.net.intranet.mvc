@@ -5,7 +5,7 @@ using System.Web;
 
 namespace intranetMVC.Models
 {
-    public class Empleado
+    public class Employee
     {
     }
 }

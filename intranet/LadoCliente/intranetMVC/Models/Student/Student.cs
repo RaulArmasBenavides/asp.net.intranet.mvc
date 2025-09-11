@@ -7,9 +7,9 @@ using System.Web;
 namespace intranetMVC.Models
 {
     [DataContract]
-    public class Alumno
+    public class Student
     {
-        public Alumno()
+        public Student()
         {
             this.IdAlumno = 0;
             this.NomAlumno = string.Empty;

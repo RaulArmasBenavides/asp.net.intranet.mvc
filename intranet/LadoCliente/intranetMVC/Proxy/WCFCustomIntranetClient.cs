@@ -23,16 +23,16 @@ namespace intranetMVC.Proxy
         #region Alumno
 
         //using JavascriptSerializer
-        public List<Alumno> AlumnoListar3()
+        public List<Student> AlumnoListar3()
         {
             try
             {
                 var webclient = new WebClient();
                 webclient.Headers["Content-type"] = "application/json";
                 webclient.Encoding = Encoding.UTF8;
-                var json = webclient.DownloadString(BASE_URL + "Alumno/AlumnoListar"+ "?skip=0&limit=10");
+                var json = webclient.DownloadString(BASE_URL + "Student/AlumnoListar"+ "?skip=0&limit=10");
                 var js = new JavaScriptSerializer();
-                return js.Deserialize<List<Alumno>>(json.ToString());
+                return js.Deserialize<List<Student>>(json.ToString());
             }
             catch (Exception ex) 
             {
@@ -41,16 +41,16 @@ namespace intranetMVC.Proxy
         }//
 
         //using DataContractJsonSerializer
-        public List<Alumno> AlumnoListar2()
+        public List<Student> AlumnoListar2()
         {
             try
             {
                 var webclient = new WebClient();
-                var json = webclient.DownloadString(BASE_URL + "Alumno/AlumnoListar");
-                var deserializedUser = new List<Alumno>();
+                var json = webclient.DownloadString(BASE_URL + "Student/AlumnoListar");
+                var deserializedUser = new List<Student>();
                 var ms = new MemoryStream(Encoding.UTF8.GetBytes(json));
                 var ser = new DataContractJsonSerializer(deserializedUser.GetType());
-                deserializedUser = ser.ReadObject(ms) as List<Alumno>;
+                deserializedUser = ser.ReadObject(ms) as List<Student>;
                 ms.Close();
                 return deserializedUser;
             }
@@ -61,16 +61,16 @@ namespace intranetMVC.Proxy
             }
         }
 
-        public async Task<List<Alumno>> AlumnoListar()
+        public async Task<List<Student>> AlumnoListar()
         {
-            List<Alumno> lis = new List<Alumno>();
+            List<Student> lis = new List<Student>();
             try
             {
                 var client = new HttpClient();
                 var request = new HttpRequestMessage
                 {
                     Method = HttpMethod.Post,
-                    RequestUri = new Uri("http://localhost:17476/WCFIntranet.svc/Alumno/AlumnoListar"),
+                    RequestUri = new Uri("http://localhost:17476/WCFIntranet.svc/Student/AlumnoListar"),
                     Content = new StringContent("{\n \n}")
                     {
                         Headers = {
@@ -84,7 +84,7 @@ namespace intranetMVC.Proxy
                     var body = await response.Content.ReadAsStringAsync();
                     //lis = Javabody;
                     var js = new JavaScriptSerializer();
-                    lis = js.Deserialize<List<Alumno>>(body);
+                    lis = js.Deserialize<List<Student>>(body);
                     Console.WriteLine(body);
                 }
             }
@@ -96,7 +96,7 @@ namespace intranetMVC.Proxy
             return lis;
         }
 
-        public Alumno find(string id)
+        public Student find(string id)
         {
             try
             {
@@ -104,7 +104,7 @@ namespace intranetMVC.Proxy
                 var url = string.Format(BASE_URL + "find/{0}", id);
                 var json = webclient.DownloadString(url);
                 var js = new JavaScriptSerializer();
-                return js.Deserialize<Alumno>(json);
+                return js.Deserialize<Student>(json);
             }
             catch (Exception)
             {
@@ -116,20 +116,20 @@ namespace intranetMVC.Proxy
         /// </summary>
         /// <param name="student"></param>
         /// <returns></returns>
-        public bool createStudent(Alumno student)
+        public bool createStudent(Student student)
         {
             try
             {
-                Entidad<Alumno> data = new Entidad<Alumno>();
+                Entidad<Student> data = new Entidad<Student>();
                 data.MyProperty = student;
-                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Entidad<Alumno>));
+                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Entidad<Student>));
                 MemoryStream mem = new MemoryStream();
                 ser.WriteObject(mem, data);
                 string alumno = Encoding.UTF8.GetString(mem.ToArray(), 0, (int)mem.Length);
                 WebClient webclient = new WebClient();
                 webclient.Headers["Content-type"] = "Application/json";
                 webclient.Encoding = Encoding.UTF8;
-                webclient.UploadString(BASE_URL + "/Alumno/AlumnoAdicionar", "POST", alumno);
+                webclient.UploadString(BASE_URL + "/Student/AlumnoAdicionar", "POST", alumno);
                 return true;
             }
             catch (Exception ex)
@@ -138,11 +138,11 @@ namespace intranetMVC.Proxy
             }
         }
 
-        public bool edit(Alumno empleado)
+        public bool edit(Student empleado)
         {
             try
             {
-                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Alumno));
+                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Student));
                 MemoryStream mem = new MemoryStream();
                 ser.WriteObject(mem, empleado);
                 string data = Encoding.UTF8.GetString(mem.ToArray(), 0, (int)mem.Length);
@@ -168,7 +168,7 @@ namespace intranetMVC.Proxy
                 var request = new HttpRequestMessage
                 {
                     Method = HttpMethod.Get,
-                    RequestUri = new Uri("http://localhost:17476/WCFIntranet.svc/Alumno/AlumnoEliminar/"+ IdAlumno)
+                    RequestUri = new Uri("http://localhost:17476/WCFIntranet.svc/Student/AlumnoEliminar/"+ IdAlumno)
                 };
                 using (var response = await client.SendAsync(request))
                 {

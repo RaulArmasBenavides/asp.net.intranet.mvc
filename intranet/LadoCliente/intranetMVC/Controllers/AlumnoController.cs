@@ -12,7 +12,7 @@ namespace intranetMVC.Controllers
     public class AlumnoController : Controller
     {
         WCFCustomIntranetClient client = new WCFCustomIntranetClient();        
-        // GET: Alumno
+        // GET: Student
         public ActionResult Index()
         {
             return View();
@@ -46,14 +46,14 @@ namespace intranetMVC.Controllers
         //}
 
 
-        // GET: Alumno/Details/5
+        // GET: Student/Details/5
         public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-           Alumno alumno = null;// db.Alumnoes.Find(id);
+           Student alumno = null;// db.Alumnoes.Find(id);
             if (alumno == null)
             {
                 return HttpNotFound();
@@ -61,18 +61,18 @@ namespace intranetMVC.Controllers
             return View(alumno);
         }
 
-        // GET: Alumno/Create
+        // GET: Student/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Alumno/Create
+        // POST: Student/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdAlumno,ApePatAlumno,ApeMatAlumno,NomAlumno,DirAlumno,TelAlumno,EmailAlumno,DNI,Sexo")] Alumno alumno)
+        public ActionResult Create([Bind(Include = "IdAlumno,ApePatAlumno,ApeMatAlumno,NomAlumno,DirAlumno,TelAlumno,EmailAlumno,DNI,Sexo")] Student alumno)
         {
             //if (ModelState.IsValid)
             //{
@@ -87,14 +87,14 @@ namespace intranetMVC.Controllers
             //return View(alumno);
         }
 
-        // GET: Alumno/Edit/5
+        // GET: Student/Edit/5
         public ActionResult Edit(string id)
         {
             //if (id == null)
             //{
             //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             //}
-            ////Alumno alumno = cliente.AlumnoBuscar(Convert.ToInt32(id)); //null; // db.Alumnoes.Find(id);
+            ////Student alumno = cliente.AlumnoBuscar(Convert.ToInt32(id)); //null; // db.Alumnoes.Find(id);
             //if (alumno == null)
             //{
             //    return HttpNotFound();
@@ -102,12 +102,12 @@ namespace intranetMVC.Controllers
             return View();
         }
 
-        // POST: Alumno/Edit/5
+        // POST: Student/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdAlumno,ApePatAlumno,ApeMatAlumno,NomAlumno,DirAlumno,TelAlumno,EmailAlumno,DNI,Sexo")] Alumno alumno)
+        public ActionResult Edit([Bind(Include = "IdAlumno,ApePatAlumno,ApeMatAlumno,NomAlumno,DirAlumno,TelAlumno,EmailAlumno,DNI,Sexo")] Student alumno)
         {
             if (ModelState.IsValid)
             {
@@ -118,7 +118,7 @@ namespace intranetMVC.Controllers
             return View(alumno);
         }
 
-        // GET: Alumno/Delete/5
+        // GET: Student/Delete/5
         public async Task<bool> Delete(string IdAlumno)
         {
             bool res = false;
@@ -130,7 +130,7 @@ namespace intranetMVC.Controllers
 
 
             return res;
-            //Alumno alumno = null; // db.Alumnoes.Find(id);
+            //Student alumno = null; // db.Alumnoes.Find(id);
             //if (alumno == null)
             //{
             //    return HttpNotFound();
@@ -138,7 +138,7 @@ namespace intranetMVC.Controllers
             //return View();
         }
 
-        // POST: Alumno/Delete/5
+        // POST: Student/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
@@ -179,7 +179,7 @@ namespace intranetMVC.Controllers
         //imprimir 
         //public ActionResult ImprimirPDF()
         //{
-        //    //var userdetails = new List<Alumno>()
+        //    //var userdetails = new List<Student>()
         //    //{
         //    //    //new user() {id = 101, nombre = "juan perez", direccion = "av. lima 123",email = "jperez@gmail.com"},
         //    //    //new user() {id = 102, nombre = "fanny chiara", direccion = "av. peru 890",email = "fchiara@gmail.com"},

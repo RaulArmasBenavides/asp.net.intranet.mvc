@@ -201,10 +201,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Alumno.cs" />
+    <Compile Include="Models\Student\Student.cs" />
     <Compile Include="Models\Asistencia.cs" />
-    <Compile Include="Models\Curso.cs" />
-    <Compile Include="Models\Empleado.cs" />
+    <Compile Include="Models\Auth\SendOtpRequest.cs" />
+    <Compile Include="Models\Auth\VerifyCodeViewModel.cs" />
+    <Compile Include="Models\Auth\VerifyOtpRequest.cs" />
+    <Compile Include="Models\Courses\Curso.cs" />
+    <Compile Include="Models\Employee\Employee.cs" />
     <Compile Include="Models\Entidad.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Response.cs" />
@@ -212,6 +215,7 @@
     <Compile Include="Models\Sede.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proxy\RestApiCient.cs" />
     <Compile Include="Proxy\WCFCustomIntranetClient.cs" />
     <Compile Include="Reportes\StudentExcel.cs" />
   </ItemGroup>
