@@ -28,7 +28,7 @@ namespace intranetMVC.Controllers
 
         // POST: Asistencia/Create
         [HttpPost]
-        public ActionResult Create(Asistencia asis)
+        public ActionResult Create(Attendance asis)
         {
             try
             {

@@ -5,7 +5,8 @@ using System.Web;
 
 namespace intranetMVC.Models
 {
-    public class Curso
+    public class Course
+
     {
     }
 }

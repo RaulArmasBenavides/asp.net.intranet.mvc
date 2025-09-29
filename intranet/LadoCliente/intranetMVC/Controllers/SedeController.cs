@@ -26,12 +26,12 @@ namespace intranetMVC.Controllers
 
         // POST: Sede/Create
         [HttpPost]
-        public ActionResult Create(Sede e)
+        public ActionResult Create(Campus e)
         {
             try
             {
                 //cliente.SedeAdicionarAsync(e);
-                ViewBag.JavaScriptFunction = "swal('Proceso con éxito', 'Sede registrado con éxito!', 'success');";
+                ViewBag.JavaScriptFunction = "swal('Proceso con éxito', 'Campus registrado con éxito!', 'success');";
                 return View(); //RedirectToAction("Index");
             }
             catch
@@ -48,7 +48,7 @@ namespace intranetMVC.Controllers
 
         // POST: Sede/Edit/5
         [HttpPost]
-        public ActionResult Edit(Sede e)
+        public ActionResult Edit(Campus e)
         {
             try
             {

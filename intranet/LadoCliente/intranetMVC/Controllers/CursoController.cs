@@ -22,7 +22,7 @@ namespace intranetMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Curso curso = null; // db.Cursoes.Find(id);
+            Course curso = null; // db.Cursoes.Find(id);
             if (curso == null)
             {
                 return HttpNotFound();
@@ -42,7 +42,7 @@ namespace intranetMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdCurso,IdTarifa,NomCurso")] Curso curso)
+        public ActionResult Create([Bind(Include = "IdCurso,IdTarifa,NomCurso")] Course curso)
         {
             if (ModelState.IsValid)
             {
@@ -62,7 +62,7 @@ namespace intranetMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Curso curso = null;// db.Cursoes.Find(id);
+            Course curso = null;// db.Cursoes.Find(id);
             if (curso == null)
             {
                 return HttpNotFound();
@@ -76,7 +76,7 @@ namespace intranetMVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdCurso,IdTarifa,NomCurso")] Curso curso)
+        public ActionResult Edit([Bind(Include = "IdCurso,IdTarifa,NomCurso")] Course curso)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +95,7 @@ namespace intranetMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Curso curso = null;// db.Cursoes.Find(id);
+            Course curso = null;// db.Cursoes.Find(id);
             if (curso == null)
             {
                 return HttpNotFound();
