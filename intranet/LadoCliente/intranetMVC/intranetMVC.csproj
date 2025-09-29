@@ -209,7 +209,7 @@
     <Compile Include="Models\Courses\Course.cs" />
     <Compile Include="Models\Employee\Employee.cs" />
     <Compile Include="Models\Entidad.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Auth\IdentityModels.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\Sala.cs" />
     <Compile Include="Models\Campus\Sede.cs" />
