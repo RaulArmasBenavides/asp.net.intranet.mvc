@@ -110,10 +110,10 @@
                                         <a href="/Alumno/Perfil">Mi Perfil</a>
                                     </li>
                                     <li>
-                                        <a href="#">Historial académico</a>
+                                        <a href="/Alumno/Historial">Historial académico</a>
                                     </li>
                                     <li>
-                                        <a href="Alumno/Search">Datos personales</a>
+                                        <a href="/Alumno/DatosPersonales">Datos personales</a>
                                     </li>
                                 </ul>
                             </div>
@@ -126,10 +126,10 @@
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="#">Matrícula de cursos</a>
+                                        <a href="/Matricula/Index">Matrícula de cursos</a>
                                     </li>
                                     <li>
-                                        <a href="#">Horarios</a>
+                                        <a href="/Alumno/Horario">Horarios</a>
                                     </li>
                                     <li>
                                         <a href="#">Docentes</a>
@@ -144,26 +144,26 @@
                             </div>
                         </li>
                         <li class="sidebar-dropdown">
-                            <a href="#">
+                            <a href="/Reportes/Index">
                                 <i class="fa fa-chart-line"></i>
                                 <span>Reportes</span>
                             </a>
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="ReportePreMatricula/Index">Pre-Matrícula</a>
+                                        <a href="/Reportes/PreMatricula">Pre-Matrícula</a>
                                     </li>
                                     <li>
-                                        <a href="#">Matrícula</a>
+                                        <a href="/Reportes/Matricula">Matrícula</a>
                                     </li>
                                     <li>
-                                        <a href="#">Evaluaciones</a>
+                                        <a href="/Reportes/Notas">Evaluaciones</a>
                                     </li>
                                     <li>
-                                        <a href="#">Horario</a>
+                                        <a href="/Alumno/Horario">Horario</a>
                                     </li>
                                     <li>
-                                        <a href="#">Deudas</a>
+                                        <a href="/Reportes/Deudas">Deudas</a>
                                     </li>
                                 </ul>
                             </div>
@@ -176,7 +176,7 @@
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="#">Mis asistencias</a>
+                                        <a href="/Asistencia/Index">Mis asistencias</a>
                                     </li>
                                 </ul>
                             </div>
@@ -192,16 +192,16 @@
                                         <a href="/Alumno/Index">Alumno</a>
                                     </li>
                                     <li>
-                                        <a href="#">Docente</a>
+                                        <a href="/Docente/Index">Docente</a>
                                     </li>
                                     <li>
-                                        <a href="#">Cursos</a>
+                                        <a href="/Curso/Index">Cursos</a>
                                     </li>
                                     <li>
                                         <a href="#">Matrícula</a>
                                     </li>
                                     <li>
-                                        <a href="/Sala/Index">Sala</a>
+                                        <a href="/Sala/Index">Salas</a>
                                     </li>
                                 </ul>
                             </div>
@@ -260,6 +260,12 @@
                         <a class="nav-link" href="/Sede/Index">Sedes</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="/Curso/Index">Cursos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Sala/Index">Salas</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="/ReportePreMatricula/Index">Pre-Matrícula</a>
                     </li>
                 </ul>
@@ -286,11 +292,7 @@
     @Scripts.Render("~/bundles/jqueryui")
     @Scripts.Render("~/bundles/respond")
     @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/MisEventos2")
-    @Scripts.Render("~/bundles/sweetalert")
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+    @Scripts.Render("~/bundles/intranet")
  
     @RenderSection("scripts", required: false)
 </body>

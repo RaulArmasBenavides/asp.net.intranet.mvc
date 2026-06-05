@@ -1,37 +1,264 @@
-﻿body {
-    background-color: #f8f9fa;
-    font-size: 0.9rem;
-    font-family: 'Arial', sans-serif;
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-#login-div {
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    min-height: 100vh;
+}
+
+/* ── Layout ─────────────────────────────────── */
+.login-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ── Left brand panel ────────────────────────── */
+.login-brand {
+    flex: 0 0 42%;
+    background: linear-gradient(150deg, #0d1b6e 0%, #1a3a8f 50%, #1565c0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-brand-circles::before,
+.login-brand-circles::after {
+    content: '';
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #ffffff;
-    padding: 40px 60px;
-    border-radius: 8px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    width: 350px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
 }
 
-.header-title {
+.login-brand::before {
+    content: '';
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    top: -120px;
+    left: -120px;
+}
+
+.login-brand::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    bottom: -80px;
+    right: -80px;
+}
+
+.brand-content {
     text-align: center;
-    margin-bottom: 30px;
-    color: #007BFF;
-    font-size: 24px;
+    color: #fff;
+    z-index: 1;
+    padding: 20px;
 }
 
+.brand-icon {
+    font-size: 80px;
+    margin-bottom: 24px;
+    opacity: 0.9;
+}
+
+.brand-content h2 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.brand-content p {
+    font-size: 1rem;
+    opacity: 0.7;
+    letter-spacing: 0.5px;
+}
+
+/* ── Right form panel ────────────────────────── */
+.login-form-panel {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    background: #f0f4f8;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 48px 44px;
+    box-shadow: 0 8px 48px rgba(21, 101, 192, 0.12);
+}
+
+.login-card-header {
+    text-align: center;
+    margin-bottom: 36px;
+}
+
+.login-card-header h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #0d1b6e;
+    margin-bottom: 6px;
+}
+
+.login-card-header p {
+    font-size: 0.88rem;
+    color: #94a3b8;
+}
+
+/* ── Inputs ──────────────────────────────────── */
+.form-floating {
+    position: relative;
+}
+
+.form-floating > .login-input {
+    height: 58px;
+    padding: 1rem 1rem 0.5rem 2.8rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    background: #f8fafc;
+    color: #1e293b;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-floating > .login-input:focus {
+    border-color: #1565c0;
+    box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.12);
+    background: #fff;
+    outline: none;
+}
+
+.form-floating > label {
+    position: absolute;
+    top: 50%;
+    left: 2.8rem;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    font-size: 0.9rem;
+    pointer-events: none;
+    transition: all 0.2s ease;
+    padding: 0 4px;
+    background: transparent;
+    line-height: 1;
+}
+
+.form-floating > .login-input:focus ~ label,
+.form-floating > .login-input:not(:placeholder-shown) ~ label {
+    top: 10px;
+    left: 2.6rem;
+    font-size: 0.7rem;
+    color: #1565c0;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    transform: none;
+    background: #fff;
+    border-radius: 4px;
+    padding: 0 4px;
+}
+
+.input-icon {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    font-size: 0.85rem;
+    pointer-events: none;
+    z-index: 5;
+    transition: color 0.2s;
+}
+
+.form-floating > .login-input:focus ~ .input-icon {
+    color: #1565c0;
+}
+
+/* ── Toggle password ─────────────────────────── */
+.toggle-password {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #94a3b8;
+    font-size: 14px;
+    padding: 6px;
+    border-radius: 6px;
+    transition: color 0.2s, background 0.2s;
+    z-index: 5;
+}
+
+.toggle-password:hover {
+    color: #1565c0;
+    background: rgba(21, 101, 192, 0.08);
+}
+
+/* ── Submit button ───────────────────────────── */
+.btn-login {
+    width: 100%;
+    height: 52px;
+    background: linear-gradient(135deg, #0d1b6e, #1565c0);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(21, 101, 192, 0.35);
+}
+
+.btn-login:hover {
+    opacity: 0.93;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(21, 101, 192, 0.45);
+}
+
+.btn-login:active {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* ── Validation ──────────────────────────────── */
 .field-validation-error {
-    color: red;
+    display: block;
+    color: #e53935;
+    font-size: 0.78rem;
+    margin-top: 5px;
+    padding-left: 4px;
 }
 
-.btn-primary {
-    width: 100%;
-}
+/* ── Responsive ──────────────────────────────── */
+@media (max-width: 767px) {
+    .login-brand {
+        display: none;
+    }
 
-.btn-danger {
-    width: 100%;
-    margin-top: 10px;
+    .login-form-panel {
+        background: linear-gradient(150deg, #0d1b6e 0%, #1565c0 100%);
+    }
+
+    .login-card {
+        padding: 40px 28px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    }
 }

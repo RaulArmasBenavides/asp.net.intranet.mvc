@@ -1,0 +1,89 @@
+@model intranetMVC.Models.Academico.ReporteMatriculaViewModel
+@{
+    ViewBag.Title = "Constancia de Matrícula";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid px-0">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="fw-bold mb-0"><i class="fas fa-file-signature me-2 text-success"></i>Constancia de Matrícula</h4>
+        <button class="btn btn-sm btn-outline-secondary" onclick="window.print()">
+            <i class="fas fa-print me-1"></i>Imprimir
+        </button>
+    </div>
+
+    <div class="card border-0 shadow-sm">
+        <div class="card-body">
+
+            @* Encabezado oficial *@
+            <div class="text-center border-bottom pb-3 mb-3">
+                <h5 class="fw-bold text-uppercase mb-0">Universidad Nacional Mayor de San Marcos</h5>
+                <div class="text-muted">Decana de América — Fundada en 1551</div>
+                <div class="fw-bold mt-2 text-primary">CONSTANCIA DE MATRÍCULA</div>
+                <div class="badge bg-light text-dark border mt-1">Período Académico: @Model.Periodo</div>
+            </div>
+
+            @* Datos del alumno *@
+            <div class="row g-2 mb-4">
+                <div class="col-md-6">
+                    <table class="table table-sm table-borderless mb-0">
+                        <tr><td class="text-muted fw-semibold" style="width:130px">Alumno</td><td class="fw-bold text-uppercase">@Model.NombreAlumno</td></tr>
+                        <tr><td class="text-muted fw-semibold">Código</td><td>@Model.CodigoAlumno</td></tr>
+                        <tr><td class="text-muted fw-semibold">Facultad</td><td>@Model.Facultad</td></tr>
+                        <tr><td class="text-muted fw-semibold">Carrera</td><td>@Model.Carrera</td></tr>
+                        <tr><td class="text-muted fw-semibold">Ciclo</td><td>@Model.Ciclo Ciclo</td></tr>
+                    </table>
+                </div>
+                <div class="col-md-6 d-flex align-items-center justify-content-center">
+                    <div class="border rounded p-3 text-center">
+                        <div class="fs-1 fw-bold text-success">@Model.TotalCreditos</div>
+                        <div class="text-muted">Créditos matriculados</div>
+                    </div>
+                </div>
+            </div>
+
+            @* Tabla de cursos *@
+            <h6 class="fw-bold mb-2">Cursos Matriculados</h6>
+            <table class="table table-bordered table-sm">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre del Curso</th>
+                        <th class="text-center">Créditos</th>
+                        <th>Día</th>
+                        <th>Horario</th>
+                        <th>Docente</th>
+                        <th>Aula</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var c in Model.Cursos)
+                    {
+                        <tr>
+                            <td class="font-monospace fw-semibold text-primary">@c.Codigo</td>
+                            <td>@c.Nombre</td>
+                            <td class="text-center">@c.Creditos</td>
+                            <td>@c.Dia</td>
+                            <td>@c.Horario</td>
+                            <td><small>@c.Docente</small></td>
+                            <td>@c.Aula</td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot class="table-secondary fw-bold">
+                    <tr>
+                        <td colspan="2" class="text-end">Total</td>
+                        <td class="text-center">@Model.TotalCreditos</td>
+                        <td colspan="4"></td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <div class="text-muted small text-end mt-2">
+                Documento generado: @DateTime.Now.ToString("dd/MM/yyyy HH:mm")
+            </div>
+        </div>
+    </div>
+
+</div>

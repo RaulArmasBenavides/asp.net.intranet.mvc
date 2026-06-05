@@ -1,0 +1,239 @@
+@model intranetMVC.Models.Academico.MatriculaViewModel
+@{
+    ViewBag.Title = "Matrícula de Cursos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid px-0">
+
+    @* Header *@
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h4 class="fw-bold mb-0"><i class="fas fa-pencil-alt me-2 text-primary"></i>Matrícula de Cursos</h4>
+            <small class="text-muted">Período académico: <strong>@Model.Periodo</strong></small>
+        </div>
+        <div class="text-end">
+            <div id="contadorCreditos" class="fw-bold fs-5 @(Model.CreditosMatriculados > Model.MaxCreditos ? "text-danger" : "text-primary")">
+                <i class="fas fa-layer-group me-1"></i>
+                <span id="numCreditos">@Model.CreditosMatriculados</span> / @Model.MaxCreditos créditos
+            </div>
+            <div class="progress mt-1" style="height:8px;width:220px">
+                <div id="barraCreditos" class="progress-bar @(Model.CreditosMatriculados > Model.MaxCreditos ? "bg-danger" : "bg-primary")"
+                     style="width:@(Math.Min((double)Model.CreditosMatriculados / Model.MaxCreditos * 100, 100))%"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-3">
+
+        @* ── Panel izquierdo: cursos disponibles ── *@
+        <div class="col-md-8">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center py-2">
+                    <span class="fw-semibold"><i class="fas fa-list me-1 text-primary"></i>Cursos Disponibles</span>
+                    <input type="text" id="txtFiltro" class="form-control form-control-sm w-auto"
+                           placeholder="Filtrar cursos..." onkeyup="filtrarCursos()" style="width:180px!important">
+                </div>
+                <div class="card-body p-0">
+                    <table class="table table-hover table-sm mb-0" id="tablaCursos">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Código</th>
+                                <th>Nombre del Curso</th>
+                                <th class="text-center">Cr.</th>
+                                <th>Día / Horario</th>
+                                <th>Docente</th>
+                                <th class="text-center">Vac.</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var c in Model.CursosDisponibles)
+                            {
+                                <tr id="fila-disp-@c.Id">
+                                    <td class="font-monospace fw-semibold text-primary">@c.Codigo</td>
+                                    <td>@c.Nombre</td>
+                                    <td class="text-center"><span class="badge bg-secondary">@c.Creditos</span></td>
+                                    <td><small>@c.Dia<br/>@c.Horario</small></td>
+                                    <td><small>@c.Docente</small></td>
+                                    <td class="text-center">
+                                        <span class="badge @(c.VacantesDisponibles > 5 ? "bg-success" : c.VacantesDisponibles > 0 ? "bg-warning text-dark" : "bg-danger")"
+                                              id="vac-@c.Id">@c.VacantesDisponibles</span>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-primary py-0 px-2"
+                                                onclick="agregar(@c.Id, '@c.Codigo', '@c.Nombre', @c.Creditos, '@c.Dia', '@c.Horario', '@c.Docente', '@c.Aula')"
+                                                @(c.VacantesDisponibles == 0 ? "disabled" : "")>
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        @* ── Panel derecho: mi matrícula ── *@
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-header bg-primary text-white py-2">
+                    <i class="fas fa-check-circle me-1"></i>Mi Matrícula
+                    <span class="badge bg-white text-primary ms-1" id="numCursos">@Model.CursosMatriculados.Count</span>
+                </div>
+                <div class="card-body p-0">
+                    <table class="table table-sm mb-0" id="tablaMatricula">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Curso</th>
+                                <th class="text-center">Cr.</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="bodyMatricula">
+                            @foreach (var c in Model.CursosMatriculados)
+                            {
+                                <tr id="fila-mat-@c.Id">
+                                    <td>
+                                        <div class="fw-semibold small">@c.Codigo</div>
+                                        <div class="text-muted" style="font-size:.75rem">@c.Nombre</div>
+                                        <div class="text-muted" style="font-size:.7rem">@c.Dia — @c.Horario</div>
+                                    </td>
+                                    <td class="text-center"><span class="badge bg-primary">@c.Creditos</span></td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-danger py-0 px-1"
+                                                onclick="retirar(@c.Id)">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    @if (!Model.CursosMatriculados.Any())
+                    {
+                        <div id="sinCursos" class="text-center text-muted py-4">
+                            <i class="fas fa-inbox fa-2x mb-2 d-block"></i>
+                            Agregue cursos a su matrícula
+                        </div>
+                    }
+                </div>
+                <div class="card-footer bg-white">
+                    <button class="btn btn-primary w-100" onclick="confirmarMatricula()"
+                            id="btnConfirmar" @(!Model.CursosMatriculados.Any() ? "disabled" : "")>
+                        <i class="fas fa-check me-1"></i>Confirmar Matrícula
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section scripts {
+<script>
+    var maxCreditos = @Model.MaxCreditos;
+
+    function actualizarBarra(creditos) {
+        document.getElementById('numCreditos').textContent = creditos;
+        var barra = document.getElementById('barraCreditos');
+        var pct   = Math.min(creditos / maxCreditos * 100, 100);
+        barra.style.width = pct + '%';
+        barra.className   = 'progress-bar ' + (creditos > maxCreditos ? 'bg-danger' : 'bg-primary');
+    }
+
+    function agregar(id, codigo, nombre, creditos, dia, horario, docente, aula) {
+        fetch('@Url.Action("Agregar","Matricula")', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: 'id=' + id
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(res) {
+            if (!res.ok) { mostrarError(res.mensaje); return; }
+
+            // Ocultar de disponibles
+            document.getElementById('fila-disp-' + id).style.display = 'none';
+
+            // Agregar a mi matrícula
+            var tbody = document.getElementById('bodyMatricula');
+            var sinCursos = document.getElementById('sinCursos');
+            if (sinCursos) sinCursos.style.display = 'none';
+
+            var tr = document.createElement('tr');
+            tr.id = 'fila-mat-' + id;
+            tr.innerHTML =
+                '<td><div class="fw-semibold small">' + codigo + '</div>'
+              + '<div class="text-muted" style="font-size:.75rem">' + nombre + '</div>'
+              + '<div class="text-muted" style="font-size:.7rem">' + dia + ' — ' + horario + '</div></td>'
+              + '<td class="text-center"><span class="badge bg-primary">' + creditos + '</span></td>'
+              + '<td><button class="btn btn-sm btn-outline-danger py-0 px-1" onclick="retirar(' + id + ')"><i class="fas fa-times"></i></button></td>';
+            tbody.appendChild(tr);
+
+            actualizarBarra(res.creditos);
+            actualizarContadorCursos(1);
+            document.getElementById('btnConfirmar').disabled = false;
+        });
+    }
+
+    function retirar(id) {
+        fetch('@Url.Action("Retirar","Matricula")', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: 'id=' + id
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(res) {
+            if (!res.ok) return;
+            var filaMat  = document.getElementById('fila-mat-' + id);
+            var filaDisp = document.getElementById('fila-disp-' + id);
+            if (filaMat)  filaMat.remove();
+            if (filaDisp) filaDisp.style.display = '';
+
+            actualizarBarra(res.creditos);
+            actualizarContadorCursos(-1);
+
+            var tbody = document.getElementById('bodyMatricula');
+            if (tbody.children.length === 0) {
+                document.getElementById('btnConfirmar').disabled = true;
+                var div = document.getElementById('sinCursos');
+                if (!div) {
+                    div = document.createElement('div');
+                    div.id = 'sinCursos';
+                    div.className = 'text-center text-muted py-4';
+                    div.innerHTML = '<i class="fas fa-inbox fa-2x mb-2 d-block"></i>Agregue cursos a su matrícula';
+                    tbody.parentElement.appendChild(div);
+                } else {
+                    div.style.display = '';
+                }
+            }
+        });
+    }
+
+    function actualizarContadorCursos(delta) {
+        var el  = document.getElementById('numCursos');
+        var cnt = parseInt(el.textContent) + delta;
+        el.textContent = cnt;
+    }
+
+    function confirmarMatricula() {
+        Confirmacion('¿Confirma su matrícula? Una vez confirmada no podrá modificarla.', 'Confirmar Matrícula', function() {
+            fetch('@Url.Action("Confirmar","Matricula")', { method: 'POST' })
+            .then(function(r) { return r.json(); })
+            .then(function(res) {
+                if (res.ok) Correcto(res.mensaje);
+                else mostrarError(res.mensaje);
+            });
+        });
+    }
+
+    function filtrarCursos() {
+        var texto = document.getElementById('txtFiltro').value.toLowerCase();
+        document.querySelectorAll('#tablaCursos tbody tr').forEach(function(tr) {
+            if (tr.style.display === 'none' && tr.id.startsWith('fila-disp-')) return;
+            tr.style.display = tr.textContent.toLowerCase().includes(texto) ? '' : 'none';
+        });
+    }
+</script>
+}

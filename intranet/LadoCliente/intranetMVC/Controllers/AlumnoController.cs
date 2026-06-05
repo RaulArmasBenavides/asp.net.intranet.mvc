@@ -1,272 +1,216 @@
-﻿using intranetMVC.Models;
+using intranetMVC.Models;
+using intranetMVC.Models.Academico;
 using intranetMVC.Proxy;
 using intranetMVC.Reportes;
 using System;
-using System.Net;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-
 
 namespace intranetMVC.Controllers
 {
     public class AlumnoController : Controller
     {
-        WCFCustomIntranetClient client = new WCFCustomIntranetClient();        
-        // GET: Student
-        public ActionResult Index()
-        {
-            return View();
-        }
+        private readonly WCFCustomIntranetClient client = new WCFCustomIntranetClient();
 
-        public JsonResult getClientes()
-        {
-            var res = Json(client.AlumnoListar3(),JsonRequestBehavior.AllowGet);
-            return res;
-        }
+        public ActionResult Index() => View();
 
-        public ActionResult Search()
+        public ActionResult Search() => View();
+
+        public ActionResult Horario()
         {
-            return View();
+            var vm = new HorarioViewModel
+            {
+                Periodo = "2024 - I",
+                Dias    = new[] { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" },
+                Clases  = HorarioHelper.ObtenerClases()
+            };
+            return View(vm);
         }
 
         public ActionResult Perfil()
         {
-            return PartialView();
-        }
-
-        //public JsonResult Search3(string input)
-        //{
-        //    //EduTecEntities edu = new EduTecEntities();
-        //    //SqlMethods.Like(r.NomAlumno, "ronnie")
-        //    //var result = from r in edu.Alumnoes
-        //    //             where r.NomAlumno == input
-        //    //             select new { r.IdAlumno,r.NomAlumno, r.ApeAlumno };
-
-        //   // return Json(result, JsonRequestBehavior.AllowGet);
-        //}
-
-
-        // GET: Student/Details/5
-        public ActionResult Details(string id)
-        {
-            if (id == null)
+            var modelo = new PerfilViewModel
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-           Student alumno = null;// db.Alumnoes.Find(id);
-            if (alumno == null)
-            {
-                return HttpNotFound();
-            }
-            return View(alumno);
+                NombreCompleto    = "García Pérez, Juan Carlos",
+                CodigoAlumno     = "19200045",
+                DNI              = "75312489",
+                FechaNacimiento  = "15/03/2001",
+                Sexo             = "Masculino",
+                Email            = "jgarcia@unmsm.edu.pe",
+                Telefono         = "987654321",
+                Direccion        = "Jr. Los Pinos 234",
+                Distrito         = "San Martín de Porres",
+                Provincia        = "Lima",
+                Departamento     = "Lima",
+                Facultad         = "Facultad de Ingeniería de Sistemas e Informática",
+                Carrera          = "Ingeniería de Sistemas",
+                Modalidad        = "Presencial",
+                Turno            = "Mañana",
+                Estado           = "Regular",
+                CicloActual      = 4,
+                Promedio         = 14.75m,
+                CreditosAprobados = 58,
+                AnioIngreso      = "2019",
+                Tutor            = "Dr. Quispe Mendoza, Roberto"
+            };
+            return View(modelo);
         }
 
-        // GET: Student/Create
-        public ActionResult Create()
+        public ActionResult DatosPersonales()
         {
-            return View();
+            var modelo = new PerfilViewModel
+            {
+                NombreCompleto    = "García Pérez, Juan Carlos",
+                CodigoAlumno     = "19200045",
+                DNI              = "75312489",
+                FechaNacimiento  = "15/03/2001",
+                Sexo             = "Masculino",
+                Email            = "jgarcia@unmsm.edu.pe",
+                Telefono         = "987654321",
+                Direccion        = "Jr. Los Pinos 234",
+                Distrito         = "San Martín de Porres",
+                Provincia        = "Lima",
+                Departamento     = "Lima",
+                Facultad         = "Facultad de Ingeniería de Sistemas e Informática",
+                Carrera          = "Ingeniería de Sistemas",
+                Modalidad        = "Presencial",
+                Turno            = "Mañana",
+                Estado           = "Regular",
+                CicloActual      = 4,
+                Promedio         = 14.75m,
+                CreditosAprobados = 58,
+                AnioIngreso      = "2019",
+                Tutor            = "Dr. Quispe Mendoza, Roberto"
+            };
+            return View(modelo);
         }
 
-        // POST: Student/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        public ActionResult Historial()
+        {
+            var modelo = new HistorialViewModel
+            {
+                NombreCompleto    = "García Pérez, Juan Carlos",
+                CodigoAlumno     = "19200045",
+                Facultad         = "Facultad de Ingeniería de Sistemas e Informática",
+                Carrera          = "Ingeniería de Sistemas",
+                Modalidad        = "Presencial",
+                CicloActual      = 4,
+                PromedioGeneral  = 14.75m,
+                CreditosAprobados = 58,
+                Cursos = new List<CursoHistorial>
+                {
+                    // 2024 - I
+                    new CursoHistorial { Anio=2024, Semestre="I", Codigo="MAT201", NombreCurso="Cálculo II",              Creditos=4, Nota=15.00m, Estado="Aprobado"    },
+                    new CursoHistorial { Anio=2024, Semestre="I", Codigo="FIS101", NombreCurso="Física General",          Creditos=3, Nota=13.00m, Estado="Aprobado"    },
+                    new CursoHistorial { Anio=2024, Semestre="I", Codigo="PRO201", NombreCurso="Estructura de Datos",     Creditos=3, Nota=16.00m, Estado="Aprobado"    },
+                    new CursoHistorial { Anio=2024, Semestre="I", Codigo="ALG101", NombreCurso="Álgebra Lineal",          Creditos=3, Nota=12.00m, Estado="Aprobado"    },
+                    new CursoHistorial { Anio=2024, Semestre="I", Codigo="HUM201", NombreCurso="Ética Profesional",       Creditos=2, Nota=17.00m, Estado="Aprobado"    },
+                    // 2023 - II
+                    new CursoHistorial { Anio=2023, Semestre="II", Codigo="MAT101", NombreCurso="Cálculo I",             Creditos=4, Nota=14.00m, Estado="Aprobado"    },
+                    new CursoHistorial { Anio=2023, Semestre="II", Codigo="PRO101", NombreCurso="Programación I",        Creditos=3, Nota=18.00m, Estado="Aprobado"    },
+                    new CursoHistorial { Anio=2023, Semestre="II", Codigo="BAS101", NombreCurso="Lenguaje y Comunicación",Creditos=2, Nota=15.00m, Estado="Aprobado"    },
+                    new CursoHistorial { Anio=2023, Semestre="II", Codigo="QUI001", NombreCurso="Química General",       Creditos=3, Nota=10.00m, Estado="Aprobado"    },
+                    // 2023 - I
+                    new CursoHistorial { Anio=2023, Semestre="I", Codigo="INT001", NombreCurso="Introducción a la Ing.", Creditos=3, Nota=17.00m, Estado="Aprobado"    },
+                    new CursoHistorial { Anio=2023, Semestre="I", Codigo="MAT000", NombreCurso="Pre-Cálculo",           Creditos=4, Nota=08.00m, Estado="Desaprobado"  },
+                    new CursoHistorial { Anio=2023, Semestre="I", Codigo="HUM001", NombreCurso="Realidad Nacional",      Creditos=2, Nota=16.00m, Estado="Aprobado"    },
+                }
+            };
+            return View(modelo);
+        }
+
+        // ── JSON endpoints para Generic.js ───────────────────────────────────
+
+        public JsonResult getClientes()
+        {
+            var lista = client.AlumnoListar3() ?? new List<Student>();
+            return Json(lista, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult AlumnoBuscar(string nombre)
+        {
+            var todos = client.AlumnoListar3() ?? new List<Student>();
+            if (string.IsNullOrWhiteSpace(nombre))
+                return Json(todos, JsonRequestBehavior.AllowGet);
+
+            var filtrados = todos.Where(a =>
+                ContainsIgnoreCase(a.NomAlumno,    nombre) ||
+                ContainsIgnoreCase(a.ApePatAlumno, nombre) ||
+                ContainsIgnoreCase(a.ApeMatAlumno, nombre) ||
+                ContainsIgnoreCase(a.DNI,          nombre)
+            ).ToList();
+
+            return Json(filtrados, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult AlumnoObtener(string IdAlumno)
+        {
+            var alumno = client.find(IdAlumno);
+            return Json(alumno, JsonRequestBehavior.AllowGet);
+        }
+
+        // ── CRUD ─────────────────────────────────────────────────────────────
+
+        public ActionResult Create() => View();
+
         [HttpPost]
-        //[ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IdAlumno,ApePatAlumno,ApeMatAlumno,NomAlumno,DirAlumno,TelAlumno,EmailAlumno,DNI,Sexo")] Student alumno)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    db.Alumnoes.Add(alumno);
-            //    //db.SaveChanges();
-            //    return RedirectToAction("Index");
-            //}
-            // cliente.AlumnoAdicionar(alumno);
-            client.createStudent(alumno);
-            //ViewBag.JavaScriptFunction = "swal('Éxito!', 'Se registró el nuevo alumno con éxito!', 'Éxito');";
-            return View();
-            //return View(alumno);
+            bool ok = client.createStudent(alumno);
+            return Content(ok ? "1" : "0");
         }
 
-        // GET: Student/Edit/5
-        public ActionResult Edit(string id)
-        {
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            ////Student alumno = cliente.AlumnoBuscar(Convert.ToInt32(id)); //null; // db.Alumnoes.Find(id);
-            //if (alumno == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            return View();
-        }
+        public ActionResult Edit(string id) => View();
 
-        // POST: Student/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "IdAlumno,ApePatAlumno,ApeMatAlumno,NomAlumno,DirAlumno,TelAlumno,EmailAlumno,DNI,Sexo")] Student alumno)
         {
             if (ModelState.IsValid)
             {
-                //cliente.AlumnoActualizar(alumno);
-                //db.SaveChanges();
+                client.edit(alumno);
                 return RedirectToAction("Index");
             }
             return View(alumno);
         }
 
-        // GET: Student/Delete/5
-        public async Task<bool> Delete(string IdAlumno)
+        public async Task<ActionResult> Delete(string IdAlumno)
         {
-            bool res = false;
-            if (IdAlumno != null)
-            {
-               res = await client.delete(IdAlumno);
-                //   return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-
-            return res;
-            //Student alumno = null; // db.Alumnoes.Find(id);
-            //if (alumno == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //return View();
-        }
-
-        // POST: Student/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
-        {
+            if (string.IsNullOrEmpty(IdAlumno))
+                return Content("0");
             try
             {
-                //db.Alumnoes.Remove(db.Alumnoes.Find(id));
-                // db.Alumnoes.Remove(alumno);
-                //db.SaveChanges();
-                return RedirectToAction("Index");
+                bool ok = await client.delete(IdAlumno);
+                return Content(ok ? "1" : "0");
             }
-            catch (Exception ex)
+            catch
             {
-
-                throw ex;
+                return Content("0");
             }
-          
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                //db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-
-        public ActionResult Imprimir()
-        {
-            //   return View(db.Alumnoes.ToList());
-            return View();
-        }
-
-
-
-        //imprimir 
-        //public ActionResult ImprimirPDF()
-        //{
-        //    //var userdetails = new List<Student>()
-        //    //{
-        //    //    //new user() {id = 101, nombre = "juan perez", direccion = "av. lima 123",email = "jperez@gmail.com"},
-        //    //    //new user() {id = 102, nombre = "fanny chiara", direccion = "av. peru 890",email = "fchiara@gmail.com"},
-        //    //    //new user() {id = 103, nombre = "ricardo flores", direccion = "calle los olivos 234",email = "rfloresz@gmail.com"},
-        //    //    //new user() {id = 104, nombre = "milagros aguilar", direccion = "jr. viru 111",email = "maguilarz@hotmail.com"},
-        //    //    //new user() {id = 105, nombre = "raquel medina", direccion = "av. san juan 345",email = "rmedina@gmail.com"},
-        //    //    //new user() {id = 106, nombre = "fredy luna", direccion = "jr. los cipreces 233",email = "fluna@hotmail.com"},
-        //    //};
-        //    //Excel();
-
-        //    //return new Rotativa.MVC.ActionAsPdf("Imprimir")
-        //    //{
-        //    //    FileName = "test.pdf"
-        //    //};  //.PdfResult(db.Alumnoes.ToList(), "Imprimir");
-        //}
-
-        //public void Excel()
-        //{
-        //    string etapa = "";
-        //    int nroFila = 0;
-        //    string ruta = @"C:\Users\RAUL\Documents\rmab\report";
-        //    byte[] archivoExcelSalida = null;
-        //    OfficeOpenXml.ExcelPackage paqueteExcel = null;
-        //    OfficeOpenXml.ExcelWorksheet hojaExcel = null;
-        //    string nombreArchivo = "ReporteErrores.xlsx";
-        //    OfficeOpenXml.ExcelRange celda;
-        //    System.IO.FileStream archivoExcel = null;
-
-        //    ruta += nombreArchivo;
-        //    archivoExcel = new System.IO.FileStream(ruta, System.IO.FileMode.OpenOrCreate);
-        //    etapa = "CARGÓ FILESTREAM";
-
-        //    paqueteExcel = new OfficeOpenXml.ExcelPackage(archivoExcel);
-        //    etapa = "ABRIÓ PAQUETE EXCEL";
-
-        //    //Ventas
-        //    hojaExcel = paqueteExcel.Workbook.Worksheets.Add("Compras");
-        //    etapa = "GENERÓ HOJA EXCEL";
-
-        //    //cabecera
-        //    nroFila = 1;
-        //    nroFila = 4;//SeteaCabeceraExcel(ref hojaExcelCompras, 1, 1, 17, "Consulta Generica de los Comprobantes de Compra", parametrosComprobante.EmpresaEjecucion.Nombre.Trim(), filtroComprobante);
-        //    etapa = "SETEÓ CABECERA EXCEL COMPRAS";
-        //    //titulos
-        //    nroFila += 1;
-        //    hojaExcel.Cells[nroFila, 1].Value = "Nro_Solicitud";
-        //    hojaExcel.Cells[nroFila, 2].Value = "Fecha_pagador";
-        //    hojaExcel.Cells[nroFila, 3].Value = "Hora_pagador";
-        //    hojaExcel.Cells[nroFila, 4].Value = "Proceso";
-        //    hojaExcel.Cells[nroFila, 5].Value = "Descripción del error";
-        //    //hojaExcel.Cells[nroFila, 6].Value = "Número ID";
-        //    //hojaExcel.Cells[nroFila, 7].Value = "Razón Social";
-        //    //hojaExcel.Cells[nroFila, 8].Value = "Fecha Emisión";
-        //    //hojaExcel.Cells[nroFila, 9].Value = "Estado";
-        //    //hojaExcel.Cells[nroFila, 10].Value = "Total a Pagar";
-        //    //hojaExcel.Cells[nroFila, 11].Value = "Moneda";
-        //    //hojaExcel.Cells[nroFila, 12].Value = "Origen";
-        //    //hojaExcel.Cells[nroFila, 13].Value = "CR";
-        //    //hojaExcel.Cells[nroFila, 14].Value = "Tipo Detrac.";
-        //    //hojaExcel.Cells[nroFila, 15].Value = "Derivado";
-        //    //hojaExcel.Cells[nroFila, 16].Value = "Rol Digitador";
-        //    //hojaExcel.Cells[nroFila, 17].Value = "Fecha Digitación";
-
-        //    hojaExcel.Cells[nroFila, 1, nroFila, 17].Style.Font.Size = 12;
-        //    hojaExcel.Cells[nroFila, 1, nroFila, 17].Style.Font.Bold = true;
-        //    hojaExcel.Cells[nroFila, 1, nroFila, 17].Style.Font.Color.SetColor(System.Drawing.Color.DarkBlue);
-        //    //hojaExcel.Cells[nroFila, 1, nroFila, 17].AutoFilter = true;
-
-        //    etapa = "SETEÓ DATOS EXCEL COMPRAS";
-
-        //    paqueteExcel.Save();
-        //    etapa = "GUARDANDO EXCEL";
-
-        //    archivoExcelSalida = System.IO.File.ReadAllBytes(ruta);
-        //    etapa = "RETORNANDO EXCEL";
-        //}
-
-        //Métodos para generar reporte en  Excel
         public void Excel()
         {
             StudentExcel excel = new StudentExcel();
             Response.ClearContent();
-            //Response.BinaryWrite(excel.GenerateExcel(GetStudents()));
-            Response.AddHeader("content-disposition", "attachment;filename = Students.xlsx");
-            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheet";
+            Response.AddHeader("content-disposition", "attachment;filename=Students.xlsx");
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
             Response.Flush();
             Response.End();
+        }
+
+        // ── Helpers ───────────────────────────────────────────────────────────
+
+        private static bool ContainsIgnoreCase(string source, string value)
+        {
+            return source != null && source.IndexOf(value, StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
         }
     }
 }

@@ -1,0 +1,90 @@
+@model intranetMVC.Models.Academico.ReporteNotasViewModel
+@{
+    ViewBag.Title = "Evaluaciones y Notas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var encabezados = Model.Cursos.FirstOrDefault()?.Evaluaciones.Select(e => e.Tipo).ToList() ?? new System.Collections.Generic.List<string>();
+}
+
+<div class="container-fluid px-0">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="fw-bold mb-0"><i class="fas fa-clipboard-list me-2 text-primary"></i>Evaluaciones y Notas</h4>
+        <div>
+            <span class="text-muted small me-3">Período: <strong>@Model.Periodo</strong></span>
+            <button class="btn btn-sm btn-outline-secondary" onclick="window.print()">
+                <i class="fas fa-print me-1"></i>Imprimir
+            </button>
+        </div>
+    </div>
+
+    @* Promedio semestral *@
+    <div class="alert @(Model.PromedioSemestral >= 10.5m ? "alert-success" : "alert-danger") d-flex justify-content-between align-items-center py-2 mb-3">
+        <span><i class="fas fa-star me-1"></i>Promedio Ponderado del Semestre</span>
+        <strong class="fs-5">@Model.PromedioSemestral.ToString("F2")</strong>
+    </div>
+
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-sm mb-0">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Cód.</th>
+                            <th>Curso</th>
+                            <th class="text-center">Cr.</th>
+                            @foreach (var e in encabezados)
+                            {
+                                var curso0 = Model.Cursos.First();
+                                var eval0  = curso0.Evaluaciones.First(x => x.Tipo == e);
+                                <th class="text-center">@e<br/><small class="fw-normal opacity-75">(@eval0.Peso.ToString("0")%)</small></th>
+                            }
+                            <th class="text-center bg-primary text-white">Promedio</th>
+                            <th class="text-center">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var c in Model.Cursos)
+                        {
+                            <tr class="@(c.Estado == "Desaprobado" ? "table-danger" : "")">
+                                <td class="font-monospace fw-semibold text-primary small">@c.Codigo</td>
+                                <td>
+                                    <div class="fw-semibold small">@c.Nombre</div>
+                                    <div class="text-muted" style="font-size:.7rem">@c.Docente</div>
+                                </td>
+                                <td class="text-center"><span class="badge bg-secondary">@c.Creditos</span></td>
+                                @foreach (var ev in c.Evaluaciones)
+                                {
+                                    <td class="text-center fw-semibold @(ev.Nota >= 10.5m ? "text-success" : "text-danger")">
+                                        @ev.Nota.ToString("F2")
+                                    </td>
+                                }
+                                <td class="text-center fw-bold bg-light @(c.NotaFinal >= 10.5m ? "text-success" : "text-danger")">
+                                    @c.NotaFinal.ToString("F2")
+                                </td>
+                                <td class="text-center">
+                                    @if (c.Estado == "Aprobado")
+                                    {
+                                        <span class="badge bg-success"><i class="fas fa-check me-1"></i>Aprobado</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger"><i class="fas fa-times me-1"></i>Desaprobado</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot class="table-secondary fw-bold">
+                        <tr>
+                            <td colspan="3" class="text-end">Promedio Ponderado</td>
+                            <td colspan="@encabezados.Count"></td>
+                            <td class="text-center">@Model.PromedioSemestral.ToString("F2")</td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

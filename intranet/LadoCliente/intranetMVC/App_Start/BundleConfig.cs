@@ -51,9 +51,16 @@ namespace intranetMVC
             // Utilice la versión de desarrollo de Modernizr para desarrollar y obtener información. De este modo, estará
             // para la producción, use la herramienta de compilación disponible en https://modernizr.com para seleccionar solo las pruebas que necesite.
             bundles.Add(new ScriptBundle("~/bundles/respond").Include("~/Scripts/respond.js"));
-            bundles.Add(new ScriptBundle("~/bundles/MisEventos2").Include("~/Scripts/MisEventos2.js"));
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include("~/Scripts/jquery.validate*"));
-            bundles.Add(new ScriptBundle("~/bundles/sweetalert").Include("~/Scripts/sweetalert.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/intranet")
+                .Include("~/Scripts/sweetalert.js")
+                .Include("~/Scripts/intranet.js")
+                .Include("~/Scripts/modulos/alumno.modulo.js")
+                .Include("~/Scripts/modulos/sede.modulo.js")
+                .Include("~/Scripts/modulos/curso.modulo.js")
+                .Include("~/Scripts/modulos/sala.modulo.js")
+                .Include("~/Scripts/modulos/docente.modulo.js")
+                .Include("~/Scripts/intranet.init.js"));
  
 
         }

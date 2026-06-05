@@ -1,0 +1,46 @@
+@{
+    ViewBag.Title = "Reportes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var tarjetas = new[]
+    {
+        new { Href="/Reportes/Notas",         Icon="fa-clipboard-list",  Titulo="Evaluaciones y Notas",      Desc="Consulta tus notas parciales y finales por curso.",      Color="primary"   },
+        new { Href="/Reportes/Matricula",      Icon="fa-file-signature",  Titulo="Constancia de Matrícula",   Desc="Visualiza e imprime tu constancia de matrícula.",        Color="success"   },
+        new { Href="/Reportes/PreMatricula",   Icon="fa-calendar-check",  Titulo="Pre-Matrícula",             Desc="Cursos disponibles para el siguiente período.",          Color="info"      },
+        new { Href="/Reportes/Deudas",         Icon="fa-file-invoice-dollar",Titulo="Estado de Deudas",      Desc="Revisa tus pagos pendientes y obligaciones.",            Color="warning"   },
+        new { Href="/Alumno/Horario",          Icon="fa-calendar-week",   Titulo="Horario de Clases",         Desc="Visualiza tu horario semanal del período actual.",       Color="secondary" },
+        new { Href="/Alumno/Historial",        Icon="fa-graduation-cap",  Titulo="Historial Académico",       Desc="Consulta todos tus cursos, notas y ciclos cursados.",    Color="danger"    },
+    };
+}
+
+<div class="container-fluid px-0">
+
+    <h4 class="fw-bold mb-4"><i class="fas fa-file-alt me-2 text-primary"></i>Reportes</h4>
+
+    <div class="row g-4">
+        @foreach (var t in tarjetas)
+        {
+            <div class="col-md-4">
+                <a href="@t.Href" class="card border-0 shadow-sm h-100 text-decoration-none hover-shadow">
+                    <div class="card-body d-flex align-items-start gap-3 p-4">
+                        <div class="rounded-circle bg-@t.Color bg-opacity-10 p-3 flex-shrink-0">
+                            <i class="fas @t.Icon fa-lg text-@t.Color"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold text-dark mb-1">@t.Titulo</h6>
+                            <p class="text-muted small mb-0">@t.Desc</p>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-@t.Color bg-opacity-10 text-@t.Color text-end py-2 pe-3 small fw-semibold">
+                        Ver reporte <i class="fas fa-arrow-right ms-1"></i>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+
+</div>
+
+<style>
+    .hover-shadow:hover { box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.12) !important; transform: translateY(-2px); transition: all .2s; }
+    .card { transition: all .2s; }
+</style>

@@ -1,89 +1,57 @@
-﻿using intranetMVC.Models;
+using intranetMVC.Models.Academico;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace intranetMVC.Controllers
 {
     public class AsistenciaController : Controller
     {
-
-        //WCFIntranetClient cliente = new WCFIntranetClient();
-
-        // GET: Asistencia
         public ActionResult Index()
         {
-            return View();
-        }
-
-        // GET: Asistencia/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Asistencia/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Asistencia/Create
-        [HttpPost]
-        public ActionResult Create(Attendance asis)
-        {
-            try
+            var vm = new AsistenciaViewModel
             {
-                //cliente.AsistenciaAdicionar(asis);
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+                Periodo = "2024 - I",
+                Cursos  = new List<CursoAsistencia>
+                {
+                    Curso("MAT301","Cálculo III",         "Dr. Huanca Flores",  24, 22, 1, 1),
+                    Curso("PRO301","Algoritmos",           "Mg. Quispe Ríos",   20, 18, 0, 2),
+                    Curso("SIS201","Base de Datos I",      "Dr. Torres Medina",  22, 20, 2, 0),
+                    Curso("RED101","Redes de Computadoras","Ing. Salinas Cruz",  18, 12, 1, 5),
+                    Curso("EST201","Estadística p/ Ing.",  "Mg. Paredes Soto",   16,  9, 0, 7),
+                }
+            };
+            return View(vm);
         }
 
-        // GET: Asistencia/Edit/5
-        public ActionResult Edit(int id)
+        private static CursoAsistencia Curso(string cod, string nom, string doc,
+            int total, int asis, int tard, int falt)
         {
-            return View();
+            var pct    = total > 0 ? (decimal)(asis + tard * 0.5m) / total * 100 : 0;
+            var estado = pct >= 75 ? "success" : pct >= 60 ? "warning" : "danger";
+            return new CursoAsistencia
+            {
+                Codigo     = cod, Nombre     = nom, Docente    = doc,
+                TotalClases = total, Asistencias = asis,
+                Tardanzas   = tard, Faltas      = falt,
+                Porcentaje  = pct, EstadoBadge = estado,
+                Detalle     = GenerarDetalle(total, asis, tard, falt)
+            };
         }
 
-        // POST: Asistencia/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        private static List<DetalleAsistencia> GenerarDetalle(int total, int asis, int tard, int falt)
         {
-            try
+            var lista = new List<DetalleAsistencia>();
+            var fecha = new System.DateTime(2024, 4, 1);
+            int a = asis, t = tard, f = falt;
+            for (int i = 0; i < total; i++, fecha = fecha.AddDays(7))
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                string est;
+                if      (f > 0) { est = "F"; f--; }
+                else if (t > 0) { est = "T"; t--; }
+                else            { est = "A"; a--; }
+                lista.Add(new DetalleAsistencia { Fecha = fecha.ToString("dd/MM/yyyy"), Estado = est });
             }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Asistencia/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Asistencia/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return lista;
         }
     }
 }

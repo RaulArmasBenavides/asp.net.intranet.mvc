@@ -1,0 +1,109 @@
+@model intranetMVC.Models.Academico.AsistenciaViewModel
+@{
+    ViewBag.Title = "Mis Asistencias";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid px-0">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h4 class="fw-bold mb-0"><i class="fas fa-clipboard-check me-2 text-primary"></i>Mis Asistencias</h4>
+        <small class="text-muted">Período: <strong>@Model.Periodo</strong> &nbsp;|&nbsp;
+            Mínimo requerido: <strong class="text-danger">75%</strong></small>
+    </div>
+
+    @foreach (var cur in Model.Cursos)
+    {
+        var barColor = cur.EstadoBadge == "success" ? "bg-success"
+                     : cur.EstadoBadge == "warning"  ? "bg-warning"
+                     : "bg-danger";
+        <div class="card border-0 shadow-sm mb-3">
+            <div class="card-body">
+                <div class="row align-items-center">
+
+                    @* Nombre + docente *@
+                    <div class="col-md-4">
+                        <div class="fw-bold">
+                            <span class="font-monospace text-primary me-1">@cur.Codigo</span>@cur.Nombre
+                        </div>
+                        <small class="text-muted"><i class="fas fa-chalkboard-teacher me-1"></i>@cur.Docente</small>
+                    </div>
+
+                    @* Stats numéricos *@
+                    <div class="col-md-4">
+                        <div class="d-flex gap-3 text-center">
+                            <div>
+                                <div class="fw-bold text-success fs-5">@cur.Asistencias</div>
+                                <div class="text-muted" style="font-size:.7rem">Asistencias</div>
+                            </div>
+                            <div>
+                                <div class="fw-bold text-warning fs-5">@cur.Tardanzas</div>
+                                <div class="text-muted" style="font-size:.7rem">Tardanzas</div>
+                            </div>
+                            <div>
+                                <div class="fw-bold text-danger fs-5">@cur.Faltas</div>
+                                <div class="text-muted" style="font-size:.7rem">Faltas</div>
+                            </div>
+                            <div>
+                                <div class="fw-bold fs-5">@cur.TotalClases</div>
+                                <div class="text-muted" style="font-size:.7rem">Total</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @* Barra de porcentaje *@
+                    <div class="col-md-3">
+                        <div class="d-flex justify-content-between mb-1">
+                            <small class="fw-semibold">@cur.Porcentaje.ToString("F1")%</small>
+                            <span class="badge bg-@cur.EstadoBadge">
+                                @(cur.EstadoBadge == "success" ? "OK"
+                                  : cur.EstadoBadge == "warning" ? "En Riesgo"
+                                  : "Inhabilitado")
+                            </span>
+                        </div>
+                        <div class="progress" style="height:10px">
+                            <div class="progress-bar @barColor" style="width:@cur.Porcentaje.ToString("F1")%"></div>
+                        </div>
+                        <div class="d-flex justify-content-between mt-1">
+                            <small class="text-muted">0%</small>
+                            <small class="text-danger fw-semibold">75%</small>
+                            <small class="text-muted">100%</small>
+                        </div>
+                    </div>
+
+                    @* Botón detalle *@
+                    <div class="col-md-1 text-end">
+                        <button class="btn btn-sm btn-outline-secondary"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#det-@cur.Codigo">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+
+                @* Detalle expandible *@
+                <div class="collapse mt-3" id="det-@cur.Codigo">
+                    <hr class="mt-0"/>
+                    <div class="d-flex flex-wrap gap-1">
+                        @foreach (var d in cur.Detalle)
+                        {
+                            var bg = d.Estado == "A" ? "bg-success"
+                                   : d.Estado == "T" ? "bg-warning text-dark"
+                                   : "bg-danger";
+                            <div class="text-center" style="width:52px">
+                                <div class="badge @bg w-100">@d.Estado</div>
+                                <div class="text-muted" style="font-size:.6rem">@d.Fecha.Substring(0,5)</div>
+                            </div>
+                        }
+                    </div>
+                    <div class="mt-2 small text-muted">
+                        <span class="badge bg-success me-1">A</span>Asistencia &nbsp;
+                        <span class="badge bg-warning text-dark me-1">T</span>Tardanza &nbsp;
+                        <span class="badge bg-danger me-1">F</span>Falta
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

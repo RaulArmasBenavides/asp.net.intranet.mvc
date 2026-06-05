@@ -1,4 +1,4 @@
-﻿@model intranetMVC.Models.Usuario
+@model intranetMVC.Models.Usuario
 @{
     Layout = null;
 }
@@ -8,34 +8,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Intranet — Acceso</title>
+    @Styles.Render("~/Content/css/Login")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <div id="login-div">
-        <div class="header-title">Acceso al Sistema</div>
-        @using (Html.BeginForm("Autenticar", "Login", FormMethod.Post))
-        {
-            <div class="form-group">
-                @Html.LabelFor(model => model.user, "Usuario")
-                @Html.EditorFor(model => model.user, new { @class = "form-control", placeholder = "Ingrese su usuario" })
-                @Html.ValidationMessageFor(model => model.user)
-            </div>
+    <div class="login-wrapper">
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.password, "Contraseña")
-                @Html.EditorFor(model => model.password, new { @class = "form-control", type = "password", placeholder = "Ingrese su contraseña" })
-                @Html.ValidationMessageFor(model => model.password)
+        <div class="login-brand">
+            <div class="login-brand-circles"></div>
+            <div class="brand-content">
+                <div class="brand-icon">
+                    <i class="fas fa-university"></i>
+                </div>
+                <h2>Intranet</h2>
+                <p>Sistema de Gestión Académica</p>
             </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Aceptar" />
+        </div>
+
+        <div class="login-form-panel">
+            <div class="login-card">
+                <div class="login-card-header">
+                    <h3>Bienvenido</h3>
+                    <p>Ingrese sus credenciales para continuar</p>
+                </div>
+
+                @using (Html.BeginForm("Autenticar", "Login", FormMethod.Post))
+                {
+                    <div class="form-floating mb-3">
+                        @Html.TextBoxFor(model => model.user, new { @class = "form-control login-input", placeholder = " ", autocomplete = "username" })
+                        @Html.LabelFor(model => model.user, new { })
+                        <span class="input-icon"><i class="fas fa-user"></i></span>
+                        @Html.ValidationMessageFor(model => model.user, "", new { @class = "field-validation-error" })
+                    </div>
+
+                    <div class="form-floating mb-4">
+                        @Html.PasswordFor(model => model.password, new { @class = "form-control login-input", placeholder = " ", autocomplete = "current-password", id = "passwordInput" })
+                        @Html.LabelFor(model => model.password, new { })
+                        <span class="input-icon"><i class="fas fa-lock"></i></span>
+                        <button type="button" class="toggle-password" onclick="togglePassword()" tabindex="-1">
+                            <i class="fas fa-eye" id="toggleIcon"></i>
+                        </button>
+                        @Html.ValidationMessageFor(model => model.password, "", new { @class = "field-validation-error" })
+                    </div>
+
+                    <button type="submit" class="btn-login">
+                        Ingresar <i class="fas fa-arrow-right ms-2"></i>
+                    </button>
+                }
             </div>
-            <div class="form-group">
-                <input type="reset" class="btn btn-danger" value="Limpiar" />
-            </div>
-        }
+        </div>
     </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    <script>
+        function togglePassword() {
+            var input = document.getElementById('passwordInput');
+            var icon = document.getElementById('toggleIcon');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        }
+    </script>
 </body>
 </html>
-
-@Styles.Render("~/Content/css/Login")
-@Scripts.Render("~/bundles/jquery")

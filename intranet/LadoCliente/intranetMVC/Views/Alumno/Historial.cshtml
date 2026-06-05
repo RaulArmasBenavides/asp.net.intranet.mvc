@@ -1,0 +1,142 @@
+@model intranetMVC.Models.Academico.HistorialViewModel
+@using System.Linq
+@{
+    ViewBag.Title = "Historial Académico";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var grupos = Model.Cursos
+        .GroupBy(c => new { c.Anio, c.Semestre })
+        .OrderByDescending(g => g.Key.Anio)
+        .ThenByDescending(g => g.Key.Semestre);
+}
+
+<div class="container-fluid px-0">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="mb-0 fw-bold"><i class="fas fa-graduation-cap me-2 text-primary"></i>Historial Académico</h4>
+        <button class="btn btn-sm btn-outline-secondary" onclick="window.print()">
+            <i class="fas fa-print me-1"></i>Imprimir
+        </button>
+    </div>
+
+    @* Ficha del alumno *@
+    <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body py-3">
+            <div class="row g-2">
+                <div class="col-md-6">
+                    <table class="table table-sm table-borderless mb-0">
+                        <tr>
+                            <td class="text-muted fw-semibold" style="width:140px">Alumno</td>
+                            <td class="fw-bold text-uppercase">@Model.NombreCompleto</td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted fw-semibold">Código</td>
+                            <td>@Model.CodigoAlumno</td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted fw-semibold">Facultad</td>
+                            <td>@Model.Facultad</td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted fw-semibold">Carrera</td>
+                            <td>@Model.Carrera</td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted fw-semibold">Modalidad</td>
+                            <td>@Model.Modalidad</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <div class="row g-2 h-100 align-items-center">
+                        <div class="col-4 text-center">
+                            <div class="border rounded p-2">
+                                <div class="fs-3 fw-bold text-primary">@Model.PromedioGeneral.ToString("F2")</div>
+                                <div class="text-muted small">Promedio General</div>
+                            </div>
+                        </div>
+                        <div class="col-4 text-center">
+                            <div class="border rounded p-2">
+                                <div class="fs-3 fw-bold text-success">@Model.CreditosAprobados</div>
+                                <div class="text-muted small">Créditos Aprobados</div>
+                            </div>
+                        </div>
+                        <div class="col-4 text-center">
+                            <div class="border rounded p-2">
+                                <div class="fs-3 fw-bold text-info">@Model.CicloActual°</div>
+                                <div class="text-muted small">Ciclo Actual</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* Historial por semestre *@
+    @foreach (var grupo in grupos)
+    {
+        var cursos       = grupo.ToList();
+        var credTotales  = cursos.Sum(c => c.Creditos);
+        var promSemestre = cursos.Average(c => c.Nota);
+        var aprobados    = cursos.Count(c => c.Estado == "Aprobado");
+
+        <div class="card border-0 shadow-sm mb-3">
+            <div class="card-header bg-primary text-white py-2 d-flex justify-content-between align-items-center">
+                <span class="fw-bold">
+                    <i class="fas fa-calendar-alt me-2"></i>
+                    @grupo.Key.Anio &nbsp;—&nbsp; @grupo.Key.Semestre Semestre
+                </span>
+                <span class="small">
+                    @aprobados / @cursos.Count cursos aprobados &nbsp;|&nbsp;
+                    Promedio: <strong>@promSemestre.ToString("F2")</strong> &nbsp;|&nbsp;
+                    Créditos: <strong>@credTotales</strong>
+                </span>
+            </div>
+            <div class="card-body p-0">
+                <table class="table table-sm table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th style="width:100px">Código</th>
+                            <th>Nombre del Curso</th>
+                            <th class="text-center" style="width:80px">Créditos</th>
+                            <th class="text-center" style="width:80px">Nota</th>
+                            <th class="text-center" style="width:120px">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var curso in cursos)
+                        {
+                            <tr class="@(curso.Estado == "Desaprobado" ? "table-danger" : "")">
+                                <td class="font-monospace fw-semibold">@curso.Codigo</td>
+                                <td>@curso.NombreCurso</td>
+                                <td class="text-center">@curso.Creditos</td>
+                                <td class="text-center fw-bold @(curso.Nota >= 10.5m ? "text-success" : "text-danger")">
+                                    @curso.Nota.ToString("F2")
+                                </td>
+                                <td class="text-center">
+                                    @if (curso.Estado == "Aprobado")
+                                    {
+                                        <span class="badge bg-success"><i class="fas fa-check me-1"></i>Aprobado</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger"><i class="fas fa-times me-1"></i>Desaprobado</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot class="table-secondary fw-semibold">
+                        <tr>
+                            <td colspan="2" class="text-end">Totales del semestre</td>
+                            <td class="text-center">@credTotales</td>
+                            <td class="text-center">@promSemestre.ToString("F2")</td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    }
+
+</div>

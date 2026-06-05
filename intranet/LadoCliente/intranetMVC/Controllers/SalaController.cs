@@ -1,89 +1,84 @@
-﻿using System;
+using intranetMVC.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace intranetMVC.Controllers
 {
     public class SalaController : Controller
     {
-        // GET: Sala
-        public ActionResult Index()
+        private static int _nextId = 6;
+        private static readonly List<Sala> _salas = new List<Sala>
         {
-            return View();
+            new Sala { IdSala = 1, Nombre = "Aula 101",           Capacidad = 40,  TipoSala = "Teoría",       Ubicacion = "Pabellón A - Piso 1", Estado = "Disponible"       },
+            new Sala { IdSala = 2, Nombre = "Aula 201",           Capacidad = 35,  TipoSala = "Teoría",       Ubicacion = "Pabellón A - Piso 2", Estado = "Disponible"       },
+            new Sala { IdSala = 3, Nombre = "Lab. Cómputo 01",    Capacidad = 25,  TipoSala = "Laboratorio",  Ubicacion = "Pabellón B - Piso 1", Estado = "Disponible"       },
+            new Sala { IdSala = 4, Nombre = "Lab. Cómputo 02",    Capacidad = 25,  TipoSala = "Laboratorio",  Ubicacion = "Pabellón B - Piso 2", Estado = "En Mantenimiento" },
+            new Sala { IdSala = 5, Nombre = "Auditorio Principal", Capacidad = 200, TipoSala = "Auditorio",   Ubicacion = "Edificio Central",    Estado = "Disponible"       },
+        };
+
+        public ActionResult Index() => View();
+
+        // ── JSON endpoints para Generic.js ───────────────────────────────────
+
+        public JsonResult ListarSalas()
+        {
+            return Json(_salas, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Sala/Details/5
-        public ActionResult Details(int id)
+        public JsonResult SalaBuscar(string nombre)
         {
-            return View();
+            if (string.IsNullOrWhiteSpace(nombre))
+                return Json(_salas, JsonRequestBehavior.AllowGet);
+
+            var resultado = _salas
+                .Where(s => ContainsIgnoreCase(s.Nombre, nombre)
+                         || ContainsIgnoreCase(s.TipoSala, nombre)
+                         || ContainsIgnoreCase(s.Ubicacion, nombre))
+                .ToList();
+
+            return Json(resultado, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Sala/Create
-        public ActionResult Create()
+        public JsonResult SalaObtener(int IdSala)
         {
-            return View();
+            var sala = _salas.FirstOrDefault(s => s.IdSala == IdSala);
+            return Json(sala, JsonRequestBehavior.AllowGet);
         }
 
-        // POST: Sala/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Sala sala)
         {
-            try
+            if (sala.IdSala == 0)
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                sala.IdSala = _nextId++;
+                _salas.Add(sala);
             }
-            catch
+            else
             {
-                return View();
+                var existente = _salas.FirstOrDefault(s => s.IdSala == sala.IdSala);
+                if (existente != null)
+                {
+                    existente.Nombre    = sala.Nombre;
+                    existente.Capacidad = sala.Capacidad;
+                    existente.TipoSala  = sala.TipoSala;
+                    existente.Ubicacion = sala.Ubicacion;
+                    existente.Estado    = sala.Estado;
+                }
             }
+            return Content("1");
         }
 
-        // GET: Sala/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Delete(int IdSala)
         {
-            return View();
+            var sala = _salas.FirstOrDefault(s => s.IdSala == IdSala);
+            if (sala == null) return Content("0");
+            _salas.Remove(sala);
+            return Content("1");
         }
 
-        // POST: Sala/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Sala/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Sala/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        private static bool ContainsIgnoreCase(string source, string value)
+            => source != null && source.IndexOf(value, StringComparison.OrdinalIgnoreCase) >= 0;
     }
 }

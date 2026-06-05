@@ -1,129 +1,86 @@
-﻿using intranetMVC.Models;
-using System.Net;
+using intranetMVC.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace intranetMVC.Controllers
 {
     public class CursoController : Controller
     {
-        //WCFIntranetClient cliente = new WCFIntranetClient();
-        // GET: Curso
-        public ActionResult Index()
+        private static int _nextId = 7;
+        private static readonly List<Course> _cursos = new List<Course>
         {
-            //var cursoes = db.Cursoes.Include(c => c.Tarifa);
-            //return View(cursoes.ToList());
-            return View();
+            new Course { CourseId = 1, Code = "MAT101", Name = "Cálculo I",              Credits = 4, WeeklyHours = 6, EducationLevel = "Pregrado", IsActive = true, DepartmentId = 1, DateCreated = DateTime.Today },
+            new Course { CourseId = 2, Code = "MAT102", Name = "Cálculo II",             Credits = 4, WeeklyHours = 6, EducationLevel = "Pregrado", IsActive = true, DepartmentId = 1, DateCreated = DateTime.Today },
+            new Course { CourseId = 3, Code = "FIS101", Name = "Física General",         Credits = 3, WeeklyHours = 5, EducationLevel = "Pregrado", IsActive = true, DepartmentId = 2, DateCreated = DateTime.Today },
+            new Course { CourseId = 4, Code = "PRO101", Name = "Programación I",         Credits = 3, WeeklyHours = 4, EducationLevel = "Pregrado", IsActive = true, DepartmentId = 3, DateCreated = DateTime.Today },
+            new Course { CourseId = 5, Code = "PRO201", Name = "Estructura de Datos",    Credits = 3, WeeklyHours = 4, EducationLevel = "Pregrado", IsActive = true, DepartmentId = 3, DateCreated = DateTime.Today },
+            new Course { CourseId = 6, Code = "BAS101", Name = "Lenguaje y Comunicación",Credits = 2, WeeklyHours = 3, EducationLevel = "Pregrado", IsActive = true, DepartmentId = 4, DateCreated = DateTime.Today },
+        };
+
+        public ActionResult Index() => View();
+
+        // ── JSON endpoints para Generic.js ───────────────────────────────────
+
+        public JsonResult ListarCursos()
+        {
+            return Json(_cursos, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Curso/Details/5
-        public ActionResult Details(string id)
+        public JsonResult CursoBuscar(string nombre)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Course curso = null; // db.Cursoes.Find(id);
-            if (curso == null)
-            {
-                return HttpNotFound();
-            }
-            return View(curso);
+            if (string.IsNullOrWhiteSpace(nombre))
+                return Json(_cursos, JsonRequestBehavior.AllowGet);
+
+            var resultado = _cursos
+                .Where(c => ContainsIgnoreCase(c.Name, nombre) || ContainsIgnoreCase(c.Code, nombre))
+                .ToList();
+
+            return Json(resultado, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Curso/Create
-        public ActionResult Create()
+        public JsonResult CursoObtener(int CourseId)
         {
-            //ViewBag.IdTarifa = new SelectList(db.Tarifas, "IdTarifa", "Descripcion");
-            return View();
+            var curso = _cursos.FirstOrDefault(c => c.CourseId == CourseId);
+            return Json(curso, JsonRequestBehavior.AllowGet);
         }
 
-        // POST: Curso/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdCurso,IdTarifa,NomCurso")] Course curso)
+        public ActionResult Create(Course curso)
         {
-            if (ModelState.IsValid)
+            if (curso.CourseId == 0)
             {
-                //db.Cursoes.Add(curso);
-                //db.SaveChanges();
-                return RedirectToAction("Index");
+                curso.CourseId   = _nextId++;
+                curso.IsActive   = true;
+                curso.DateCreated = DateTime.Today;
+                _cursos.Add(curso);
             }
-
-           // ViewBag.IdTarifa = new SelectList(db.Tarifas, "IdTarifa", "Descripcion", curso.IdTarifa);
-            return View(curso);
+            else
+            {
+                var existente = _cursos.FirstOrDefault(c => c.CourseId == curso.CourseId);
+                if (existente != null)
+                {
+                    existente.Code           = curso.Code;
+                    existente.Name           = curso.Name;
+                    existente.Credits        = curso.Credits;
+                    existente.WeeklyHours    = curso.WeeklyHours;
+                    existente.EducationLevel = curso.EducationLevel;
+                    existente.Description    = curso.Description;
+                }
+            }
+            return Content("1");
         }
 
-        // GET: Curso/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Delete(int CourseId)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Course curso = null;// db.Cursoes.Find(id);
-            if (curso == null)
-            {
-                return HttpNotFound();
-            }
-            //ViewBag.IdTarifa = new SelectList(db.Tarifas, "IdTarifa", "Descripcion", curso.IdTarifa);
-            return View(curso);
+            var curso = _cursos.FirstOrDefault(c => c.CourseId == CourseId);
+            if (curso == null) return Content("0");
+            _cursos.Remove(curso);
+            return Content("1");
         }
 
-        // POST: Curso/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdCurso,IdTarifa,NomCurso")] Course curso)
-        {
-            if (ModelState.IsValid)
-            {
-                //db.Entry(curso).State = EntityState.Modified;
-                //db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-           // ViewBag.IdTarifa = new SelectList(db.Tarifas, "IdTarifa", "Descripcion", curso.IdTarifa);
-            return View(curso);
-        }
-
-        // GET: Curso/Delete/5
-        public ActionResult Delete(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Course curso = null;// db.Cursoes.Find(id);
-            if (curso == null)
-            {
-                return HttpNotFound();
-            }
-            return View(curso);
-        }
-
-        // POST: Curso/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
-        {
-           // Curso curso = db.Cursoes.Find(id);
-           // db.Cursoes.Remove(curso);
-            //db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                //db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-       
-
+        private static bool ContainsIgnoreCase(string source, string value)
+            => source != null && source.IndexOf(value, StringComparison.OrdinalIgnoreCase) >= 0;
     }
 }

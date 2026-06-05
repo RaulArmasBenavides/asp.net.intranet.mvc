@@ -1,21 +1,18 @@
 ﻿
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using intranetMVC.Models;
-using System.Web.Mvc;
-//using intranetMVC.WCFCliente;
-using System.Runtime.Serialization.Json;
+using System.Configuration;
 using System.IO;
 using System.Net;
+using System.Runtime.Serialization.Json;
 using System.Text;
+using System.Web.Mvc;
+using intranetMVC.Models;
 
 namespace intranetMVC.Controllers
 {
     public class LoginController : Controller
     {
-        private string BASE_URL = "http://localhost:17476/WCFIntranet.svc/";
+        private static string BASE_URL => ConfigurationManager.AppSettings["WcfBaseUrl"];
         //WCFIntranetClient cliente = new WCFIntranetClient();
         // private EduTecEntities db = new EduTecEntities();
         // GET: Login

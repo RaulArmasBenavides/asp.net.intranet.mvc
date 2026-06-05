@@ -1,28 +1,25 @@
-﻿using intranetMVC.Models;
+using intranetMVC.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Script.Serialization;
 
 namespace intranetMVC.Proxy
 {
-    //This replace the old service reference
     public class WCFCustomIntranetClient
     {
-        private string BASE_URL = "http://localhost:17476/WCFIntranet.svc/";
+        private static string BASE_URL => ConfigurationManager.AppSettings["WcfBaseUrl"];
 
         #region Alumno
 
-        //using JavascriptSerializer
         public List<Student> AlumnoListar3()
         {
             try
@@ -30,70 +27,44 @@ namespace intranetMVC.Proxy
                 var webclient = new WebClient();
                 webclient.Headers["Content-type"] = "application/json";
                 webclient.Encoding = Encoding.UTF8;
-                var json = webclient.DownloadString(BASE_URL + "Student/AlumnoListar"+ "?skip=0&limit=10");
-                var js = new JavaScriptSerializer();
-                return js.Deserialize<List<Student>>(json.ToString());
-            }
-            catch (Exception ex) 
-            {
-                return null;
-            }
-        }//
-
-        //using DataContractJsonSerializer
-        public List<Student> AlumnoListar2()
-        {
-            try
-            {
-                var webclient = new WebClient();
                 var json = webclient.DownloadString(BASE_URL + "Student/AlumnoListar");
-                var deserializedUser = new List<Student>();
-                var ms = new MemoryStream(Encoding.UTF8.GetBytes(json));
-                var ser = new DataContractJsonSerializer(deserializedUser.GetType());
-                deserializedUser = ser.ReadObject(ms) as List<Student>;
-                ms.Close();
-                return deserializedUser;
+                var js = new JavaScriptSerializer();
+                return js.Deserialize<List<Student>>(json);
             }
             catch (Exception ex)
             {
-                Debug.Print(ex.Message);
-                throw;
+                Trace.TraceError("[WCFCustomIntranetClient.AlumnoListar3] {0}", ex.Message);
+                return null;
             }
         }
 
         public async Task<List<Student>> AlumnoListar()
         {
-            List<Student> lis = new List<Student>();
             try
             {
                 var client = new HttpClient();
                 var request = new HttpRequestMessage
                 {
                     Method = HttpMethod.Post,
-                    RequestUri = new Uri("http://localhost:17476/WCFIntranet.svc/Student/AlumnoListar"),
-                    Content = new StringContent("{\n \n}")
+                    RequestUri = new Uri(BASE_URL + "Student/AlumnoListar"),
+                    Content = new StringContent("{}")
                     {
-                        Headers = {
-                                ContentType = new MediaTypeHeaderValue("application/json")
-                              }
+                        Headers = { ContentType = new MediaTypeHeaderValue("application/json") }
                     }
                 };
                 using (var response = await client.SendAsync(request))
                 {
                     response.EnsureSuccessStatusCode();
                     var body = await response.Content.ReadAsStringAsync();
-                    //lis = Javabody;
                     var js = new JavaScriptSerializer();
-                    lis = js.Deserialize<List<Student>>(body);
-                    Console.WriteLine(body);
+                    return js.Deserialize<List<Student>>(body);
                 }
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                Trace.TraceError("[WCFCustomIntranetClient.AlumnoListar] {0}", ex.Message);
+                throw;
             }
-            return lis;
         }
 
         public Student find(string id)
@@ -106,16 +77,13 @@ namespace intranetMVC.Proxy
                 var js = new JavaScriptSerializer();
                 return js.Deserialize<Student>(json);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Trace.TraceError("[WCFCustomIntranetClient.find] {0}", ex.Message);
                 return null;
             }
         }
-        /// <summary>
-        /// Create a new student
-        /// </summary>
-        /// <param name="student"></param>
-        /// <returns></returns>
+
         public bool createStudent(Student student)
         {
             try
@@ -127,65 +95,63 @@ namespace intranetMVC.Proxy
                 ser.WriteObject(mem, data);
                 string alumno = Encoding.UTF8.GetString(mem.ToArray(), 0, (int)mem.Length);
                 WebClient webclient = new WebClient();
-                webclient.Headers["Content-type"] = "Application/json";
+                webclient.Headers["Content-type"] = "application/json";
                 webclient.Encoding = Encoding.UTF8;
-                webclient.UploadString(BASE_URL + "/Student/AlumnoAdicionar", "POST", alumno);
+                webclient.UploadString(BASE_URL + "Student/AlumnoAdicionar", "POST", alumno);
                 return true;
             }
             catch (Exception ex)
             {
+                Trace.TraceError("[WCFCustomIntranetClient.createStudent] {0}", ex.Message);
                 return false;
             }
         }
 
-        public bool edit(Student empleado)
+        public bool edit(Student student)
         {
             try
             {
                 DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Student));
                 MemoryStream mem = new MemoryStream();
-                ser.WriteObject(mem, empleado);
+                ser.WriteObject(mem, student);
                 string data = Encoding.UTF8.GetString(mem.ToArray(), 0, (int)mem.Length);
-
                 WebClient webclient = new WebClient();
-                webclient.Headers["Content-type"] = "Application/json";
+                webclient.Headers["Content-type"] = "application/json";
                 webclient.Encoding = Encoding.UTF8;
                 webclient.UploadString(BASE_URL + "edit", "PUT", data);
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Trace.TraceError("[WCFCustomIntranetClient.edit] {0}", ex.Message);
                 return false;
             }
-        }//
+        }
 
         public async Task<bool> delete(string IdAlumno)
         {
-            bool resu = false;
             try
             {
                 var client = new HttpClient();
                 var request = new HttpRequestMessage
                 {
                     Method = HttpMethod.Get,
-                    RequestUri = new Uri("http://localhost:17476/WCFIntranet.svc/Student/AlumnoEliminar/"+ IdAlumno)
+                    RequestUri = new Uri(BASE_URL + "Student/AlumnoEliminar/" + IdAlumno)
                 };
                 using (var response = await client.SendAsync(request))
                 {
                     response.EnsureSuccessStatusCode();
-                    var body =  response.Content.ReadAsStringAsync();
-                    resu = Convert.ToBoolean(body.Result);
-                    Console.WriteLine(body);
+                    var body = await response.Content.ReadAsStringAsync();
+                    return Convert.ToBoolean(body);
                 }
-                    
             }
             catch (Exception ex)
             {
-                throw ex;
+                Trace.TraceError("[WCFCustomIntranetClient.delete] {0}", ex.Message);
+                throw;
             }
-            return resu;
         }
-        #endregion
 
+        #endregion
     }
 }

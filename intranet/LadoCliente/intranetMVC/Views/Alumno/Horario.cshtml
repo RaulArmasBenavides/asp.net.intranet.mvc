@@ -1,0 +1,93 @@
+@model intranetMVC.Models.Academico.HorarioViewModel
+@using System.Linq
+@{
+    ViewBag.Title = "Mi Horario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int horaInicio = 8;
+    int horaFin    = 18;
+    int totalHoras = horaFin - horaInicio;
+    int alturaTotal = totalHoras * 90; // 90px por hora
+    var clasePorDia = Model.Clases.GroupBy(c => c.Dia).ToDictionary(g => g.Key, g => g.ToList());
+}
+
+<style>
+    .horario-col    { position: relative; height: @(alturaTotal)px; border-left: 1px solid #dee2e6; }
+    .horario-clase  { position: absolute; left: 3px; right: 3px; border-radius: 6px;
+                      padding: 4px 6px; font-size: .72rem; overflow: hidden; cursor: default; }
+    .horario-clase:hover { opacity: .85; box-shadow: 0 2px 8px rgba(0,0,0,.2); z-index:10; }
+    .hora-label     { height: 90px; display: flex; align-items: flex-start; justify-content: flex-end;
+                      padding-right: 8px; font-size: .75rem; color: #6c757d; }
+    .dia-header     { text-align: center; font-weight: 600; font-size: .8rem;
+                      padding: 6px 0; background: #f8f9fa; border-bottom: 2px solid #dee2e6; }
+    .linea-hora     { position: absolute; left: 0; right: 0; border-top: 1px dashed #e9ecef; }
+</style>
+
+<div class="container-fluid px-0">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="fw-bold mb-0"><i class="fas fa-calendar-week me-2 text-primary"></i>Mi Horario</h4>
+        <small class="text-muted">Período: <strong>@Model.Periodo</strong></small>
+    </div>
+
+    @* ── Leyenda de colores ── *@
+    <div class="d-flex flex-wrap gap-2 mb-3">
+        @foreach (var cur in Model.Clases.GroupBy(c => c.Codigo))
+        {
+            var c = cur.First();
+            <span class="badge @c.ColorClass px-2 py-1">@c.Codigo — @c.Nombre</span>
+        }
+    </div>
+
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-0">
+            <div class="d-flex">
+
+                @* Columna de horas *@
+                <div style="width:55px;flex-shrink:0">
+                    <div style="height:33px"></div>@* espacio del header de día *@
+                    <div style="position:relative;height:@(alturaTotal)px">
+                        @for (int h = horaInicio; h <= horaFin; h++)
+                        {
+                            <div class="hora-label" style="position:absolute;top:@((h-horaInicio)*90)px;width:100%">
+                                @(h.ToString("00")):00
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                @* Columnas de días *@
+                @foreach (var dia in Model.Dias)
+                {
+                    <div style="flex:1;min-width:0">
+                        <div class="dia-header">@dia</div>
+                        <div class="horario-col">
+
+                            @* Líneas guía por hora *@
+                            @for (int h = 0; h < totalHoras; h++)
+                            {
+                                <div class="linea-hora" style="top:@(h * 90)px"></div>
+                            }
+
+                            @* Clases del día *@
+                            @if (clasePorDia.ContainsKey(dia))
+                            {
+                                @foreach (var c in clasePorDia[dia])
+                                {
+                                    <div class="horario-clase @c.ColorClass text-white"
+                                         style="top:@(c.TopPx)px;height:@(c.HeightPx)px"
+                                         title="@c.Nombre&#10;@c.HoraInicio – @c.HoraFin&#10;Aula: @c.Aula&#10;@c.Docente">
+                                        <div class="fw-bold">@c.Codigo</div>
+                                        <div>@c.HoraInicio–@c.HoraFin</div>
+                                        <div class="text-white-50">@c.Aula</div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+
+</div>

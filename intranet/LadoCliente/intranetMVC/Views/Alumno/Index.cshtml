@@ -1,21 +1,6 @@
-﻿
-@model IEnumerable<intranetMVC.Models.Alumno>
-
 @{
     ViewBag.Title = "Mantenimiento de Alumnos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link href="~/Content/miEstilo.css" rel="stylesheet" />
-@*@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/jqueryui")
-@Scripts.Render("~/bundles/dataTable")*@
-
-<script src="~/Scripts/Generic.js"></script>
-<script src="~/Scripts/Alumno.js"></script>
-<script src="~/Scripts/sweetalert.js"></script>
-<script src="~/Scripts/jquery-3.7.0.js"></script>
- 
-<h2>Listado Alumno</h2>
-<div id="divTabla">
-
-</div>
+<h2>Mantenimiento de Alumnos</h2>
+<div id="divTabla" data-modulo="Alumno"></div>

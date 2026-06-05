@@ -191,16 +191,28 @@
     <Compile Include="Controllers\AlumnoController.cs" />
     <Compile Include="Controllers\AsistenciaController.cs" />
     <Compile Include="Controllers\CursoController.cs" />
+    <Compile Include="Controllers\DocenteController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HorarioHelper.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MatriculaController.cs" />
     <Compile Include="Controllers\ReportePreMatriculaController.cs" />
+    <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Controllers\SalaController.cs" />
     <Compile Include="Controllers\SedeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Academico\AsistenciaViewModel.cs" />
+    <Compile Include="Models\Academico\DashboardViewModel.cs" />
+    <Compile Include="Models\Academico\HistorialViewModel.cs" />
+    <Compile Include="Models\Academico\HorarioViewModel.cs" />
+    <Compile Include="Models\Academico\MatriculaViewModel.cs" />
+    <Compile Include="Models\Academico\PerfilViewModel.cs" />
+    <Compile Include="Models\Academico\ReportesViewModels.cs" />
+    <Compile Include="Models\Docente.cs" />
     <Compile Include="Models\Student\Student.cs" />
     <Compile Include="Models\Attendance\Attendance.cs" />
     <Compile Include="Models\Auth\SendOtpRequest.cs" />
@@ -299,6 +311,16 @@
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\Alumno.js" />
+    <Content Include="Scripts\Sede.js" />
+    <Content Include="Scripts\Curso.js" />
+    <Content Include="Scripts\Sala.js" />
+    <Content Include="Scripts\intranet.js" />
+    <Content Include="Scripts\intranet.init.js" />
+    <Content Include="Scripts\modulos\alumno.modulo.js" />
+    <Content Include="Scripts\modulos\sede.modulo.js" />
+    <Content Include="Scripts\modulos\curso.modulo.js" />
+    <Content Include="Scripts\modulos\sala.modulo.js" />
+    <Content Include="Scripts\modulos\docente.modulo.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -405,8 +427,20 @@
     <Content Include="Views\Alumno\Search.cshtml" />
     <Content Include="Views\Sede\Create.cshtml" />
     <Content Include="Views\Sede\Index.cshtml" />
+    <Content Include="Views\Curso\Index.cshtml" />
     <Content Include="Views\Sede\Edit.cshtml" />
     <Content Include="Views\ReportePreMatricula\Index.cshtml" />
+    <Content Include="Views\Alumno\Historial.cshtml" />
+    <Content Include="Views\Alumno\Horario.cshtml" />
+    <Content Include="Views\Matricula\Index.cshtml" />
+    <Content Include="Views\Asistencia\Index.cshtml" />
+    <Content Include="Views\Docente\Index.cshtml" />
+    <Content Include="Views\Reportes\Index.cshtml" />
+    <Content Include="Views\Reportes\Notas.cshtml" />
+    <Content Include="Views\Reportes\Matricula.cshtml" />
+    <Content Include="Views\Reportes\Deudas.cshtml" />
+    <Content Include="Views\Reportes\PreMatricula.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

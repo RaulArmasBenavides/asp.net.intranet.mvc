@@ -1,171 +1,199 @@
-﻿ 
-function get(id) {
-    return document.getElementById(id).value;
-}
-
-function Error(texto = "Ocurrio un error") {
-    Swal.fire({
-        icon: 'error',
-        title: 'Error',
-        text: texto
-    })
-}
-
-function Correcto(texto = "Se realizo correctamente") {
-    Swal.fire({
-        position: 'top',
-        icon: 'success',
-        title: texto,
-        showConfirmButton: false,
-        timer: 1500
-    })
-}
-
-function Confirmacion(texto = "Desea guardar los cambios?", title = "Confirmacion",
-    callback) {
-    return Swal.fire({
-        title: title,
-        text: texto,
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si',
-        cancelButtonText: 'No'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            callback();
-        }
-    })
-}
-
-function set(id, valor) {
-    document.getElementById(id).value = valor;
-}
-
-function setD(id, valor) {
-    document.getElementById(id).style.display = valor;
-}
-//No sirve por que los input radio tienen check
-function setN(id, valor) {
-    document.getElementsByName(id)[0].value = valor;
-}
-function setSRC(id, valor) {
-    document.getElementsByName(id)[0].src = valor;
-}
-function getN(id, valor) {
-    return document.getElementsByName(id)[0].value;
-}
-
-function setC(selector) {
-    document.querySelector(selector).checked = true;
-}
-
+// Estado global de la página actual
 var objConfiguracionGlobal;
 var objBusquedaGlobal;
 var objFormularioGlobal;
-function pintar(objConfiguracion, objBusqueda, objFormulario) {
-    console.log("Testing the world");
-    //URL Absolute  https://localhos
-    var raiz = document.getElementById("hdfOculto").value;
-    var urlAbsoluta = window.location.protocol + "//" +
-        window.location.host + raiz + objConfiguracion.url;
-    //Controles//accion
-    fetch(urlAbsoluta)
-        .then(res => res.json())
-        .then(res => {
-            var contenido = "";
-            console.log("gaa");
-            console.log("re2");
-            console.log("t" + res);
-            console.log(res);
-            console.log(urlAbsoluta);
-            console.log(objConfiguracion);
-            console.log(combosLlenar)
-            console.log(objFormulario);
-            //Configuracion del formulario
-            if (objConfiguracion != undefined) {
-                if (objConfiguracion.editar == undefined)
-                    objConfiguracion.editar = false;
-                if (objConfiguracion.eliminar == undefined)
-                    objConfiguracion.eliminar = false;
-                if (objConfiguracion.propiedadId == undefined)
-                    objConfiguracion.propiedadId = "id";
-                if (objConfiguracion.callbackEliminar == undefined)
-                    objConfiguracion.callbackEliminar = "Eliminar";
-                if (objConfiguracion.callbackEditar == undefined)
-                    objConfiguracion.callbackEditar = "Editar";
-                if (objConfiguracion.popup == undefined)
-                    objConfiguracion.popup = false;
-                if (objConfiguracion.sizepopup == undefined)
-                    objConfiguracion.sizepopup = "";
-                if (objConfiguracion.recuperarexcepcion == undefined)
-                    objConfiguracion.recuperarexcepcion = [];
-                if (objConfiguracion.iscallbackeditar == undefined)
-                    objConfiguracion.iscallbackeditar = false;
-                if (objConfiguracion.columnaimg == undefined)
-                    objConfiguracion.columnaimg = [];
+var combosLlenar = [];
+var radioLimpiar = [];
+var radioNames = [];
 
+// ── Utilidades DOM ──────────────────────────────────────────────────────────
+
+function escapeHtml(text) {
+    if (text == null) return '';
+    return String(text)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
+function get(id) { return document.getElementById(id).value; }
+function set(id, valor) { document.getElementById(id).value = valor; }
+function setD(id, valor) { document.getElementById(id).style.display = valor; }
+function setN(id, valor) { document.getElementsByName(id)[0].value = valor; }
+function setSRC(id, valor) { document.getElementsByName(id)[0].src = valor; }
+function getN(id) { return document.getElementsByName(id)[0].value; }
+function setC(selector) { document.querySelector(selector).checked = true; }
+
+// ── Alertas ─────────────────────────────────────────────────────────────────
+
+function mostrarError(texto) {
+    Swal.fire({ icon: 'error', title: 'Error', text: texto || "Ocurrió un error" });
+}
+
+function Correcto(texto) {
+    Swal.fire({
+        position: 'top', icon: 'success',
+        title: texto || "Se realizó correctamente",
+        showConfirmButton: false, timer: 1500
+    });
+}
+
+function Confirmacion(texto, title, callback) {
+    return Swal.fire({
+        title: title || "Confirmación",
+        text: texto || "¿Desea continuar?",
+        icon: 'warning', showCancelButton: true,
+        confirmButtonColor: '#3085d6', cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí', cancelButtonText: 'No'
+    }).then(function (result) { if (result.isConfirmed) callback(); });
+}
+
+// ── HTTP helpers ─────────────────────────────────────────────────────────────
+
+function _resolverUrl(url) {
+    var raiz = document.getElementById("hdfOculto").value;
+    return window.location.protocol + "//" + window.location.host + raiz + url;
+}
+
+function fetchGet(url, callback) {
+    setD("cargando", "block");
+    fetch(_resolverUrl(url))
+        .then(function (res) { return res.json(); })
+        .then(function (res) { setD("cargando", "none"); callback(res); })
+        .catch(function (err) { setD("cargando", "none"); mostrarError(err.message); });
+}
+
+function fetchGetText(url, callback) {
+    setD("cargando", "block");
+    fetch(_resolverUrl(url))
+        .then(function (res) { return res.text(); })
+        .then(function (res) { setD("cargando", "none"); callback(res); })
+        .catch(function (err) { setD("cargando", "none"); mostrarError(err.message); });
+}
+
+function fetchPostText(url, frm, callback) {
+    setD("cargando", "block");
+    fetch(_resolverUrl(url), { method: "POST", body: frm })
+        .then(function (res) { return res.text(); })
+        .then(function (res) { setD("cargando", "none"); callback(res); })
+        .catch(function (err) { setD("cargando", "none"); mostrarError(err.message); });
+}
+
+// ── Tabla ────────────────────────────────────────────────────────────────────
+
+function generarTabla(objConfiguracion, res, objFormulario, primeravez) {
+    var listaPintar = (primeravez && objConfiguracion.name) ? res[objConfiguracion.name] : res;
+    var contenido = "<table class='table'><tr>";
+
+    for (var j = 0; j < objConfiguracion.cabeceras.length; j++)
+        contenido += "<th>" + escapeHtml(objConfiguracion.cabeceras[j]) + "</th>";
+    if (objConfiguracion.editar || objConfiguracion.eliminar)
+        contenido += "<th>Operaciones</th>";
+    contenido += "</tr>";
+
+    for (var i = 0; i < listaPintar.length; i++) {
+        var fila = listaPintar[i];
+        contenido += "<tr>";
+        for (var j = 0; j < objConfiguracion.propiedades.length; j++) {
+            var prop = objConfiguracion.propiedades[j];
+            if (objConfiguracion.columnaimg.includes(prop))
+                contenido += "<td><img width='100px' height='100px' src='" + escapeHtml(fila[prop]) + "' /></td>";
+            else
+                contenido += "<td>" + escapeHtml(fila[prop]) + "</td>";
+        }
+        if (objConfiguracion.editar || objConfiguracion.eliminar) {
+            contenido += "<td>";
+            if (objConfiguracion.editar) {
+                var cbEditar = (objFormulario && objFormulario.formulariogenerico) ? "EditarGenerico" : objConfiguracion.callbackEditar;
+                contenido += `<i ${objConfiguracion.popup ? `data-bs-toggle="modal" data-bs-target="#${objConfiguracion.idpopup}"` : ""}
+                    class="btn btn-primary"
+                    onclick='${cbEditar}(${fila[objConfiguracion.propiedadId]}, "${objFormulario ? objFormulario.id : ""}") '>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eyedropper" viewBox="0 0 16 16">
+                        <path d="M13.354.646a1.207 1.207 0 0 0-1.708 0L8.5 3.793l-.646-.647a.5.5 0 1 0-.708.708L8.293 5l-7.147 7.146A.5.5 0 0 0 1 12.5v1.793l-.854.854a.5.5 0 1 0 .708.707L1.707 15H3.5a.5.5 0 0 0 .354-.146L11 7.707l1.146 1.147a.5.5 0 0 0 .708-.708l-.647-.646 3.147-3.146a1.207 1.207 0 0 0 0-1.708l-2-2zM2 12.707l7-7L10.293 7l-7 7H2v-1.293z"/>
+                    </svg></i>`;
+            }
+            if (objConfiguracion.eliminar) {
+                var cbEliminar = (objFormulario && objFormulario.formulariogenerico) ? "EliminarGenerico" : objConfiguracion.callbackEliminar;
+                contenido += `<i class="btn btn-danger" onclick='${cbEliminar}(${fila[objConfiguracion.propiedadId]}) '>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                    </svg></i>`;
+            }
+            contenido += "</td>";
+        }
+        contenido += "</tr>";
+    }
+    contenido += "</table>";
+    return contenido;
+}
+
+// ── Búsqueda ─────────────────────────────────────────────────────────────────
+
+function Buscar() {
+    var objBus = objBusquedaGlobal;
+    var valor = get(objBus.id);
+    fetchGet(objBus.url + "?" + objBus.nombreparametro + "=" + encodeURIComponent(valor), function (res) {
+        document.getElementById("divContenedor").innerHTML = generarTabla(objConfiguracionGlobal, res, objFormularioGlobal);
+    });
+}
+
+// ── Render principal ─────────────────────────────────────────────────────────
+
+function pintar(objConfiguracion, objBusqueda, objFormulario) {
+    var urlAbsoluta = _resolverUrl(objConfiguracion.url);
+
+    fetch(urlAbsoluta)
+        .then(function (res) { return res.json(); })
+        .then(function (res) {
+            var contenido = "";
+
+            if (objConfiguracion) {
+                objConfiguracion.editar          = objConfiguracion.editar          || false;
+                objConfiguracion.eliminar        = objConfiguracion.eliminar        || false;
+                objConfiguracion.propiedadId     = objConfiguracion.propiedadId     || "id";
+                objConfiguracion.callbackEliminar = objConfiguracion.callbackEliminar || "Eliminar";
+                objConfiguracion.callbackEditar  = objConfiguracion.callbackEditar  || "Editar";
+                objConfiguracion.popup           = objConfiguracion.popup           || false;
+                objConfiguracion.sizepopup       = objConfiguracion.sizepopup       || "";
+                objConfiguracion.recuperarexcepcion = objConfiguracion.recuperarexcepcion || [];
+                objConfiguracion.iscallbackeditar = objConfiguracion.iscallbackeditar || false;
+                objConfiguracion.columnaimg      = objConfiguracion.columnaimg      || [];
                 objConfiguracionGlobal = objConfiguracion;
             }
-            if (objFormulario != undefined) {
-                objFormularioGlobal = objFormulario;
-                if (objFormulario.guardar == undefined)
-                    objFormulario.guardar = true
-                if (objFormulario.limpiarexcepcion == undefined)
-                    objFormulario.limpiarexcepcion = []
-                if (objFormulario.limpiar == undefined)
-                    objFormulario.limpiar = true
-                if (objFormulario.formulariogenerico == undefined)
-                    objFormulario.formulariogenerico = true
-                if (objFormulario.callbackGuardar == undefined)
-                    objFormulario.callbackGuardar = "GuardarDatos"
-                if (objFormulario.id == undefined)
-                    objFormulario.id = "frmFormulario"
-                if (objFormulario.tituloconfirmacionguardar == undefined)
-                    objFormulario.tituloconfirmacionguardar = "Desea guardar los cambios?"
-                var type = objFormulario.type;
-            
-                if (type == "fieldset") {
-                    contenido += "<fieldset>";
-                    if (objFormulario.legend != undefined) {
-                        contenido += "<legend>" + objFormulario.legend + "</legend>"
-                    }
 
-                    console.log("testeeeando");
-                    contenido += construirFormulario(objFormulario)
-                    contenido += `
-                     ${objFormulario.guardar == true ?
-                            `<button class="btn btn-primary"
-                          onclick="${(objFormulario.formulariogenerico == undefined
-                                || objFormulario.formulariogenerico == false) ? `${objFormulario.callbackGuardar}()`
-                                : `GuardarGenerico
-                          ('${objFormulario.id}', '${objFormulario.urlGuardar}')`}">
-                                Aceptar</button>` :
-                            ''}    
-                        ${objFormulario.limpiar == true ?
-                            `<button class="btn btn-danger"
-                                  onclick="${(objFormulario.formulariogenerico == undefined
-                                || objFormulario.formulariogenerico == false) ? "Limpiar" :
-                                "LimpiarGenerico"}('${objFormulario == undefined ? "" : objFormulario.id}')">
-                                   Limpiar</button>`
-                            : ''} 
-                       `
+            if (objFormulario) {
+                objFormularioGlobal = objFormulario;
+                objFormulario.guardar            = objFormulario.guardar !== false;
+                objFormulario.limpiarexcepcion   = objFormulario.limpiarexcepcion   || [];
+                objFormulario.limpiar            = objFormulario.limpiar !== false;
+                objFormulario.formulariogenerico = objFormulario.formulariogenerico !== false;
+                objFormulario.callbackGuardar    = objFormulario.callbackGuardar    || "GuardarDatos";
+                objFormulario.id                 = objFormulario.id                 || "frmFormulario";
+                objFormulario.tituloconfirmacionguardar = objFormulario.tituloconfirmacionguardar || "¿Desea guardar los cambios?";
+
+                var urlGuardar = "GuardarGenerico('" + objFormulario.id + "', '" + objFormulario.urlGuardar + "')";
+                var callbackGuardar = objFormulario.formulariogenerico ? urlGuardar : objFormulario.callbackGuardar + "()";
+                var limpiarFn = objFormulario.formulariogenerico ? "LimpiarGenerico" : "Limpiar";
+
+                if (objFormulario.type == "fieldset") {
+                    contenido += "<fieldset>";
+                    if (objFormulario.legend)
+                        contenido += "<legend>" + escapeHtml(objFormulario.legend) + "</legend>";
+                    contenido += construirFormulario(objFormulario);
+                    if (objFormulario.guardar)
+                        contenido += `<button class="btn btn-primary" onclick="${callbackGuardar}">Aceptar</button>`;
+                    if (objFormulario.limpiar)
+                        contenido += `<button class="btn btn-danger" onclick="${limpiarFn}('${objFormulario.id}')">Limpiar</button>`;
                     contenido += "</fieldset>";
-                } else if (type == "popup") {
-                    contenido += `
-                       <button type="button" class="btn btn-primary mb-3"
-                              onclick="EditarGenerico(0,'${objFormulario.id}')"
-                                       data-bs-toggle="modal"
-                              
-                                data-bs-target="#${objConfiguracion.idpopup}">
-                          Nuevo
-                           </button>
-                      `
-                    contenido += `<div class="modal fade" id="${objConfiguracion.idpopup}" 
-                                data-bs-backdrop="static" data-bs-keyboard="false"
-                             tabindex="-1" aria-labelledby="staticBackdropLabel" 
-                               aria-hidden="true">
+
+                } else if (objFormulario.type == "popup") {
+                    contenido += `<button type="button" class="btn btn-primary mb-3"
+                        onclick="EditarGenerico(0,'${objFormulario.id}')"
+                        data-bs-toggle="modal" data-bs-target="#${objConfiguracion.idpopup}">Nuevo</button>`;
+                    contenido += `<div class="modal fade" id="${objConfiguracion.idpopup}"
+                        data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog ${objConfiguracion.sizepopup}">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -173,861 +201,370 @@ function pintar(objConfiguracion, objBusqueda, objFormulario) {
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">`;
-                    contenido += construirFormulario(objFormulario)
-                    contenido += `
-                                </div>
+                    contenido += construirFormulario(objFormulario);
+                    contenido += `   </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                    data-bs-dismiss="modal"
-                   id='btnCerrar${objConfiguracionGlobal.idpopup}'>Cerrar</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                        id="btnCerrar${objConfiguracion.idpopup}">Cerrar</button>
                                     <button type="button" class="btn btn-primary"
-                                    onclick="${(objFormulario.formulariogenerico == undefined
-                            || objFormulario.formulariogenerico == false) ? `${objFormulario.callbackGuardar}()`
-                            : `GuardarGenerico
-                          ('${objFormulario.id}', '${objFormulario.urlGuardar}')`}"
-                                >Guardar</button>
+                                        onclick="${callbackGuardar}">Guardar</button>
                                 </div>
                             </div>
                         </div>
-                    </div>`
+                    </div>`;
                 }
-
             }
-            if (objBusqueda != undefined && objBusqueda.busqueda == true) {
-                if (objBusqueda.placeholder == undefined)
-                    objBusqueda.placeholder = "Ingrese un valor"
-                if (objBusqueda.id == undefined)
-                    objBusqueda.id = "txtbusqueda"
-                if (objBusqueda.type == undefined)
-                    objBusqueda.type = "text"
-                if (objConfiguracion.id == undefined)
-                    objConfiguracion.id = "divTabla";
-                if (objBusqueda.button == undefined)
-                    objBusqueda.button = true;
 
-                //Asignar los valores
+            if (objBusqueda && objBusqueda.busqueda) {
+                objBusqueda.placeholder = objBusqueda.placeholder || "Ingrese un valor";
+                objBusqueda.id          = objBusqueda.id          || "txtbusqueda";
+                objBusqueda.type        = objBusqueda.type        || "text";
+                objBusqueda.button      = objBusqueda.button !== false;
+                objConfiguracion.id     = objConfiguracion.id     || "divTabla";
                 objBusquedaGlobal = objBusqueda;
-                var type = objBusqueda.type;
-                contenido += `
-                 <div class="input-group mb-3">`
-                if (type == "text") {
-                    contenido += `
-                           <input type="${objBusqueda.type}" class="form-control"
-                           id="${objBusqueda.id}"
-                         ${objBusqueda.button == true ? "" : "onkeyup='Buscar()'"}  
-                       placeholder="${objBusqueda.placeholder}"
-                               />`
-                } else if (type == "combobox") {
-                    contenido += `
-                            <select class="form-control"
-                        ${objBusqueda.button == true ? "" : "onchange='Buscar()'"}  
-                            id="${objBusqueda.id}"></select>
-                              `
-                }
 
-                if (objBusqueda.button == true) {
-                    contenido += `
-                  <button class="btn btn-primary" 
-                     onclick="Buscar()"
-                      type="button" >
-                    Buscar</button>`
+                contenido += `<div class="input-group mb-3">`;
+                if (objBusqueda.type == "text") {
+                    contenido += `<input type="text" class="form-control" id="${objBusqueda.id}"
+                        ${!objBusqueda.button ? "onkeyup='Buscar()'" : ""}
+                        placeholder="${escapeHtml(objBusqueda.placeholder)}" />`;
+                } else if (objBusqueda.type == "combobox") {
+                    contenido += `<select class="form-control" id="${objBusqueda.id}"
+                        ${!objBusqueda.button ? "onchange='Buscar()'" : ""}></select>`;
                 }
-
-                contenido += ` </div>`
+                if (objBusqueda.button)
+                    contenido += `<button class="btn btn-primary" onclick="Buscar()" type="button">Buscar</button>`;
+                contenido += `</div>`;
             }
+
             contenido += "<div id='divContenedor'>";
             contenido += generarTabla(objConfiguracion, res, objFormulario, true);
             contenido += "</div>";
             document.getElementById(objConfiguracion.id).innerHTML = contenido;
-            if (objBusqueda != null) {
-                llenarComboBusqueda(res);
-            }
-            //Aqui llenamos los combos
-            if (combosLlenar.length > 0) {
-                var item;
-                for (var i = 0; i < combosLlenar.length; i++) {
-                    item = combosLlenar[i];
-                    llenarCombo(res[item.datasource], item.id, item.propiedadMostrar,
-                        item.propiedadId)
-                }
-            }
-            console.log(contenido);
 
+            if (objBusqueda) llenarComboBusqueda(res);
+            for (var i = 0; i < combosLlenar.length; i++) {
+                var item = combosLlenar[i];
+                llenarCombo(res[item.datasource], item.id, item.propiedadMostrar, item.propiedadId);
+            }
         })
-
+        .catch(function (err) { mostrarError("Error al cargar los datos: " + err.message); });
 }
+
+// ── Combos ───────────────────────────────────────────────────────────────────
 
 function llenarComboBusqueda(res) {
-    if (objBusquedaGlobal.type == "combobox") {
-        var id = objBusquedaGlobal.id;
-        var propiedadMostrar = objBusquedaGlobal.displaymember;
-        var propiedadId = objBusquedaGlobal.valuemember;
-        var name = objBusquedaGlobal.name;
-        var data = res[name]
-        llenarCombo(data, id, propiedadMostrar, propiedadId)
-    }
-
+    if (objBusquedaGlobal.type == "combobox")
+        llenarCombo(res[objBusquedaGlobal.name], objBusquedaGlobal.id,
+            objBusquedaGlobal.displaymember, objBusquedaGlobal.valuemember);
 }
 
-function LimpiarDatos(idFormulario, excepciones = []) {
-
-
-
-    var elementos = document.querySelectorAll("#" + idFormulario + " [name]")
-    for (var j = 0; j < radioLimpiar.length; j++) {
-        document.getElementById(radioLimpiar[j]).checked = true;
+function llenarCombo(data, id, propiedadMostrar, propiedadId, valueDefecto) {
+    valueDefecto = valueDefecto || "";
+    var contenido = "<option value='" + valueDefecto + "'>--Seleccione--</option>";
+    for (var j = 0; j < data.length; j++) {
+        contenido += "<option value='" + escapeHtml(String(data[j][propiedadId])) + "'>"
+            + escapeHtml(data[j][propiedadMostrar]) + "</option>";
     }
-    var checboxs = document.querySelectorAll("#" + idFormulario + " [type*='checkbox']")
-    for (var j = 0; j < checboxs.length; j++) {
-        checboxs[j].checked = false;
-    }
-    for (var i = 0; i < elementos.length; i++) {
-        //Si esta incluido no se hace nada
+    document.getElementById(id).innerHTML = contenido;
+}
 
-        if (!excepciones.includes(elementos[i].name)) {
-            if (elementos[i].tagName.toUpperCase() == "IMG") {
-                elementos[i].src = "";
-            } else {
-                elementos[i].value = "";
+// ── Recuperar formulario ──────────────────────────────────────────────────────
+
+function recuperarGenerico(url, idFormulario, excepciones, adicional) {
+    excepciones = excepciones || [];
+    var elementos = document.querySelectorAll("#" + idFormulario + " [name]");
+    fetchGet(url, function (res) {
+        for (var i = 0; i < elementos.length; i++) {
+            var nombre = elementos[i].name;
+            if (excepciones.includes(nombre)) continue;
+            var tipo = (elementos[i].type || "").toUpperCase();
+            if (tipo == "RADIO") {
+                setC("[type='radio'][value='" + res[nombre] + "']");
+            } else if (tipo != "FILE") {
+                setN(nombre, res[nombre]);
+            } else if (elementos[i].tagName.toUpperCase() == "IMG") {
+                setSRC(nombre, res[nombre]);
             }
-
-
         }
+        if (adicional) objConfiguracionGlobal.callbackeditar(res);
+    });
+}
+
+function recuperarGenericoEspecifico(url, idFormulario, excepciones, adicional) {
+    excepciones = excepciones || [];
+    var elementos = document.querySelectorAll("#" + idFormulario + " [name]");
+    fetchGet(url, function (res) {
+        for (var i = 0; i < elementos.length; i++) {
+            var nombre = elementos[i].name;
+            if (excepciones.includes(nombre)) continue;
+            var tipo = (elementos[i].type || "").toUpperCase();
+            if (tipo == "RADIO") {
+                setC("[type='radio'][value='" + res[nombre] + "']");
+            } else if (tipo == "CHECKBOX") {
+                var propiedad = nombre.replace("[]", "");
+                var valores = res[propiedad] || [];
+                for (var j = 0; j < valores.length; j++)
+                    setC("[type='checkbox'][value='" + valores[j] + "']");
+            } else if (tipo != "FILE") {
+                setN(nombre, res[nombre]);
+            } else if (elementos[i].tagName.toUpperCase() == "IMG") {
+                setSRC(nombre, res[nombre]);
+            }
+        }
+        if (adicional) recuperarEspecifico(res);
+    });
+}
+
+// ── Validaciones ─────────────────────────────────────────────────────────────
+
+function ValidarObligatorios(idFormulario) {
+    var contenedorcheckbox = document.querySelectorAll("#" + idFormulario + " [class*='o-']");
+    for (var i = 0; i < contenedorcheckbox.length; i++) {
+        var contenedor = contenedorcheckbox[i];
+        var claseO = contenedor.className.split(" ").filter(function (p) { return p.includes("o-"); })[0];
+        var minimo = parseInt(claseO.replace("o-", ""), 10);
+        var marcados = 0;
+        for (var j = 0; j < contenedor.children.length; j++) {
+            var hijo = contenedor.children[j];
+            if (hijo.type && hijo.type.toUpperCase() == "CHECKBOX" && hijo.checked) marcados++;
+        }
+        if (minimo > marcados) return "Debe seleccionar al menos " + minimo + " opción con un check";
     }
+    var elementos = document.querySelectorAll("#" + idFormulario + " .o");
+    for (var i = 0; i < elementos.length; i++) {
+        if (elementos[i].tagName.toUpperCase() == "INPUT" && elementos[i].value == "")
+            return "Debe ingresar el " + elementos[i].name;
+        if (elementos[i].tagName.toUpperCase() == "IMG" && elementos[i].src == window.location.href)
+            return "Debe ingresar la " + elementos[i].name.replace("base64", "").replace("data", "");
+    }
+    return "";
 }
 
 function ValidarLongitudMaxima(idFormulario) {
-    var error = "";
-    var controles = document.querySelectorAll("#" + idFormulario + " [class*='max-']")
-    var control;
-
+    var controles = document.querySelectorAll("#" + idFormulario + " [class*='max-']");
     for (var i = 0; i < controles.length; i++) {
-        control = controles[i]
-        //["form-control", "o", "max-40"]
-        var arrayClase = control.className.split(" ");
-        //max-40
-        var claseMax = arrayClase.filter(p => p.includes("max-"))[0]
-        //40
-        var valorMax = claseMax.replace("max-", "") * 1;
-        if (control.value.length > valorMax) {
-            error = "El campo " + control.name + " tiene una longitud de "
-                + control.value.length + " , esta no puede ser mayor a "
-                + valorMax + " por favor corregir";
-            return error;
-        }
+        var claseMax = controles[i].className.split(" ").filter(function (p) { return p.includes("max-"); })[0];
+        var valorMax = parseInt(claseMax.replace("max-", ""), 10);
+        if (controles[i].value.length > valorMax)
+            return "El campo " + controles[i].name + " supera los " + valorMax + " caracteres permitidos";
     }
-    return error;
-}
-
-function validarSoloNumerosEnteros(idFormulario) {
-    var error = "";
-    var controles = document.querySelectorAll("#" + idFormulario + " [class*='snc']")
-    var control;
-    var caracter;
-    for (var i = 0; i < controles.length; i++) {
-        control = controles[i]
-        var valor = control.value;
-        var longitud = valor.length;
-        for (var j = 0; j < valor.length; j++) {
-            caracter = valor[j];
-            if (caracter != "0" && caracter != "1" && caracter != "2" &&
-                caracter != "3" && caracter != "4" && caracter != "5" &&
-                caracter != "6" && caracter != "7" && caracter != "8"
-                && caracter != "9") {
-                error = "El control " + control.name + " solo debe tener numeros enteros";
-                return error;
-            }
-        }
-
-
-    }
-    return error;
-}
-
-
-function validarSoloNumerosDecimalesControl(idFormulario) {
-    var error = "";
-    var controles = document.querySelectorAll("#" + idFormulario + " [class*='sndc']")
-    var control;
-    var caracter;
-    for (var i = 0; i < controles.length; i++) {
-        control = controles[i]
-        var valor = control.value;
-        var longitud = valor.length;
-        if (valor[0] == ".") {
-            error = "El control " + control.name + " no puede iniciar con un punto(.)";
-            return error;
-        }
-        if (valor[longitud - 1] == ".") {
-            error = "El control " + control.name + " no puede terminar con un punto(.)";
-            return error;
-        }
-        var numeroVeces = [...valor].filter(p => p.includes(".")).length
-        if (numeroVeces > 1) {
-            error = "El control " + control.name + " solo debe haber un punto decimal";
-            return error;
-        }
-        for (var j = 0; j < valor.length; j++) {
-
-            caracter = valor[j];
-            if (caracter != "0" && caracter != "1" && caracter != "2" &&
-                caracter != "3" && caracter != "4" && caracter != "5" &&
-                caracter != "6" && caracter != "7" && caracter != "8"
-                && caracter != "9" && caracter != ".") {
-                error = "El control " + control.name + " solo debe tener numeros enteros";
-                return error;
-            }
-        }
-
-
-    }
-    return error;
+    return "";
 }
 
 function ValidarLongitudMinima(idFormulario) {
-    var error = "";
-    var controles = document.querySelectorAll("#" + idFormulario + " [class*='min-']")
-    var control;
-
+    var controles = document.querySelectorAll("#" + idFormulario + " [class*='min-']");
     for (var i = 0; i < controles.length; i++) {
-        control = controles[i]
-        //["form-control", "o", "max-40"]
-        var arrayClase = control.className.split(" ");
-        //max-40
-        var claseMin = arrayClase.filter(p => p.includes("min-"))[0]
-        //40
-        var valorMin = claseMin.replace("min-", "") * 1;
-        if (control.value.length < valorMin) {
-            error = "El campo " + control.name + " tiene una longitud de "
-                + control.value.length + " , esta no puede ser menor a "
-                + valorMin + " por favor corregir";
-            return error;
-        }
+        var claseMin = controles[i].className.split(" ").filter(function (p) { return p.includes("min-"); })[0];
+        var valorMin = parseInt(claseMin.replace("min-", ""), 10);
+        if (controles[i].value.length < valorMin)
+            return "El campo " + controles[i].name + " requiere al menos " + valorMin + " caracteres";
     }
-    return error;
+    return "";
 }
 
-function ValidarObligatorios(idFormulario) {
-    //No hay error
-    var error = "";
-    var elementos = document.querySelectorAll("#" + idFormulario + " .o")
-    var contenedorcheckbox = document.querySelectorAll("#" + idFormulario + " [class*='o-']")
- 
-    for (var i = 0; i < contenedorcheckbox.length; i++) {
-        //Contenedor div     <div class="o-1"> 
-        var contenedor = contenedorcheckbox[i];
-        //Todas las clases "o-2 input pantalla"
-        var arrayClase = contenedor.className.split(" ");
-        //Clase maxima (o-)  o-1 o-2 
-        var claseMaxima = arrayClase.filter(p => p.includes("o-"))[0];
-        //Saco solo el numero 1 2 3 4
-        var mininimoseleccionable = claseMaxima.replace("o-", "") * 1;
-        //Inicializo en cero
-        var numeroMarcados = 0;
-        var hijos = contenedor.children;
-        var hijo;
-        console.log(hijos);
-        var nhijos = hijos.length;
-        for (var j = 0; j < nhijos; j++) {
-            hijo = hijos[j];
-            if (hijo.type != undefined && hijo.type.toUpperCase() == "CHECKBOX") {
-                if (hijo.checked == true) {
-                    numeroMarcados++;
-                }
-
-            }
-        }
-        if (mininimoseleccionable > numeroMarcados) {
-            error = "Debe seleccionar al menos " + mininimoseleccionable + " opciòn con un check";
-            return error;
-        }
-
-
-        console.log(mininimoseleccionable)
+function validarSoloNumerosEnteros(idFormulario) {
+    var controles = document.querySelectorAll("#" + idFormulario + " [class*='snc']");
+    for (var i = 0; i < controles.length; i++) {
+        if (!/^\d+$/.test(controles[i].value))
+            return "El campo " + controles[i].name + " solo admite números enteros";
     }
-    for (var i = 0; i < elementos.length; i++) {
-        //Si esta incluido no se hace nada (INPUT CONTROLES DE ENTRADA)
-        if (elementos[i].tagName.toUpperCase() == "INPUT" && elementos[i].value == "") {
-            error = "Debe ingresar el " + elementos[i].name;
-            return error;
-            //Imagenes
-        } else if (elementos[i].tagName.toUpperCase() == "IMG" && elementos[i].src == window.location.href) {
-            error = "Debe ingresar la " + elementos[i].name.replace("base64", "").replace("data", "");
-            return error;
-        }
+    return "";
+}
 
-        //elementos[i].value = "";
+function validarSoloNumerosDecimalesControl(idFormulario) {
+    var controles = document.querySelectorAll("#" + idFormulario + " [class*='sndc']");
+    for (var i = 0; i < controles.length; i++) {
+        var valor = controles[i].value;
+        if (valor.startsWith(".")) return "El campo " + controles[i].name + " no puede iniciar con punto";
+        if (valor.endsWith("."))   return "El campo " + controles[i].name + " no puede terminar con punto";
+        if ((valor.match(/\./g) || []).length > 1) return "El campo " + controles[i].name + " solo puede tener un punto decimal";
+        if (!/^\d*\.?\d*$/.test(valor)) return "El campo " + controles[i].name + " solo admite números";
     }
-    return error;
-}
-
-
-function generarTabla(objConfiguracion, res, objFormulario, primeravez = false) {
-    // objFormulario.formulariogenerico = true
-    console.log("Testing the world");
-    var listaPintar = res;
-    if (objConfiguracion != null && objConfiguracion.name != undefined && primeravez == true) {
-        var nombrePropiedad = objConfiguracion.name;
-        listaPintar = res[nombrePropiedad];
-    }
-    var contenido = "";
-    contenido += "<table class='table'>";
-    contenido += "<tr>";
-    for (var j = 0; j < objConfiguracion.cabeceras.length; j++) {
-        contenido += "<th>" + objConfiguracion.cabeceras[j] + "</th>"
-    }
-    if (objConfiguracion.editar == true || objConfiguracion.eliminar == true) {
-
-        contenido += "<th>Operaciones</th>";
-    }
-    contenido += "</tr>";
-    var fila;
-    var propiedadActual;
-    for (var i = 0; i < listaPintar.length; i++) {
-        fila = listaPintar[i]
-        contenido += "<tr>";
-        for (var j = 0; j < objConfiguracion.propiedades.length; j++) {
-            propiedadActual = objConfiguracion.propiedades[j]
-            if (objConfiguracion.columnaimg.includes(propiedadActual))
-                contenido += "<td><img width='100px' height='100px' src='" + fila[propiedadActual] + "' /></td>";
-
-            else
-                contenido += "<td>" + fila[propiedadActual] + "</td>";
-        }
-        ////contenido += "<td>" + fila.id + "</td>";  //fila["id"]
-        ////contenido += "<td>" + fila.nombre + "</td>";
-        ////contenido += "<td>" + fila.descripcion + "</td>";
-        if (objConfiguracion.editar == true || objConfiguracion.eliminar == true) {
-            contenido += "<td>";
-            if (objConfiguracion.editar == true) {
-
-                contenido += ` <i
-             ${objConfiguracion.popup == true ?
-                        `data-bs-toggle="modal" data-bs-target="#${objConfiguracion.idpopup}"` : ""}    
-              class="btn btn-primary" 
-               onclick='${(objFormulario != undefined &&
-                        objFormulario.formulariogenerico != undefined &&
-                        objFormulario.formulariogenerico == true) ? "EditarGenerico"
-                        : objConfiguracion.callbackEditar
-                    }(${fila[objConfiguracion.propiedadId]} , 
-                     "${objFormulario == undefined ? "" : objFormulario.id} " ) ' >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eyedropper" viewBox="0 0 16 16">
-                    <path d="M13.354.646a1.207 1.207 0 0 0-1.708 0L8.5 3.793l-.646-.647a.5.5 0 1 0-.708.708L8.293 5l-7.147 7.146A.5.5 0 0 0 1 12.5v1.793l-.854.854a.5.5 0 1 0 .708.707L1.707 15H3.5a.5.5 0 0 0 .354-.146L11 7.707l1.146 1.147a.5.5 0 0 0 .708-.708l-.647-.646 3.147-3.146a1.207 1.207 0 0 0 0-1.708l-2-2zM2 12.707l7-7L10.293 7l-7 7H2v-1.293z" />
-                </svg></i>`
-            }
-
-            if (objConfiguracion.eliminar == true) {
-                contenido += `<i class="btn btn-danger" 
-                onclick='${(objFormulario != undefined && objFormulario.formulariogenerico != undefined
-                        && objFormulario.formulariogenerico == true) ? "EliminarGenerico"
-                        : objConfiguracion.callbackEliminar}(${fila[objConfiguracion.propiedadId]}) '  ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                       <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-                       </svg></i>`
-            }
-
-            contenido += "</td>";
-
-        }
-
-        contenido += "</tr>";
-    }
-    contenido += "</table>"
-    return contenido;
-}
-
-function fetchGet(url, callback) {
-    var raiz = document.getElementById("hdfOculto").value;
-    var urlAbsoluta = window.location.protocol + "//" +
-        window.location.host + raiz + url;
-    setD("cargando", "block");
-    fetch(urlAbsoluta).then(res => res.json())
-        .then(res => {
-            setD("cargando", "none");
-            callback(res)
-        }).catch(err => {
-            setD("cargando", "none");
-            console.log(err)
-        })
-}
-
-function fetchGetText(url, callback) {
-    var raiz = document.getElementById("hdfOculto").value;
-    var urlAbsoluta = window.location.protocol + "//" +
-        window.location.host + raiz + url;
-    setD("cargando", "block");
-    fetch(urlAbsoluta).then(res => res.text())
-        .then(res => {
-            callback(res)
-            setD("cargando", "none");
-        }).catch(err => {
-            console.log(err)
-            setD("cargando", "none");
-        })
-
-}
-
-function fetchPostText(url, frm, callback) {
-    var raiz = document.getElementById("hdfOculto").value;
-    var urlAbsoluta = window.location.protocol + "//" +
-        window.location.host + raiz + url;
-    console.log(urlAbsoluta);
-    setD("cargando", "block");
-    fetch(urlAbsoluta, {
-        method: "POST",
-        body: frm
-    }).then(res => res.text())
-        .then(res => {
-            callback(res)
-            setD("cargando", "none");
-        }).catch(err => {
-            console.log(err)
-            setD("cargando", "none");
-        })
-    /*
-    fetch(urlAbsoluta).then(res => res.json())
-        .then(res => {
-            callback(res)
-        }).catch(err => {
-            console.log(err)
-        })
-        */
-}
-
-function Buscar() {
-    var objConf = objConfiguracionGlobal;
-    var objBus = objBusquedaGlobal;
-    //Id del control
-    var valor = get(objBus.id)
-    fetchGet(`${objBus.url}/${objBus.nombreparametro}=` + valor, function (res) {
-        var rpta = generarTabla(objConf, res, objFormularioGlobal);
-        document.getElementById("divContenedor").innerHTML = rpta;
-    })
-    /*
-    fetch(`${objBus.url}/?${objBus.nombreparametro}=` + valor)
-        .then(res => res.json())
-        .then(res => {
-            var rpta = generarTabla(objConf, res);
-            document.getElementById("divContenedor").innerHTML = rpta;
-        })
-        */
-    /*
-    pintar({
-        url: `${objBus.url}/?${objBus.nombreparametro}=` + valor,
-        id: objConf.id,
-        cabeceras: objConf.cabeceras,
-        propiedades: objConf.propiedades
-    }, objBus)*/
-}
-
-
-function recuperarGenerico(url, idFormulario, excepciones = [], adicional = false) {
-
-    var elementos = document.querySelectorAll("#" + idFormulario + " [name]")
-    var nombreName;
-    fetchGet(url, function (res) {
-        for (var i = 0; i < elementos.length; i++) {
-            nombreName = elementos[i].name
-            if (!excepciones.includes(elementos[i].name)) {
-                if (elementos[i].type != undefined && elementos[i].type.toUpperCase() == "RADIO") {
-                    setC("[type='radio'][value='" + res[nombreName] + "']")
-                } else {
-                    if (elementos[i].type != undefined && elementos[i].type.toUpperCase() != "FILE")
-                        setN(nombreName, res[nombreName])
-                    else if (elementos[i].tagName.toUpperCase() == "IMG") {
-                        setSRC(nombreName, res[nombreName])
-                    }
-
-
-                }
-
-            }
-
-        }
-        if (adicional == true) {
-            //objConfiguracionGlobal.callbackeditar(res);
-            objConfiguracionGlobal.callbackeditar(res);
-        }
-    });
-
-
-}
-
-
-
-function recuperarGenericoEspecifico(url, idFormulario, excepciones = [], adicional = false) {
-    var elementos = document.querySelectorAll("#" + idFormulario + " [name]")
-    var nombreName;
-    fetchGet(url, function (res) {
-        for (var i = 0; i < elementos.length; i++) {
-            nombreName = elementos[i].name
-            if (!excepciones.includes(elementos[i].name)) {
-                if (elementos[i].type != undefined && elementos[i].type.toUpperCase() == "RADIO") {
-                    setC("[type='radio'][value='" + res[nombreName] + "']")
-                }
-                else if (elementos[i].type != undefined && elementos[i].type.toUpperCase() == "CHECKBOX") {
-                    //RECUPERAMOS (valor)
-                    var propiedad = nombreName.replace("[]", "");
-                    //[1,3]
-                    var valores = res[propiedad];
-                    var valor;
-                    for (var j = 0; j < valores.length; j++) {
-                        valor = valores[j];
-                        setC("[type='checkbox'][value='" + valor + "']")
-                    }
-                }
-                else {
-                    if (elementos[i].type != undefined && elementos[i].type.toUpperCase() != "FILE")
-                        setN(nombreName, res[nombreName])
-                    else if (elementos[i].tagName.toUpperCase() == "IMG") {
-                        setSRC(nombreName, res[nombreName])
-                    }
-
-
-                }
-
-            }
-
-        }
-        if (adicional == true) {
-            //objConfiguracionGlobal.callbackeditar(res);
-            recuperarEspecifico(res);
-        }
-    });
-
-
+    return "";
 }
 
 function validarSoloNumeros(e) {
-    var codigoAscii = e.keyCode;
-    if (codigoAscii < 48 || codigoAscii > 57) {
-        //No mostrarse
-        e.preventDefault();
-    }
+    if (e.keyCode < 48 || e.keyCode > 57) e.preventDefault();
 }
 
 function validarSoloNumerosDecimales(e) {
-    var codigoAscii = e.keyCode;
-    if ((codigoAscii < 48 && codigoAscii != 46) || codigoAscii > 57) {
-        //No mostrarse
-        e.preventDefault();
-    }
-    if (String.fromCharCode(e.keyCode) == ".") {
-        if (e.target.value.includes(".")) e.preventDefault();
-    }
-    if (e.target.value.length == 0 && String.fromCharCode(e.keyCode) == ".") {
-        e.preventDefault();
-    }
+    var kc = e.keyCode;
+    if ((kc < 48 && kc != 46) || kc > 57) { e.preventDefault(); return; }
+    if (String.fromCharCode(kc) == "." && e.target.value.includes(".")) e.preventDefault();
+    if (e.target.value.length == 0 && String.fromCharCode(kc) == ".") e.preventDefault();
 }
 
-function encontroClase(clase, claseBuscar = "snc") {
-
-
-
-    //["form-control", "o", "max-40"]
-    var arrayClase = clase.split(" ");
-    //max-40
-    var numeroEncontradas = arrayClase.filter(p => p.includes(claseBuscar)).length;
-    if (numeroEncontradas == 0) return false
-    else return true;
-
-
+function encontroClase(clase, claseBuscar) {
+    return clase.split(" ").some(function (p) { return p.includes(claseBuscar); });
 }
 
-var combosLlenar = [];
-var radioLimpiar = [];
-var radioNames = [];
+// ── Constructor de formularios ────────────────────────────────────────────────
+
 function construirFormulario(objFormulario) {
-    console.log("Tesss");
-    console.log(objFormulario)
-    var type = objFormulario.type;
     var elementos = objFormulario.formulario;
-    var contenido = "<div class='mt-3 mb-3'>";
-    contenido += `<form id='${objFormulario.id}'  method='POST'>`;
-    //FILAS
-    var arrayelemento;
-    var numeroarrayelemento;
+    var contenido = "<div class='mt-3 mb-3'><form id='" + objFormulario.id + "' method='POST'>";
+
     for (var i = 0; i < elementos.length; i++) {
-        arrayelemento = elementos[i];
-        numeroarrayelemento = arrayelemento.length;
+        var fila = elementos[i];
         contenido += "<div class='row'>";
-        for (var j = 0; j < numeroarrayelemento; j++) {
-            var hijosArray = arrayelemento[j]
-            if (hijosArray.class == undefined) {
-                hijosArray.class = "mb-3";
-            }
-            if (hijosArray.type == undefined) {
-                hijosArray.type = "text";
-            }
-            if (hijosArray.readonly == undefined) {
-                hijosArray.readonly = false;
-            }
-            if (hijosArray.value == undefined) {
-                hijosArray.value = "";
-            }
-            if (hijosArray.label == undefined) {
-                hijosArray.label = hijosArray.name;
-            }
-            if (hijosArray.cols == undefined) {
-                hijosArray.cols = "50";
-            }
-            if (hijosArray.rows == undefined) {
-                hijosArray.rows = "10";
-            }
-            if (hijosArray.id == undefined) {
-                hijosArray.id = "cboPrueba";
-            }
-            if (hijosArray.propiedadMostrar == undefined) {
-                hijosArray.propiedadMostrar = "nombre";
-            }
-            if (hijosArray.propiedadId == undefined) {
-                hijosArray.propiedadId = "id";
-            }
-            var valorKeyPressNumero = false;
-            if (hijosArray.classControl == undefined) {
-                hijosArray.classControl = "";
-            }
-            //classControl
-            if (hijosArray.className == undefined) {
-                hijosArray.className = "mb-3";
-            }
+        for (var j = 0; j < fila.length; j++) {
+            var h = fila[j];
+            h.class        = h.class        || "mb-3";
+            h.type         = h.type         || "text";
+            h.readonly     = h.readonly     || false;
+            h.value        = h.value        != undefined ? h.value : "";
+            h.label        = h.label        || h.name;
+            h.cols         = h.cols         || "50";
+            h.rows         = h.rows         || "10";
+            h.id           = h.id           || "cboPrueba";
+            h.propiedadMostrar = h.propiedadMostrar || "nombre";
+            h.propiedadId      = h.propiedadId      || "id";
+            h.classControl = h.classControl || "";
+            h.imgwidth     = h.imgwidth     || "100";
+            h.imgheight    = h.imgheight    || "100";
+            h.imgclass     = h.imgclass     || "";
+            h.preview      = h.preview !== false;
 
-            var encontroSNC = encontroClase(hijosArray.classControl, "snc")
-            var encontroSNDC = encontroClase(hijosArray.classControl, "sndc")
+            var snc  = encontroClase(h.classControl, "snc");
+            var sndc = encontroClase(h.classControl, "sndc");
 
+            contenido += `<div class="${h.class}"><label>${escapeHtml(h.label)}</label>`;
 
-            var typelemento = hijosArray.type;
-            var classControl = hijosArray.classControl;
-            contenido += `<div class="${hijosArray.class}">`
-            contenido += `<label>${hijosArray.label}</label>`
-            if (typelemento == "text" || typelemento == "number" || typelemento == "date") {
+            if (h.type == "text" || h.type == "number" || h.type == "date") {
+                contenido += `<input type="text" class="form-control ${h.classControl}"
+                    ${snc  ? "onkeypress='validarSoloNumeros(event)'" : ""}
+                    ${sndc ? "onkeypress='validarSoloNumerosDecimales(event)'" : ""}
+                    name="${h.name}" value="${escapeHtml(String(h.value))}"
+                    ${h.readonly ? "readonly" : ""} />`;
 
-                contenido += `  <input type="text" class="form-control ${classControl}"
-                       ${encontroSNC == false ? "" : "onkeypress='validarSoloNumeros(event)'"}
-               ${encontroSNDC == false ? "" : "onkeypress='validarSoloNumerosDecimales(event)'"}                
-                       name="${hijosArray.name}" value="${hijosArray.value}"
-                   ${hijosArray.readonly == true ? "readonly" : ""}  />`
+            } else if (h.type == "textarea") {
+                contenido += `<textarea name="${h.name}" class="form-control ${h.classControl}"
+                    rows="${h.rows}" cols="${h.cols}">${escapeHtml(String(h.value))}</textarea>`;
 
-            } else if (typelemento == "textarea") {
-                contenido += `<textarea name="${hijosArray.name}" 
-                     class="form-control ${classControl}"
-                     rows="${hijosArray.rows}" cols="${hijosArray.cols}"
-                       >${hijosArray.value}</textarea>`
+            } else if (h.type == "combobox") {
+                contenido += `<select name="${h.name}" class="form-control ${h.classControl}" id="${h.id}"></select>`;
+                combosLlenar.push(h);
 
-            } else if (typelemento == "combobox") {
-                contenido += `
-                      <select name="${hijosArray.name}" class="form-control ${classControl}"
-                                    id="${hijosArray.id}"></select>
-                   `
-                combosLlenar.push(hijosArray)
-            } else if (typelemento == "radio" || typelemento == "checkbox") {
+            } else if (h.type == "radio" || h.type == "checkbox") {
                 contenido += "<div>";
-                for (var z = 0; z < hijosArray.labels.length; z++) {
-                    contenido += `
-                              <input type="${typelemento}"
-                                ${hijosArray.ids != undefined && hijosArray.ids[z] == hijosArray.checked ? "checked" : ""}
-                               id="${hijosArray.ids == undefined ? z : hijosArray.ids[z]}"
-                                   name="${hijosArray.name}${typelemento == "checkbox" ? '[]' : ''}" value="${hijosArray.values[z]}" />
-                        <label>${hijosArray.labels[z]}</label>
-                   `
+                for (var z = 0; z < h.labels.length; z++) {
+                    contenido += `<input type="${h.type}"
+                        ${h.ids && h.ids[z] == h.checked ? "checked" : ""}
+                        id="${h.ids ? h.ids[z] : z}"
+                        name="${h.name}${h.type == "checkbox" ? '[]' : ''}"
+                        value="${escapeHtml(String(h.values[z]))}" />
+                        <label>${escapeHtml(h.labels[z])}</label>`;
+                }
+                radioLimpiar.push(h.checked);
+                radioNames.push(h.name);
+                contenido += "</div>";
 
+            } else if (h.type == "file") {
+                if (h.preview) {
+                    contenido += `<img width="${h.imgwidth}" class="${h.imgclass}"
+                        height="${h.imgheight}" id="img${h.name}"
+                        name="${h.namefoto}" style="display:block" />`;
                 }
-                radioLimpiar.push(hijosArray.checked);
-                radioNames.push(hijosArray.name);
-                contenido += "</div>"
-            } else if (typelemento == "file") {
-                if (hijosArray.imgwidth == undefined) {
-                    hijosArray.imgwidth = "100";
-                }
-                if (hijosArray.imgheight == undefined) {
-                    hijosArray.imgheight = "100";
-                }
-                if (hijosArray.preview == undefined) {
-                    hijosArray.preview = true;
-                }
-                //imgclass
-                if (hijosArray.imgclass == undefined) {
-                    hijosArray.imgclass = "";
-                }
-                if (hijosArray.preview == true) {
-                    contenido += `
-                             <img width="${hijosArray.imgwidth}" class="${hijosArray.imgclass}"
-                                   height="${hijosArray.imgheight}" id="img${hijosArray.name}"
-                              name="${hijosArray.namefoto}" style="display:block"  />
-                   `
-                }
-                contenido += `
-                     <input type="file"
-                            id="fup${hijosArray.name}"
-                             name="${hijosArray.name}"
-                       ${hijosArray.preview == true ?
-                        `onchange='previewImage(this,"img${hijosArray.name}")'` : ""}     
-                        />
-                   `
+                contenido += `<input type="file" id="fup${h.name}" name="${h.name}"
+                    ${h.preview ? `onchange='previewImage(this,"img${h.name}")'` : ""} />`;
             }
-            contenido += `</div>`
-
+            contenido += "</div>";
         }
-
         contenido += "</div>";
-
     }
-    console.log(contenido);
-    contenido += "</form>";
-    contenido += "</div>"
-
+    contenido += "</form></div>";
     return contenido;
 }
 
 function previewImage(control, img) {
     var file = control.files[0];
-    var imgFoto = document.getElementById(img);
     var reader = new FileReader();
-    reader.onloadend = function () {
-        imgFoto.src = reader.result;
-    }
-    reader.readAsDataURL(file)
-
+    reader.onloadend = function () { document.getElementById(img).src = reader.result; };
+    reader.readAsDataURL(file);
 }
 
+// ── Operaciones CRUD ─────────────────────────────────────────────────────────
+
 function GuardarGenerico(idformulario, urlguardar) {
-    // alert(idformulario);
-    // alert(urlguardar);
-    var error = ValidarObligatorios(idformulario)
-    if (error != "") {
-        Error(error);
-        return;
-    }
-    var error = ValidarLongitudMaxima(idformulario);
-    if (error != "") {
-        Error(error);
-        return;
-    }
-    var error = ValidarLongitudMinima(idformulario);
-    if (error != "") {
-        Error(error);
-        return;
-    }
+    var error = ValidarObligatorios(idformulario)          || ValidarLongitudMaxima(idformulario)
+             || ValidarLongitudMinima(idformulario)         || validarSoloNumerosEnteros(idformulario)
+             || validarSoloNumerosDecimalesControl(idformulario);
+    if (error) { mostrarError(error); return; }
 
-    var error = validarSoloNumerosEnteros(idformulario)
-    if (error != "") {
-        Error(error);
-        return;
-    }
-    var error = validarSoloNumerosDecimalesControl(idformulario)
-    if (error != "") {
-        Error(error);
-        return;
-    }
-    Confirmacion("" + objFormularioGlobal.tituloconfirmacionguardar, "Confirmar Guardar Datos",
-        function (res) {
-            var tipoform = objFormularioGlobal.type;
-            var idpopup = objConfiguracionGlobal.idpopup;
-            var frmGenerico = document.getElementById(idformulario);
-            var frm = new FormData(frmGenerico);
-            fetchPostText(urlguardar, frm, function (res) {
-                if (res == "1") {
-
-                    var objConf = objConfiguracionGlobal;
-                    var objBus = objBusquedaGlobal;
-                    //Id del control
-                    if (objBus != undefined) {
-                        var valor = get(objBus.id)
-                        fetchGet(`${objBus.url}/?${objBus.nombreparametro}=` + valor, function (res) {
-                            var rpta = generarTabla(objConf, res, objFormularioGlobal);
-                            document.getElementById("divContenedor").innerHTML = rpta;
-
-                        })
-                    } else {
-
-                        fetchGet(`${objConf.url}`, function (res) {
-                            if (objConf.name != undefined && objConf.name != "")
-                                res = res[objConf.name]
-                            var rpta = generarTabla(objConf, res, objFormularioGlobal);
-                            document.getElementById("divContenedor").innerHTML = rpta;
-
-                        })
-                    }
-
-                    if (tipoform == "popup") {
-                        document.getElementById("btnCerrar" + objConfiguracionGlobal.idpopup)
-                            .click();
-                    }
-
-                    LimpiarDatos(idformulario, objFormularioGlobal.limpiarexcepcion.concat(radioNames))
-                    //listarTipoHabitacion();
-                    //Limpiar();
-                }
-            })
+    Confirmacion(objFormularioGlobal.tituloconfirmacionguardar, "Confirmar guardar datos", function () {
+        var frm = new FormData(document.getElementById(idformulario));
+        fetchPostText(urlguardar, frm, function (res) {
+            if (res.trim() == "1") {
+                var objConf = objConfiguracionGlobal;
+                var objBus  = objBusquedaGlobal;
+                var refrescar = objBus
+                    ? objBus.url + "?" + objBus.nombreparametro + "=" + encodeURIComponent(get(objBus.id))
+                    : objConf.url;
+                fetchGet(refrescar, function (data) {
+                    if (objConf.name && !objBus) data = data[objConf.name];
+                    document.getElementById("divContenedor").innerHTML = generarTabla(objConf, data, objFormularioGlobal);
+                });
+                if (objFormularioGlobal.type == "popup")
+                    document.getElementById("btnCerrar" + objConfiguracionGlobal.idpopup).click();
+                LimpiarDatos(idformulario, objFormularioGlobal.limpiarexcepcion.concat(radioNames));
+            }
         });
-    
+    });
 }
 
 function EditarGenerico(id, idFormulario) {
-    //var idFormulario = "frmCama";
-    // var idformulario = objConfiguracionGlobal 
-    //alert(idFormulario)
-    var url = objConfiguracionGlobal.urlRecuperar;
-    var nombreparametro = objConfiguracionGlobal.parametroRecuperar
+    var url            = objConfiguracionGlobal.urlRecuperar;
+    var nombreparametro = objConfiguracionGlobal.parametroRecuperar;
+
     if (objFormularioGlobal.type == "popup") {
         LimpiarGenerico(objFormularioGlobal.id);
-        if (id == 0) {
-            document.getElementById("lbl" + objConfiguracionGlobal.idpopup).innerHTML
-                = "Agregar " + objFormularioGlobal.titulo;
-        }
-        //editar
-        else {
-            document.getElementById("lbl" + objConfiguracionGlobal.idpopup).innerHTML
-                = "Editar " + objFormularioGlobal.titulo;
-            recuperarGenerico(`${url}/?${nombreparametro}=` + id,
-                idFormulario, objConfiguracionGlobal.recuperarexcepcion,
-                objConfiguracionGlobal.iscallbackeditar);
-        }
+        document.getElementById("lbl" + objConfiguracionGlobal.idpopup).innerHTML
+            = (id == 0 ? "Agregar " : "Editar ") + escapeHtml(objFormularioGlobal.titulo || "");
+        if (id != 0)
+            recuperarGenerico(url + "?" + nombreparametro + "=" + id, idFormulario,
+                objConfiguracionGlobal.recuperarexcepcion, objConfiguracionGlobal.iscallbackeditar);
     } else {
-
-        recuperarGenerico(`${url}/?${nombreparametro}=` + id,
-            idFormulario, objConfiguracionGlobal.recuperarexcepcion,
-            objConfiguracionGlobal.iscallbackeditar);
+        recuperarGenerico(url + "?" + nombreparametro + "=" + id, idFormulario,
+            objConfiguracionGlobal.recuperarexcepcion, objConfiguracionGlobal.iscallbackeditar);
     }
-
 }
 
 function EliminarGenerico(id) {
-    var url = objConfiguracionGlobal.urlEliminar;
-    var nombreparametro = objConfiguracionGlobal.parametroEliminar;
     var objConf = objConfiguracionGlobal;
-    var objBus = objBusquedaGlobal;
-
-    Confirmacion("Desea eliminar el alumno?", "Confirmar eliminaciòn",
-        function (res) {
-
-            fetchGetText(`${url}/?${nombreparametro}=` + id,
-                function (rpta) {
-                    console.log("eliminando");
-                    console.log(rpta);
-                    //Correcto("Se elimino correctamente");
-                    if (Boolean(rpta)  == true) {
-                        Correcto("Se elimino correctamente");
-                        ListarAlumnos();}     
-             })
-     });
+    Confirmacion("¿Desea eliminar este registro?", "Confirmar eliminación", function () {
+        fetchGetText(objConf.urlEliminar + "?" + objConf.parametroEliminar + "=" + id, function (rpta) {
+            if (rpta.trim() == "1") {
+                Correcto("Se eliminó correctamente");
+                fetchGet(objConf.url, function (res) {
+                    if (objConf.name) res = res[objConf.name];
+                    document.getElementById("divContenedor").innerHTML = generarTabla(objConf, res, objFormularioGlobal);
+                });
+            } else {
+                mostrarError("No se pudo eliminar el registro");
+            }
+        });
+    });
 }
-
 
 function LimpiarGenerico(idFormulario) {
-    //[].concat(["iidestado"]) =["iidestado"]
-    LimpiarDatos(idFormulario, objFormularioGlobal.limpiarexcepcion.concat(radioNames))
+    LimpiarDatos(idFormulario, objFormularioGlobal.limpiarexcepcion.concat(radioNames));
 }
 
-function llenarCombo(data, id, propiedadMostrar, propiedadId, valueDefecto = "") {
-    var contenido = ""
-    var elemento;
-    contenido += "<option value='" + valueDefecto + "'>--Seleccione--</option>"
-    for (var j = 0; j < data.length; j++) {
-        elemento = data[j];
-        contenido +=
-            "<option value='" + elemento[propiedadId] + "' >" + elemento[propiedadMostrar] + "</option>"
+function LimpiarDatos(idFormulario, excepciones) {
+    excepciones = excepciones || [];
+    for (var j = 0; j < radioLimpiar.length; j++) {
+        var el = document.getElementById(radioLimpiar[j]);
+        if (el) el.checked = true;
     }
+    var checkboxs = document.querySelectorAll("#" + idFormulario + " [type='checkbox']");
+    for (var j = 0; j < checkboxs.length; j++) checkboxs[j].checked = false;
 
-    contenido += "";
-    document.getElementById(id).innerHTML = contenido;
+    var elementos = document.querySelectorAll("#" + idFormulario + " [name]");
+    for (var i = 0; i < elementos.length; i++) {
+        if (!excepciones.includes(elementos[i].name)) {
+            if (elementos[i].tagName.toUpperCase() == "IMG") elementos[i].src = "";
+            else elementos[i].value = "";
+        }
+    }
 }
